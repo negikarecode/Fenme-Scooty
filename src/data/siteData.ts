@@ -93,7 +93,7 @@ export const siteData: SiteData = {
     phone: "+91 96256 95363",
     formattedPhone: "+91 96256 95363",
     whatsappNumber: "919625695363",
-    whatsappUrl: "https://wa.me/919625695363?text=Hello%20Femme%20Scooty,%20I%20would%20like%20more%20details%20about%20scooter%20training.",
+    whatsappUrl: "https://wa.me/919625695363?text=Hi%20Femme%20Scooty%2C%20mujhe%20Ladies%20Scooty%20Training%20ke%20baare%20mein%20jaankari%20chahiye.",
     email: "info@femmescooty.in",
     address: "Delhi NCR, Lucknow, Mathura, Jodhpur, Ghaziabad and Faridabad",
     heroHeadline: "Learn Scooty With Confidence — Ab Bina Dar Chalayein!",

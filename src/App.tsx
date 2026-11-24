@@ -41,16 +41,16 @@ export const App: React.FC = () => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   }, [pathname]);
 
-  // Handle route redirect if preference exists on initial visit
+  // Sync preference with explicit pathname on initial visit
   useEffect(() => {
-    const storedPref = localStorage.getItem('femme_scooty_gender_preference');
-    if (storedPref) {
-      if (storedPref === 'men' && window.location.pathname === '/') {
+    if (window.location.pathname.startsWith('/men')) {
+      localStorage.setItem('femme_scooty_gender_preference', 'men');
+      setPathname('/men');
+    } else {
+      const storedPref = localStorage.getItem('femme_scooty_gender_preference');
+      if (storedPref === 'men') {
         window.history.replaceState({}, '', '/men');
         setPathname('/men');
-      } else if (storedPref === 'women' && window.location.pathname === '/men') {
-        window.history.replaceState({}, '', '/');
-        setPathname('/');
       }
     }
   }, []);

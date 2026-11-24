@@ -98,6 +98,12 @@ def main():
     check("Delhi NCR, Ghaziabad, Faridabad, Lucknow, Mathura, and Jodhpur" in dom_women, "Women footer blurb lists all 6 cities")
     check("1,000+ TRAINED" in dom_women, "Footer badge has '1,000+ TRAINED'")
 
+    # Floating WhatsApp Button
+    check("floating-whatsapp-btn" in dom_women, "Floating WhatsApp button present on Women route")
+    check("mujhe%20Ladies%20Scooty%20Training" in dom_women or "mujhe Ladies Scooty Training" in dom_women,
+          "Women Floating WhatsApp has prefilled Ladies Scooty Training message")
+    check("bg-[#25D366]" in dom_women, "Floating WhatsApp button has #25D366 green background")
+
     # 2. MEN'S PAGE (/men)
     print("\n>>> Checking Men's Route (http://localhost:5173/men)...")
     dom_men = get_dom('http://localhost:5173/men', fresh_profile=True, window_size="1440,900")
@@ -123,6 +129,10 @@ def main():
           "Men Why Us card 6 desc matches on Men route")
     check("Can I choose my class timing? (Kya aap apna time slot choose kar sakte hain?)" in dom_men, "Men FAQ #4 grammar fixed")
     check("Delhi NCR, Ghaziabad, Faridabad, Lucknow, Mathura, and Jodhpur" in dom_men, "Men footer blurb lists all 6 cities")
+
+    # Floating WhatsApp Button (Men)
+    check("floating-whatsapp-btn" in dom_men, "Floating WhatsApp button present on Men route")
+    check("mujhe%20Men" in dom_men, "Men Floating WhatsApp has prefilled Men's Scooty Training message")
 
     # 3. Viewport Checks (1280px, 375px)
     print("\n>>> Checking Laptop Viewport (1280x800)...")
