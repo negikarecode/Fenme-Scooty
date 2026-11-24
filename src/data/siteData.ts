@@ -25,6 +25,7 @@ export interface Benefit {
   title: string;
   hinglishHeadline: string;
   description: string;
+  microBadge: string;
   iconName: 'users' | 'shield' | 'mapPin' | 'calendar' | 'sparkles' | 'award';
 }
 
@@ -89,7 +90,7 @@ export const siteData: SiteData = {
     name: "Femme Scooty",
     wordmark: "femme scooty.",
     tagline: "Delhi ki Sabse Trusted Ladies Scooty Training",
-    subTagline: "Bina cycle, bina dare... Seedha scooty chalana seekho!",
+    subTagline: "Bina cycle, bina dar... Seedha scooty chalana seekho!",
     foundedYear: 2024,
     founder: "Kajal Kaur",
     studentsTrained: 1000,
@@ -157,7 +158,7 @@ export const siteData: SiteData = {
       idealFor: "Jinhe balance karna bhi nahi aata!",
       tagline: "Pehle din se hi confidence badhta hai!",
       accentColor: "blush",
-      image: "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=800&q=80",
+      image: "/images/course-basic.jpg",
       features: [
         "Cycle nahi aati? Koi baat nahi — zero balance se start",
         "Apke area ke safe roads pe step-by-step practice",
@@ -174,7 +175,7 @@ export const siteData: SiteData = {
       idealFor: "Balance to hai par road pe darr lagta hai!",
       tagline: "Ab gali se highway tak – sab handle karein!",
       accentColor: "sky",
-      image: "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=800&q=80",
+      image: "/images/course-advance.jpg",
       features: [
         "Real market & traffic mein real-world confidence",
         "U-turns, tight alleys & incline slopes master karein",
@@ -191,7 +192,7 @@ export const siteData: SiteData = {
       idealFor: "License test nikalna hai ya weekend pe ride polish karni hai!",
       tagline: "Pehli baar mein RTO test clear, full confidence ke saath!",
       accentColor: "sage",
-      image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80",
+      image: "/images/course-rto.jpg",
       features: [
         "RTO figure-8 track & ramp clearance simulation",
         "Traffic signal rules, road etiquette & signage training",
@@ -207,6 +208,7 @@ export const siteData: SiteData = {
       title: "100% Female Instructors",
       hinglishHeadline: "Ladies-Only Safe Space",
       description: "Only certified female trainers with no intimidating male staff. Ask every question freely in a sisterly, supportive environment.",
+      microBadge: "LADIES ONLY ENVIRONMENT",
       iconName: "users"
     },
     {
@@ -214,6 +216,7 @@ export const siteData: SiteData = {
       title: "Free Scooty & Petrol Provided",
       hinglishHeadline: "Khudki scooty nahi? Hamari use karo",
       description: "You do not need to buy or borrow a scooter before learning. Practice on our light, well-serviced fleet with zero fuel charges.",
+      microBadge: "ZERO FUEL COST",
       iconName: "sparkles"
     },
     {
@@ -221,6 +224,7 @@ export const siteData: SiteData = {
       title: "Learn Near Your Home",
       hinglishHeadline: "Apke area ke safe roads",
       description: "No commuting to distant training tracks. Lessons are arranged in peaceful, quiet roads within or adjacent to your neighborhood.",
+      microBadge: "LOCAL CORRIDORS",
       iconName: "mapPin"
     },
     {
@@ -228,6 +232,7 @@ export const siteData: SiteData = {
       title: "Umar No Bar (Ages 16 to 60)",
       hinglishHeadline: "16 saal ki beti se 60 saal ki mommy",
       description: "Age is never a hurdle. Whether you are a college student, working mother, or grandmother, training is calibrated to your comfort.",
+      microBadge: "ALL AGES WELCOME",
       iconName: "award"
     },
     {
@@ -235,6 +240,7 @@ export const siteData: SiteData = {
       title: "Flexible Batch Schedules",
       hinglishHeadline: "Office se pehle ya shaam ke slots",
       description: "Early morning, evening, or weekend slots that fit smoothly around office shifts, college timetables, and household routines.",
+      microBadge: "CUSTOM TIME SLOTS",
       iconName: "calendar"
     },
     {
@@ -242,6 +248,7 @@ export const siteData: SiteData = {
       title: "RTO Test & Road Readiness",
       hinglishHeadline: "RTO test tricks aur emergency braking",
       description: "From figure-8 tracks and stop-and-go maneuvers to road presence and emergency handling, ride out ready for the official driving test.",
+      microBadge: "RTO TEST VERIFIED",
       iconName: "shield"
     }
   ],

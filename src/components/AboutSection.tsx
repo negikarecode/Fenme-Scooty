@@ -77,7 +77,7 @@ export const AboutSection: React.FC = () => {
               {/* Training Image Container */}
               <div className="rounded-card overflow-hidden border-2 border-charcoal shadow-elevated bg-cream-100 relative group">
                 <img
-                  src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1000&q=80"
+                  src="/images/about-story.jpg"
                   alt="Femme Scooty Training Session"
                   className="w-full h-80 sm:h-96 object-cover group-hover:scale-105 transition-transform duration-700"
                   loading="lazy"

@@ -4,18 +4,32 @@ import { PhoneIcon, WhatsAppIcon, ArrowUpIcon } from './Icons';
 
 export const FloatingActions: React.FC = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [footerVisible, setFooterVisible] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 350) {
-        setShowScrollTop(true);
-      } else {
-        setShowScrollTop(false);
-      }
+      setShowScrollTop(window.scrollY > 400);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    // Hide scroll-to-top when user is inside the footer to prevent overlapping copyright or credits
+    const footer = document.querySelector('footer');
+    let observer: IntersectionObserver | null = null;
+    if (footer) {
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          setFooterVisible(entry.isIntersecting);
+        },
+        { threshold: 0.05 }
+      );
+      observer.observe(footer);
+    }
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (observer) observer.disconnect();
+    };
   }, []);
 
   const scrollToTop = () => {
@@ -25,18 +39,22 @@ export const FloatingActions: React.FC = () => {
     });
   };
 
+  const isVisible = showScrollTop && !footerVisible;
+
   return (
     <>
-      {/* Floating Scroll-to-Top Button */}
-      {showScrollTop && (
-        <button
-          onClick={scrollToTop}
-          aria-label="Scroll to top of page"
-          className="fixed bottom-20 sm:bottom-8 right-4 sm:right-8 z-40 w-11 h-11 rounded-full bg-charcoal text-cream-50 hover:bg-blush-600 border border-charcoal/30 flex items-center justify-center shadow-elevated transition-all hover:scale-105 active:scale-95 focus:outline-none"
-        >
-          <ArrowUpIcon className="w-5 h-5 text-white" />
-        </button>
-      )}
+      {/* Floating Scroll-to-Top Button with safe offset and footer auto-hide */}
+      <button
+        onClick={scrollToTop}
+        aria-label="Scroll to top of page"
+        className={`fixed bottom-24 sm:bottom-12 right-5 sm:right-8 z-40 w-11 h-11 rounded-full bg-charcoal text-cream-50 hover:bg-blush-600 border border-charcoal/30 flex items-center justify-center shadow-elevated transition-all duration-300 focus:outline-none ${
+          isVisible
+            ? 'opacity-100 pointer-events-auto translate-y-0 hover:scale-105 active:scale-95'
+            : 'opacity-0 pointer-events-none translate-y-4'
+        }`}
+      >
+        <ArrowUpIcon className="w-5 h-5 text-white" />
+      </button>
 
       {/* Sticky Mobile Bottom Action Bar (One-tap Call & WhatsApp) */}
       <aside aria-label="Quick contact" className="sm:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-charcoal/20 px-3 py-2 shadow-2xl">

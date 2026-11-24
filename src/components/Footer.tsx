@@ -136,10 +136,10 @@ export const Footer: React.FC = () => {
       <div className="w-full bg-charcoal text-cream-50 py-5 px-4 sm:px-6 lg:px-8 border-t border-charcoal/30">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-cream-100/70">
           <p className="text-center sm:text-left">
-            Copyright © 2026 Ladies scooty training centre | Femme Scooty | Website Design By Digital Aakar
+            Copyright © 2026 Ladies Scooty Training Centre | Femme Scooty | Website Design By Digital Aakar
           </p>
           <p className="text-center sm:text-right font-medium text-cream-100/90">
-            Powered by Ladies scooty training centre | Femme Scooty
+            Powered by Ladies Scooty Training Centre | Femme Scooty
           </p>
         </div>
       </div>

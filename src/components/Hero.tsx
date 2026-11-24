@@ -64,20 +64,13 @@ export const Hero: React.FC = () => {
         </div>
       </div>
 
-      <div className="hidden xl:block absolute bottom-8 left-1/3 z-0 pointer-events-none opacity-75">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blush-100 border border-charcoal/20 text-xs font-semibold text-charcoal shadow-sm">
-          <HelmetIcon className="w-3.5 h-3.5 text-blush-600" />
-          <span>Zero cycling balance required</span>
-        </div>
-      </div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           
           {/* Left Column: Editorial Headline, Hinglish Tagline & CTAs */}
           <div className="lg:col-span-7 space-y-6 sm:space-y-7">
             
-            {/* Top Tape Tag Badge */}
+            {/* Top Tape Tag Badge Cluster */}
             <div className="flex flex-wrap items-center gap-2 sm:gap-3">
               <span className="tape-badge bg-sky-200 text-charcoal rotate-1">
                 <ScooterIcon className="w-3.5 h-3.5" />
@@ -86,6 +79,10 @@ export const Hero: React.FC = () => {
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sage-200 text-charcoal text-xs font-bold uppercase tracking-wider border border-charcoal/20">
                 <ShieldCheckIcon className="w-3.5 h-3.5" />
                 <span>Delhi & NCR's Trusted</span>
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blush-200 text-charcoal text-xs font-bold uppercase tracking-wider border border-charcoal/20">
+                <HelmetIcon className="w-3.5 h-3.5 text-blush-700" />
+                <span>Zero Cycling Balance Required</span>
               </span>
             </div>
 

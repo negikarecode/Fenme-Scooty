@@ -33,14 +33,12 @@ export const TestimonialsSection: React.FC = () => {
           </p>
         </div>
 
-        {/* Desktop View: 3 Equal-Height White Cards Grid */}
+        {/* Desktop View: Clean Static 3-Column Grid without Detached Rings or Duplicate Controls */}
         <div className="hidden lg:grid grid-cols-3 gap-6 lg:gap-8 items-stretch">
-          {testimonials.map((t, idx) => (
+          {testimonials.map((t) => (
             <div
               key={t.id}
-              className={`flex flex-col h-full bg-white rounded-card border-2 border-charcoal p-6 sm:p-7 shadow-editorial hover:translate-y-[-2px] hover:shadow-elevated transition-all duration-300 relative ${
-                idx === activeIndex ? 'ring-2 ring-blush-400' : ''
-              }`}
+              className="flex flex-col h-full bg-white rounded-card border-2 border-charcoal p-6 sm:p-7 shadow-editorial hover:-translate-y-1 hover:shadow-elevated transition-all duration-300 relative group"
             >
               {/* Star Rating */}
               <div className="flex items-center gap-1 mb-4 text-amber-500">
@@ -77,7 +75,7 @@ export const TestimonialsSection: React.FC = () => {
           ))}
         </div>
 
-        {/* Mobile & Tablet Carousel View */}
+        {/* Mobile & Tablet Slider View (< 1024px) */}
         <div className="lg:hidden">
           <div className="bg-white rounded-card border-2 border-charcoal p-6 sm:p-8 shadow-editorial relative flex flex-col justify-between min-h-[320px]">
             {/* Stars */}
@@ -119,41 +117,41 @@ export const TestimonialsSection: React.FC = () => {
               </span>
             </div>
           </div>
-        </div>
 
-        {/* Carousel Control Buttons (Circular Pink Buttons matching reference) */}
-        <div className="flex items-center justify-center gap-4 mt-8 sm:mt-10">
-          <button
-            onClick={handlePrev}
-            aria-label="Previous Testimonial"
-            className="w-11 h-11 rounded-full bg-blush-300 hover:bg-blush-400 active:bg-blush-500 border border-charcoal flex items-center justify-center text-charcoal shadow-sm hover:scale-105 active:scale-95 transition-all focus:outline-none"
-          >
-            <ChevronLeftIcon className="w-5 h-5 text-charcoal" />
-          </button>
+          {/* Mobile & Tablet Carousel Controls (Hidden on Desktop) */}
+          <div className="flex items-center justify-center gap-4 mt-7">
+            <button
+              onClick={handlePrev}
+              aria-label="Previous Testimonial"
+              className="w-11 h-11 rounded-full bg-blush-300 hover:bg-blush-400 active:bg-blush-500 border border-charcoal flex items-center justify-center text-charcoal shadow-sm hover:scale-105 active:scale-95 transition-all focus:outline-none"
+            >
+              <ChevronLeftIcon className="w-5 h-5 text-charcoal" />
+            </button>
 
-          {/* Dot Indicators */}
-          <div className="flex items-center gap-2">
-            {testimonials.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setActiveIndex(idx)}
-                aria-label={`Jump to review ${idx + 1}`}
-                className={`h-2.5 rounded-full transition-all focus:outline-none ${
-                  idx === activeIndex
-                    ? 'w-6 bg-charcoal'
-                    : 'w-2.5 bg-charcoal/30 hover:bg-charcoal/60'
-                }`}
-              />
-            ))}
+            {/* Dot Indicators */}
+            <div className="flex items-center gap-2">
+              {testimonials.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setActiveIndex(idx)}
+                  aria-label={`Jump to review ${idx + 1}`}
+                  className={`h-2.5 rounded-full transition-all focus:outline-none ${
+                    idx === activeIndex
+                      ? 'w-6 bg-charcoal'
+                      : 'w-2.5 bg-charcoal/30 hover:bg-charcoal/60'
+                  }`}
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={handleNext}
+              aria-label="Next Testimonial"
+              className="w-11 h-11 rounded-full bg-blush-300 hover:bg-blush-400 active:bg-blush-500 border border-charcoal flex items-center justify-center text-charcoal shadow-sm hover:scale-105 active:scale-95 transition-all focus:outline-none"
+            >
+              <ChevronRightIcon className="w-5 h-5 text-charcoal" />
+            </button>
           </div>
-
-          <button
-            onClick={handleNext}
-            aria-label="Next Testimonial"
-            className="w-11 h-11 rounded-full bg-blush-300 hover:bg-blush-400 active:bg-blush-500 border border-charcoal flex items-center justify-center text-charcoal shadow-sm hover:scale-105 active:scale-95 transition-all focus:outline-none"
-          >
-            <ChevronRightIcon className="w-5 h-5 text-charcoal" />
-          </button>
         </div>
 
       </div>

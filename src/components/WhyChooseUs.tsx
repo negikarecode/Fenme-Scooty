@@ -87,7 +87,7 @@ export const WhyChooseUs: React.FC = () => {
 
               {/* Bottom Subtle Indicator */}
               <div className="mt-5 pt-4 border-t border-charcoal/10 flex items-center justify-between text-[11px] font-bold uppercase tracking-wider text-charcoal/60">
-                <span>Safe & Certified</span>
+                <span className="tracking-widest font-semibold">{benefit.microBadge}</span>
                 <span className="w-1.5 h-1.5 rounded-full bg-charcoal/30 group-hover:bg-charcoal transition-colors" />
               </div>
             </div>
