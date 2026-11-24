@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { siteData } from '../data/siteData';
-import { ChevronDownIcon, ScooterIcon } from './Icons';
+import { ChevronDownIcon } from './Icons';
 
 export const FAQSection: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -15,15 +15,14 @@ export const FAQSection: React.FC = () => {
         
         {/* Section Header */}
         <div className="text-center space-y-3 mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-1.5 tape-badge bg-blush-200 text-charcoal mx-auto">
-            <ScooterIcon className="w-3.5 h-3.5" />
-            <span>GOT QUESTIONS? WE HAVE ANSWERS</span>
+          <div className="inline-flex items-center gap-1.5 clean-badge bg-blush-100 text-charcoal border-blush-300 mx-auto">
+            <span>Aam Sawal</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-charcoal tracking-tight">
-            Frequently Asked Questions
+            Aam Sawal-Jawab
           </h2>
-          <p className="text-sm sm:text-base text-charcoal/75 font-medium max-w-lg mx-auto leading-relaxed">
-            Everything you need to know about our women-only scooter training program before booking your first session.
+          <p className="text-base sm:text-lg text-charcoal/80 font-medium max-w-lg mx-auto leading-relaxed">
+            Scooty seekhne se pehle aapke dimaag mein aane wale aam sawal.
           </p>
         </div>
 
@@ -34,15 +33,15 @@ export const FAQSection: React.FC = () => {
             return (
               <div
                 key={index}
-                className="bg-white rounded-xl border border-charcoal/20 overflow-hidden shadow-sm transition-all duration-200"
+                className="bg-white rounded-xl border border-charcoal/15 overflow-hidden shadow-xs transition-all duration-200"
               >
                 <button
                   onClick={() => toggleFAQ(index)}
-                  className="w-full px-5 sm:px-6 py-4 sm:py-5 flex items-center justify-between gap-4 text-left font-bold text-sm sm:text-base text-charcoal hover:bg-cream-100/60 transition-colors focus:outline-none"
+                  className="w-full px-5 sm:px-6 py-4 sm:py-5 flex items-center justify-between gap-4 text-left font-bold text-base sm:text-lg text-charcoal hover:bg-cream-50 transition-colors focus:outline-none"
                   aria-expanded={isOpen}
                 >
-                  <span className="flex items-center gap-3">
-                    <span className="w-6 h-6 rounded-full bg-cream-200 text-charcoal/70 text-xs flex items-center justify-center font-mono font-bold shrink-0">
+                  <span className="flex items-center gap-3.5">
+                    <span className="w-7 h-7 rounded-full bg-cream-100 text-charcoal/80 text-xs sm:text-sm flex items-center justify-center font-mono font-bold shrink-0 border border-charcoal/10">
                       {index + 1}
                     </span>
                     <span>{faq.question}</span>
@@ -57,8 +56,8 @@ export const FAQSection: React.FC = () => {
                 </button>
 
                 {isOpen && (
-                  <div className="px-5 sm:px-6 pb-5 pt-1 text-xs sm:text-sm text-charcoal/80 leading-relaxed font-sans border-t border-charcoal/10 bg-cream-50/50">
-                    <p className="pl-9">{faq.answer}</p>
+                  <div className="px-5 sm:px-6 pb-5 pt-1 text-sm sm:text-base text-charcoal/85 leading-relaxed font-sans border-t border-charcoal/10 bg-cream-50/40">
+                    <p className="pl-10">{faq.answer}</p>
                   </div>
                 )}
               </div>
@@ -66,19 +65,19 @@ export const FAQSection: React.FC = () => {
           })}
         </div>
 
-        {/* Bottom Help Banner */}
-        <div className="mt-12 p-6 rounded-card bg-sky-100/80 border border-charcoal/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+        {/* Bottom Reassuring Help Banner */}
+        <div className="mt-12 p-6 sm:p-7 rounded-2xl bg-sky-100/80 border border-charcoal/15 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
           <div>
-            <h4 className="font-bold text-sm text-charcoal">Have a specific question not listed here?</h4>
-            <p className="text-xs text-charcoal/75 mt-0.5">Talk directly with our head training coordinator on WhatsApp.</p>
+            <h4 className="font-bold text-base text-charcoal">Koi aur sawal hai jo yahan nahi mila?</h4>
+            <p className="text-sm text-charcoal/80 mt-1">Direct hamari training head se WhatsApp par baat karein.</p>
           </div>
           <a
             href={siteData.brand.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-5 py-2.5 rounded-full bg-charcoal hover:bg-blush-600 text-white font-bold text-xs uppercase tracking-wider shrink-0 transition-colors shadow-sm"
+            className="px-6 py-3 rounded-full bg-charcoal hover:bg-blush-600 text-white font-bold text-sm tracking-wide shrink-0 transition-colors shadow-sm"
           >
-            Chat with Coordinator
+            WhatsApp Par Poochhein
           </a>
         </div>
 

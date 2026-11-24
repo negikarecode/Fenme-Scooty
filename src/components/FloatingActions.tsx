@@ -47,7 +47,7 @@ export const FloatingActions: React.FC = () => {
       <button
         onClick={scrollToTop}
         aria-label="Scroll to top of page"
-        className={`fixed bottom-24 sm:bottom-12 right-5 sm:right-8 z-40 w-11 h-11 rounded-full bg-charcoal text-cream-50 hover:bg-blush-600 border border-charcoal/30 flex items-center justify-center shadow-elevated transition-all duration-300 focus:outline-none ${
+        className={`fixed bottom-24 sm:bottom-10 right-5 sm:right-8 z-40 w-11 h-11 rounded-full bg-charcoal text-cream-50 hover:bg-blush-600 border border-charcoal/30 flex items-center justify-center shadow-md transition-all duration-300 focus:outline-none ${
           isVisible
             ? 'opacity-100 pointer-events-auto translate-y-0 hover:scale-105 active:scale-95'
             : 'opacity-0 pointer-events-none translate-y-4'
@@ -57,15 +57,15 @@ export const FloatingActions: React.FC = () => {
       </button>
 
       {/* Sticky Mobile Bottom Action Bar (One-tap Call & WhatsApp) */}
-      <aside aria-label="Quick contact" className="sm:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-charcoal/20 px-3 py-2 shadow-2xl">
+      <aside aria-label="Quick contact" className="sm:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-charcoal/20 px-3 py-2.5 shadow-2xl">
         <div className="flex items-center gap-2">
           {/* Quick Call */}
           <a
             href={`tel:${siteData.brand.phone.replace(/\s+/g, '')}`}
-            className="flex-1 py-2.5 px-3 rounded-full bg-charcoal text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 shadow-sm active:scale-95 transition-transform"
+            className="flex-1 py-3 px-3 rounded-full bg-charcoal text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-transform"
           >
-            <PhoneIcon className="w-3.5 h-3.5 text-blush-300" />
-            <span>Call Now</span>
+            <PhoneIcon className="w-4 h-4 text-blush-300" />
+            <span>Call Karein</span>
           </a>
 
           {/* Quick WhatsApp */}
@@ -73,10 +73,10 @@ export const FloatingActions: React.FC = () => {
             href={siteData.brand.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 py-2.5 px-3 rounded-full bg-blush-200 text-charcoal font-bold text-xs uppercase tracking-wider border border-charcoal/40 flex items-center justify-center gap-1.5 shadow-sm active:scale-95 transition-transform"
+            className="flex-1 py-3 px-3 rounded-full bg-blush-200 text-charcoal font-bold text-xs uppercase tracking-wider border border-charcoal/20 flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-transform"
           >
-            <WhatsAppIcon className="w-3.5 h-3.5 text-charcoal" />
-            <span>WhatsApp</span>
+            <WhatsAppIcon className="w-4 h-4 text-charcoal" />
+            <span>WhatsApp Karein</span>
           </a>
         </div>
       </aside>
