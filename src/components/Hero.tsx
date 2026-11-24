@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { siteData } from '../data/siteData';
+import { SiteData } from '../data/siteData';
 import { ScooterIcon, PhoneIcon, WhatsAppIcon, ShieldCheckIcon, CheckIcon } from './Icons';
 
 interface CallbackFormData {
@@ -9,7 +9,12 @@ interface CallbackFormData {
   course: string;
 }
 
-export const Hero: React.FC = () => {
+interface HeroProps {
+  data: SiteData;
+  isMen?: boolean;
+}
+
+export const Hero: React.FC<HeroProps> = ({ data, isMen = false }) => {
   const [formData, setFormData] = useState<CallbackFormData>({
     fullName: '',
     phone: '',
@@ -52,7 +57,9 @@ export const Hero: React.FC = () => {
           : formData.course === '4-days-advance'
           ? '4 Din ka Advance Course'
           : 'RTO Test aur Weekend Practice'
-      } ke baare mein jaankari chahiye. Shehar: ${formData.city}. Phone: ${formData.phone || 'NA'}.`
+      } ke baare mein jaankari chahiye. Shehar: ${formData.city}. Phone: ${formData.phone || 'NA'}. Version: ${
+        isMen ? 'Men' : 'Women'
+      }.`
     );
     window.open(`https://wa.me/919625695363?text=${text}`, '_blank');
   };
@@ -65,22 +72,30 @@ export const Hero: React.FC = () => {
           {/* Left Column: Clear Hinglish Editorial Headline, Subtext & Big CTAs */}
           <div className="lg:col-span-7 space-y-6 sm:space-y-8">
             
-            {/* Clean Pill Badges (Calm, flat, no tilted stickers) */}
+            {/* Clean Pill Badges */}
             <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-              <span className="clean-badge bg-blush-100 text-charcoal border-blush-300">
-                <ScooterIcon className="w-3.5 h-3.5 text-blush-700" />
-                <span>100% Mahila Trainers</span>
+              <span
+                className={`clean-badge ${
+                  isMen
+                    ? 'bg-slateBlue-100 text-charcoal border-slateBlue-300'
+                    : 'bg-blush-100 text-charcoal border-blush-300'
+                }`}
+              >
+                <ScooterIcon className={`w-3.5 h-3.5 ${isMen ? 'text-slateBlue-700' : 'text-blush-700'}`} />
+                <span>{isMen ? 'Experienced Male Trainers' : '100% Mahila Trainers'}</span>
               </span>
+
               <span className="clean-badge bg-sage-100 text-charcoal border-sage-300">
                 <ShieldCheckIcon className="w-3.5 h-3.5 text-sage-700" />
                 <span>Ghar Ke Paas Training</span>
               </span>
+
               <span className="clean-badge bg-sky-100 text-charcoal border-sky-300">
                 <span>Free Scooty & Petrol</span>
               </span>
             </div>
 
-            {/* Clear, High-Contrast Headline for Ages 35-60 */}
+            {/* Clear, High-Contrast Headline for Ages 16 to 60 */}
             <div className="space-y-3">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-charcoal tracking-tight leading-[1.18]">
                 <span>Ab Bina Dar, </span>
@@ -89,7 +104,9 @@ export const Hero: React.FC = () => {
                     Khud Scooty
                   </span>
                   <span
-                    className="absolute inset-x-0 bottom-1 sm:bottom-2 h-3 sm:h-4 bg-blush-200 rounded-sm -z-0"
+                    className={`absolute inset-x-0 bottom-1 sm:bottom-2 h-3 sm:h-4 rounded-sm -z-0 ${
+                      isMen ? 'bg-slateBlue-200' : 'bg-blush-200'
+                    }`}
                     aria-hidden="true"
                   />
                 </span>
@@ -98,13 +115,13 @@ export const Hero: React.FC = () => {
 
               {/* Subtext */}
               <p className="text-base sm:text-lg font-semibold text-charcoal/80 pt-1">
-                {siteData.brand.heroSubtext}
+                {data.brand.heroSubtext}
               </p>
 
-              {/* Reassuring Note for Middle-Aged First-Timers */}
+              {/* Reassuring Note for Learners */}
               <div className="p-4 sm:p-5 rounded-2xl bg-white/90 border border-charcoal/10 shadow-sm max-w-xl">
                 <p className="text-base sm:text-lg text-charcoal/90 leading-relaxed font-sans">
-                  {siteData.brand.heroReassurance}
+                  {data.brand.heroReassurance}
                 </p>
               </div>
             </div>
@@ -113,19 +130,23 @@ export const Hero: React.FC = () => {
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 pt-1">
               {/* Call CTA */}
               <a
-                href={`tel:${siteData.brand.phone.replace(/\s+/g, '')}`}
+                href={`tel:${data.brand.phone.replace(/\s+/g, '')}`}
                 className="inline-flex items-center justify-center gap-3 px-7 py-4 rounded-full bg-charcoal hover:bg-charcoal-muted text-white font-bold text-base shadow-sm hover:shadow transition-all"
               >
-                <PhoneIcon className="w-5 h-5 text-blush-300" />
-                <span>Call Karein: {siteData.brand.formattedPhone}</span>
+                <PhoneIcon className={`w-5 h-5 ${isMen ? 'text-slateBlue-300' : 'text-blush-300'}`} />
+                <span>Call Karein: {data.brand.formattedPhone}</span>
               </a>
 
               {/* WhatsApp CTA */}
               <a
-                href={siteData.brand.whatsappUrl}
+                href={data.brand.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-3 px-7 py-4 rounded-full bg-blush-200 hover:bg-blush-300 text-charcoal font-bold text-base border border-charcoal/15 shadow-sm hover:shadow transition-all"
+                className={`inline-flex items-center justify-center gap-3 px-7 py-4 rounded-full text-charcoal font-bold text-base border transition-all shadow-sm hover:shadow ${
+                  isMen
+                    ? 'bg-slateBlue-100 hover:bg-slateBlue-200 border-slateBlue-300'
+                    : 'bg-blush-200 hover:bg-blush-300 border-charcoal/15'
+                }`}
               >
                 <WhatsAppIcon className="w-5 h-5 text-charcoal" />
                 <span>WhatsApp Par Baat Karein</span>
@@ -136,7 +157,9 @@ export const Hero: React.FC = () => {
             <div className="pt-4 grid grid-cols-3 gap-4 max-w-lg border-t border-charcoal/10">
               <div>
                 <span className="block text-2xl sm:text-3xl font-serif font-extrabold text-charcoal">1000+</span>
-                <span className="text-xs sm:text-sm font-semibold text-charcoal/70">Mahilayein Seekh Chuki</span>
+                <span className="text-xs sm:text-sm font-semibold text-charcoal/70">
+                  {isMen ? 'Riders Seekh Chuke' : 'Mahilayein Seekh Chuki'}
+                </span>
               </div>
               <div className="border-l border-charcoal/15 pl-4">
                 <span className="block text-2xl sm:text-3xl font-serif font-extrabold text-charcoal">16 to 60</span>
@@ -158,19 +181,25 @@ export const Hero: React.FC = () => {
             >
               {submitted ? (
                 <div className="py-8 text-center space-y-4">
-                  <div className="w-14 h-14 bg-sage-200 text-charcoal rounded-full flex items-center justify-center mx-auto shadow-sm">
+                  <div
+                    className={`w-14 h-14 rounded-full flex items-center justify-center mx-auto shadow-sm ${
+                      isMen ? 'bg-slateBlue-200 text-charcoal' : 'bg-sage-200 text-charcoal'
+                    }`}
+                  >
                     <CheckIcon className="w-7 h-7 text-charcoal" />
                   </div>
                   <h3 className="font-serif text-2xl font-bold text-charcoal">
                     Dhanyawaad!
                   </h3>
                   <p className="text-base text-charcoal/80 max-w-xs mx-auto">
-                    Aapki request mil gayi hai. Hamari training coordinator aapse jald hi call par baat karengi.
+                    Aapki request mil gayi hai. Hamari training coordinator aapse jald hi call par baat karenge.
                   </p>
                   <div className="pt-2">
                     <button
                       onClick={handleWhatsAppDirect}
-                      className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-blush-200 hover:bg-blush-300 text-charcoal font-bold text-sm shadow-sm transition-all"
+                      className={`inline-flex items-center gap-2 px-5 py-3 rounded-full text-charcoal font-bold text-sm shadow-sm transition-all ${
+                        isMen ? 'bg-slateBlue-100 hover:bg-slateBlue-200' : 'bg-blush-200 hover:bg-blush-300'
+                      }`}
                     >
                       <WhatsAppIcon className="w-4 h-4 text-charcoal" />
                       <span>WhatsApp Par Direct Chat Karein</span>
@@ -235,7 +264,7 @@ export const Hero: React.FC = () => {
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 rounded-xl border border-charcoal/20 bg-cream-50 text-sm sm:text-base text-charcoal focus:outline-none focus:ring-2 focus:ring-charcoal"
                     >
-                      {siteData.cities.map((city) => (
+                      {data.cities.map((city) => (
                         <option key={city.id} value={city.name}>
                           {city.name} ({city.state})
                         </option>
@@ -254,7 +283,7 @@ export const Hero: React.FC = () => {
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 rounded-xl border border-charcoal/20 bg-cream-50 text-sm sm:text-base text-charcoal focus:outline-none focus:ring-2 focus:ring-charcoal"
                     >
-                      {siteData.courses.map((course) => (
+                      {data.courses.map((course) => (
                         <option key={course.id} value={course.id}>
                           {course.name} ({course.duration})
                         </option>
@@ -266,7 +295,9 @@ export const Hero: React.FC = () => {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="w-full mt-2 py-4 px-6 rounded-full bg-charcoal hover:bg-blush-600 text-white font-bold text-base shadow-sm hover:shadow transition-all disabled:opacity-60 flex items-center justify-center gap-2"
+                    className={`w-full mt-2 py-4 px-6 rounded-full text-white font-bold text-base shadow-sm hover:shadow transition-all disabled:opacity-60 flex items-center justify-center gap-2 ${
+                      isMen ? 'bg-charcoal hover:bg-slateBlue-600' : 'bg-charcoal hover:bg-blush-600'
+                    }`}
                   >
                     {submitting ? 'Request Bheji Jaa Rahi Hai...' : 'Call Back Book Karein'}
                   </button>

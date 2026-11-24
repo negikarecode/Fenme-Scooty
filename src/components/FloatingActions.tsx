@@ -1,8 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { siteData } from '../data/siteData';
 import { PhoneIcon, WhatsAppIcon, ArrowUpIcon } from './Icons';
 
-export const FloatingActions: React.FC = () => {
+interface FloatingActionsProps {
+  phone: string;
+  whatsappUrl: string;
+  isMen?: boolean;
+}
+
+export const FloatingActions: React.FC<FloatingActionsProps> = ({
+  phone,
+  whatsappUrl,
+  isMen = false,
+}) => {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [footerVisible, setFooterVisible] = useState(false);
 
@@ -13,7 +22,6 @@ export const FloatingActions: React.FC = () => {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
 
-    // Hide scroll-to-top when user is inside the footer to prevent overlapping copyright or credits
     const footer = document.querySelector('footer');
     let observer: IntersectionObserver | null = null;
     if (footer) {
@@ -47,7 +55,9 @@ export const FloatingActions: React.FC = () => {
       <button
         onClick={scrollToTop}
         aria-label="Scroll to top of page"
-        className={`fixed bottom-24 sm:bottom-10 right-5 sm:right-8 z-40 w-11 h-11 rounded-full bg-charcoal text-cream-50 hover:bg-blush-600 border border-charcoal/30 flex items-center justify-center shadow-md transition-all duration-300 focus:outline-none ${
+        className={`fixed bottom-24 sm:bottom-10 right-5 sm:right-8 z-40 w-11 h-11 rounded-full bg-charcoal text-cream-50 ${
+          isMen ? 'hover:bg-slateBlue-600' : 'hover:bg-blush-600'
+        } border border-charcoal/30 flex items-center justify-center shadow-md transition-all duration-300 focus:outline-none ${
           isVisible
             ? 'opacity-100 pointer-events-auto translate-y-0 hover:scale-105 active:scale-95'
             : 'opacity-0 pointer-events-none translate-y-4'
@@ -61,19 +71,23 @@ export const FloatingActions: React.FC = () => {
         <div className="flex items-center gap-2">
           {/* Quick Call */}
           <a
-            href={`tel:${siteData.brand.phone.replace(/\s+/g, '')}`}
+            href={`tel:${phone.replace(/\s+/g, '')}`}
             className="flex-1 py-3 px-3 rounded-full bg-charcoal text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-transform"
           >
-            <PhoneIcon className="w-4 h-4 text-blush-300" />
+            <PhoneIcon className={`w-4 h-4 ${isMen ? 'text-slateBlue-300' : 'text-blush-300'}`} />
             <span>Call Karein</span>
           </a>
 
           {/* Quick WhatsApp */}
           <a
-            href={siteData.brand.whatsappUrl}
+            href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 py-3 px-3 rounded-full bg-blush-200 text-charcoal font-bold text-xs uppercase tracking-wider border border-charcoal/20 flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-transform"
+            className={`flex-1 py-3 px-3 rounded-full font-bold text-xs uppercase tracking-wider border border-charcoal/20 flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-transform ${
+              isMen
+                ? 'bg-slateBlue-100 text-charcoal'
+                : 'bg-blush-200 text-charcoal'
+            }`}
           >
             <WhatsAppIcon className="w-4 h-4 text-charcoal" />
             <span>WhatsApp Karein</span>

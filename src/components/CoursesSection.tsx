@@ -1,12 +1,18 @@
 import React from 'react';
-import { siteData, Course } from '../data/siteData';
+import { SiteData, Course } from '../data/siteData';
 import { CheckIcon } from './Icons';
 
 interface CoursesSectionProps {
+  data: SiteData;
+  isMen?: boolean;
   onSelectCourse?: (courseId: string) => void;
 }
 
-export const CoursesSection: React.FC<CoursesSectionProps> = ({ onSelectCourse }) => {
+export const CoursesSection: React.FC<CoursesSectionProps> = ({
+  data,
+  isMen = false,
+  onSelectCourse,
+}) => {
   const handleEnrollClick = (courseId: string) => {
     if (onSelectCourse) {
       onSelectCourse(courseId);
@@ -23,6 +29,28 @@ export const CoursesSection: React.FC<CoursesSectionProps> = ({ onSelectCourse }
   };
 
   const getCardTheme = (color: Course['accentColor']) => {
+    if (isMen) {
+      switch (color) {
+        case 'sky':
+        case 'blush':
+          return {
+            cardBg: 'bg-slateBlue-50/80',
+            border: 'border-slateBlue-200',
+            badgeBg: 'bg-slateBlue-200 text-charcoal',
+            pillBtnBg: 'bg-white hover:bg-slateBlue-100 text-charcoal border-charcoal/20',
+            checkBg: 'bg-slateBlue-200 text-charcoal',
+          };
+        case 'sage':
+          return {
+            cardBg: 'bg-sage-50/80',
+            border: 'border-sage-200',
+            badgeBg: 'bg-sage-200 text-charcoal',
+            pillBtnBg: 'bg-white hover:bg-sage-100 text-charcoal border-charcoal/20',
+            checkBg: 'bg-sage-200 text-charcoal',
+          };
+      }
+    }
+
     switch (color) {
       case 'blush':
         return {
@@ -57,8 +85,14 @@ export const CoursesSection: React.FC<CoursesSectionProps> = ({ onSelectCourse }
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-1.5 clean-badge bg-blush-100 text-charcoal border-blush-300 mx-auto">
-            <span>Hamare Courses</span>
+          <div
+            className={`inline-flex items-center gap-1.5 clean-badge ${
+              isMen
+                ? 'bg-slateBlue-100 text-charcoal border-slateBlue-300'
+                : 'bg-blush-100 text-charcoal border-blush-300'
+            } mx-auto`}
+          >
+            <span>{isMen ? 'Men\'s Training Courses' : 'Hamare Courses'}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-charcoal tracking-tight">
             Hamare Training Courses
@@ -70,7 +104,7 @@ export const CoursesSection: React.FC<CoursesSectionProps> = ({ onSelectCourse }
 
         {/* 3-Column Equal-Height Pastel Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch">
-          {siteData.courses.map((course) => {
+          {data.courses.map((course) => {
             const theme = getCardTheme(course.accentColor);
             return (
               <div
@@ -87,7 +121,7 @@ export const CoursesSection: React.FC<CoursesSectionProps> = ({ onSelectCourse }
                   </span>
                 </div>
 
-                {/* Authentic Scooter Training Visual */}
+                {/* Scooter Training Visual */}
                 <div className="w-full h-48 sm:h-52 rounded-xl overflow-hidden mb-5 border border-charcoal/10 bg-cream-100 relative">
                   <img
                     src={course.image}

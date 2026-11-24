@@ -1,8 +1,13 @@
 import React from 'react';
-import { siteData, Benefit } from '../data/siteData';
+import { SiteData, Benefit } from '../data/siteData';
 import { UsersIcon, SparklesIcon, MapPinIcon, AwardIcon, CalendarIcon, ShieldCheckIcon } from './Icons';
 
-export const WhyChooseUs: React.FC = () => {
+interface WhyChooseUsProps {
+  data: SiteData;
+  isMen?: boolean;
+}
+
+export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ data, isMen = false }) => {
   const renderIcon = (iconName: Benefit['iconName']) => {
     switch (iconName) {
       case 'users':
@@ -21,6 +26,18 @@ export const WhyChooseUs: React.FC = () => {
   };
 
   const getPillTint = (index: number) => {
+    if (isMen) {
+      const tints = [
+        'bg-slateBlue-100 border-slateBlue-200',
+        'bg-sage-100 border-sage-200',
+        'bg-sky-100 border-sky-200',
+        'bg-slateBlue-100 border-slateBlue-200',
+        'bg-sage-100 border-sage-200',
+        'bg-sky-100 border-sky-200',
+      ];
+      return tints[index % tints.length];
+    }
+
     const tints = [
       'bg-blush-100 border-blush-200',
       'bg-sky-100 border-sky-200',
@@ -38,20 +55,28 @@ export const WhyChooseUs: React.FC = () => {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-1.5 clean-badge bg-sage-100 text-charcoal border-sage-300 mx-auto">
-            <span>Femme Scooty Kyu Chunein</span>
+          <div
+            className={`inline-flex items-center gap-1.5 clean-badge ${
+              isMen
+                ? 'bg-slateBlue-100 text-charcoal border-slateBlue-300'
+                : 'bg-sage-100 text-charcoal border-sage-300'
+            } mx-auto`}
+          >
+            <span>{isMen ? 'Why Choose Femme Scooty Men' : 'Femme Scooty Kyu Chunein'}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-charcoal tracking-tight">
-            Femme Scooty Kyu Chunein?
+            {isMen ? 'Femme Scooty Men Kyu Chunein?' : 'Femme Scooty Kyu Chunein?'}
           </h2>
           <p className="text-base sm:text-lg text-charcoal/80 font-medium max-w-xl mx-auto leading-relaxed">
-            Mahilaon ke aaram, suraksha aur azaadi ke liye banaya gaya training center.
+            {isMen
+              ? 'Sabhi umar ke purushon ke aaram, judgment-free mahol aur safe riding ke liye banaya gaya training center.'
+              : 'Mahilaon ke aaram, suraksha aur azaadi ke liye banaya gaya training center.'}
           </p>
         </div>
 
-        {/* Balanced 6-Card Grid (3x2 Desktop, 2x3 Tablet, 1x6 Mobile) */}
+        {/* Balanced 6-Card Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7 items-stretch">
-          {siteData.benefits.map((benefit, index) => (
+          {data.benefits.map((benefit, index) => (
             <div
               key={benefit.id}
               className="bg-white rounded-2xl border border-charcoal/10 p-6 sm:p-7 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group"

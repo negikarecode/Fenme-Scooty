@@ -19,12 +19,21 @@
   background-size: 28px 28px;
 }
 
-/* Soft Pink Grid for Testimonials */
+/* Soft Pink Grid for Women's Testimonials */
 .bg-pink-graph-grid {
   background-color: #FDF4F6;
   background-image: 
     linear-gradient(to right, rgba(224, 93, 132, 0.05) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(224, 93, 132, 0.05) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* Soft Slate Blue Grid for Men's Version */
+.bg-slate-graph-grid {
+  background-color: #F4F7FB;
+  background-image: 
+    linear-gradient(to right, rgba(43, 76, 126, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(43, 76, 126, 0.05) 1px, transparent 1px);
   background-size: 28px 28px;
 }
 
@@ -69,7 +78,7 @@
   background: #B8D08B;
 }
 
-/* Clean Rounded Badge Utility (Replaces harsh tape badges) */
+/* Clean Rounded Badge Utility */
 .clean-badge {
   display: inline-flex;
   align-items: center;

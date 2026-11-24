@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
-import { siteData } from '../data/siteData';
+import { SiteData } from '../data/siteData';
 import { MapPinIcon } from './Icons';
 
-export const LocationsSection: React.FC = () => {
+interface LocationsSectionProps {
+  data: SiteData;
+  isMen?: boolean;
+}
+
+export const LocationsSection: React.FC<LocationsSectionProps> = ({ data, isMen = false }) => {
   const [selectedCityId, setSelectedCityId] = useState<string>('delhi');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
-  const currentCity = siteData.cities.find((c) => c.id === selectedCityId) || siteData.cities[0];
+  const currentCity = data.cities.find((c) => c.id === selectedCityId) || data.cities[0];
 
   const filteredHubs = currentCity.hubs.filter((hub) =>
     hub.toLowerCase().includes(searchQuery.toLowerCase().trim())
@@ -35,7 +40,13 @@ export const LocationsSection: React.FC = () => {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-10 sm:mb-14">
-          <div className="inline-flex items-center gap-1.5 clean-badge bg-sky-100 text-charcoal border-sky-300 mx-auto">
+          <div
+            className={`inline-flex items-center gap-1.5 clean-badge ${
+              isMen
+                ? 'bg-slateBlue-100 text-charcoal border-slateBlue-300'
+                : 'bg-sky-100 text-charcoal border-sky-300'
+            } mx-auto`}
+          >
             <MapPinIcon className="w-3.5 h-3.5" />
             <span>Locations</span>
           </div>
@@ -47,9 +58,9 @@ export const LocationsSection: React.FC = () => {
           </p>
         </div>
 
-        {/* Interactive City Tabs (Scrollable on small screens) */}
+        {/* Interactive City Tabs */}
         <div className="flex items-center justify-start sm:justify-center gap-2 sm:gap-3 overflow-x-auto pb-4 mb-8 no-scrollbar">
-          {siteData.cities.map((city) => {
+          {data.cities.map((city) => {
             const isActive = city.id === selectedCityId;
             return (
               <button
@@ -110,12 +121,14 @@ export const LocationsSection: React.FC = () => {
               <div className="mt-6 pt-5 border-t border-charcoal/15 flex flex-col sm:flex-row gap-3">
                 <button
                   onClick={() => handleBookInCity(currentCity.name)}
-                  className="flex-1 py-3.5 px-4 rounded-full bg-charcoal hover:bg-blush-600 text-white font-bold text-xs sm:text-sm shadow-sm transition-all text-center"
+                  className={`flex-1 py-3.5 px-4 rounded-full text-white font-bold text-xs sm:text-sm shadow-sm transition-all text-center ${
+                    isMen ? 'bg-charcoal hover:bg-slateBlue-600' : 'bg-charcoal hover:bg-blush-600'
+                  }`}
                 >
                   {currentCity.name} Mein Book Karein
                 </button>
                 <a
-                  href={`tel:${siteData.brand.phone.replace(/\s+/g, '')}`}
+                  href={`tel:${data.brand.phone.replace(/\s+/g, '')}`}
                   className="py-3.5 px-4 rounded-full bg-white border border-charcoal/20 text-charcoal font-bold text-xs sm:text-sm text-center hover:bg-cream-100 transition-colors"
                 >
                   Coordinator Ko Call Karein
@@ -164,9 +177,17 @@ export const LocationsSection: React.FC = () => {
                     <button
                       key={idx}
                       onClick={() => handleBookInCity(currentCity.name)}
-                      className="group inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-cream-100 hover:bg-blush-100 border border-charcoal/10 hover:border-blush-300 text-xs sm:text-sm font-medium text-charcoal transition-all text-left"
+                      className={`group inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-cream-100 border text-xs sm:text-sm font-medium text-charcoal transition-all text-left ${
+                        isMen
+                          ? 'hover:bg-slateBlue-100 border-charcoal/10 hover:border-slateBlue-300'
+                          : 'hover:bg-blush-100 border-charcoal/10 hover:border-blush-300'
+                      }`}
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-charcoal/30 group-hover:bg-blush-600 transition-colors" />
+                      <span
+                        className={`w-1.5 h-1.5 rounded-full transition-colors ${
+                          isMen ? 'bg-charcoal/30 group-hover:bg-slateBlue-600' : 'bg-charcoal/30 group-hover:bg-blush-600'
+                        }`}
+                      />
                       <span>{hub}</span>
                     </button>
                   ))
