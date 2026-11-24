@@ -125,11 +125,11 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
       </aside>
 
-      {/* 2. Balanced Single-Line Navbar with Right-Side Wing Dropdown */}
+      {/* 2. Balanced Single-Line Navbar with True Centered Nav Links */}
       <header className="w-full bg-[#FAF9F6]/95 backdrop-blur-md border-b border-charcoal/10 transition-all">
-        <div className="w-full px-6 lg:px-10 h-16 sm:h-20 flex items-center justify-between gap-4">
-          {/* Left: Logo without wing badge pill */}
-          <div className="flex items-center shrink-0">
+        <div className="w-full px-6 lg:px-10 h-16 sm:h-20 flex items-center justify-between">
+          {/* Part 1: Left Logo Container (flex-1 shrink-0) */}
+          <div className="flex-1 flex items-center shrink-0">
             <a
               href={isMen ? '/men' : '/'}
               onClick={(e) => {
@@ -144,8 +144,8 @@ export const Header: React.FC<HeaderProps> = ({
             </a>
           </div>
 
-          {/* Center: Nav links with uniform gap */}
-          <nav className="hidden lg:flex items-center gap-6 lg:gap-8 shrink-0" aria-label="Primary Navigation">
+          {/* Part 2: True Dead-Center Nav Links */}
+          <nav className="hidden lg:flex items-center justify-center gap-6 lg:gap-8 shrink-0" aria-label="Primary Navigation">
             {data.navLinks.map((link) => (
               <button
                 key={link.href}
@@ -157,14 +157,14 @@ export const Header: React.FC<HeaderProps> = ({
             ))}
           </nav>
 
-          {/* Right: Wing Dropdown, Phone, and Book a Slot CTA (Equidistant & Single-Line) */}
-          <div className="hidden lg:flex items-center gap-4 shrink-0">
-            {/* Wing Dropdown */}
+          {/* Part 3: Right Actions Container (flex-1 justify-end with Gender Dropdown + Book CTA) */}
+          <div className="hidden lg:flex flex-1 items-center justify-end gap-3.5 xl:gap-4 shrink-0">
+            {/* Clean & Centered Gender Dropdown Pill (No dot inside, centered text + chevron) */}
             <div className="relative" ref={dropdownRef}>
               <button
                 type="button"
                 onClick={() => setDropdownOpen((prev) => !prev)}
-                className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-xs sm:text-sm font-bold border transition-colors shadow-xs whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-charcoal/20 ${
+                className={`inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-full text-xs sm:text-sm font-bold border transition-colors shadow-xs whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-charcoal/20 ${
                   isMen
                     ? 'bg-slateBlue-100 hover:bg-slateBlue-200 text-charcoal border-slateBlue-300'
                     : 'bg-blush-100 hover:bg-blush-200 text-charcoal border-blush-300'
@@ -173,11 +173,6 @@ export const Header: React.FC<HeaderProps> = ({
                 aria-haspopup="true"
                 id="wing-dropdown-button"
               >
-                <span
-                  className={`w-2 h-2 rounded-full shrink-0 ${
-                    isMen ? 'bg-slateBlue-600' : 'bg-blush-600'
-                  }`}
-                />
                 <span>{isMen ? 'Men (Purush)' : 'Women (Mahila)'}</span>
                 <ChevronDownIcon
                   className={`w-3.5 h-3.5 text-charcoal/70 transition-transform duration-200 ${
@@ -235,15 +230,6 @@ export const Header: React.FC<HeaderProps> = ({
               )}
             </div>
 
-            {/* Phone Number */}
-            <a
-              href={`tel:${data.brand.phone.replace(/\s+/g, '')}`}
-              className="text-xs sm:text-sm font-semibold text-charcoal hover:underline inline-flex items-center gap-1.5 whitespace-nowrap"
-            >
-              <PhoneIcon className="w-3.5 h-3.5 text-charcoal/70" />
-              <span>{data.brand.formattedPhone}</span>
-            </a>
-
             {/* Book a Slot CTA */}
             <button
               onClick={handleBookClick}
@@ -258,22 +244,17 @@ export const Header: React.FC<HeaderProps> = ({
 
           {/* Mobile Actions (< lg) */}
           <div className="flex lg:hidden items-center gap-2.5">
-            {/* Mobile Wing Dropdown */}
+            {/* Mobile Wing Dropdown (No dot, clean centered) */}
             <div className="relative" ref={mobileDropdownRef}>
               <button
                 type="button"
                 onClick={() => setMobileDropdownOpen((prev) => !prev)}
-                className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-bold border ${
+                className={`inline-flex items-center justify-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-bold border ${
                   isMen
                     ? 'bg-slateBlue-100 text-charcoal border-slateBlue-300'
                     : 'bg-blush-100 text-charcoal border-blush-300'
                 }`}
               >
-                <span
-                  className={`w-1.5 h-1.5 rounded-full shrink-0 ${
-                    isMen ? 'bg-slateBlue-600' : 'bg-blush-600'
-                  }`}
-                />
                 <span>{isMen ? 'Men' : 'Women'}</span>
                 <ChevronDownIcon className="w-3 h-3 text-charcoal/70" />
               </button>
