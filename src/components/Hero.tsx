@@ -54,9 +54,7 @@ export const Hero: React.FC<HeroProps> = ({ data, isMen = false }) => {
       `Namaste Femme Scooty! Mera naam ${formData.fullName || 'Student'} hai. Mujhe ${
         formData.course === '7-days-basic'
           ? '7 Din ka Basic Course'
-          : formData.course === '4-days-advance'
-          ? '4 Din ka Advance Course'
-          : 'RTO Test aur Weekend Practice'
+          : '4 Din ka Advance Course'
       } ke baare mein jaankari chahiye. Shehar: ${formData.city}. Phone: ${formData.phone || 'NA'}. Version: ${
         isMen ? 'Men' : 'Women'
       }.`

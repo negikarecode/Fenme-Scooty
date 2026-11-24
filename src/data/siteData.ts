@@ -173,22 +173,6 @@ export const siteData: SiteData = {
         "Emergency braking aur mirrors dekhne ki sahi aadat",
         "Free scooty aur petrol training ke dauran"
       ]
-    },
-    {
-      id: "rto-weekend-refresher",
-      name: "RTO Test aur Weekend Practice",
-      badge: "License & Weekend Special",
-      duration: "2-3 Din • Saturday-Sunday Batch",
-      idealFor: "Driving license test ki taiyari aur Saturday-Sunday special practice",
-      tagline: "Pehli baar mein license test pass karein full confidence se",
-      accentColor: "sage",
-      image: "/images/course-rto.jpg",
-      features: [
-        "RTO 8-track aur driving test ki poori taiyari",
-        "Working women ke liye Saturday aur Sunday ke special batch",
-        "Tight parking, center stand aur signal rules ki practice",
-        "Pehli baar mein license test nikalne ka poora confidence"
-      ]
     }
   ],
   benefits: [
