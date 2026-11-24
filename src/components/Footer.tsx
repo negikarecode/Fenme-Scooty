@@ -43,7 +43,7 @@ export const Footer: React.FC<FooterProps> = ({
 
             <div className="pt-2 flex flex-wrap items-center gap-2">
               <span className="clean-badge bg-white text-charcoal font-bold text-xs">
-                EST. 2024 • 1000+ TRAINED
+                EST. 2024 • 1,000+ TRAINED
               </span>
               <span className="clean-badge bg-sage-200 text-charcoal font-bold text-xs">
                 6 CITIES
@@ -73,7 +73,7 @@ export const Footer: React.FC<FooterProps> = ({
                 <li key={link.href}>
                   <button
                     onClick={() => handleScroll(link.href)}
-                    className="hover:text-charcoal hover:underline transition-colors focus:outline-none"
+                    className="hover:text-charcoal hover:underline transition-colors focus:outline-none text-left"
                   >
                     {link.label}
                   </button>
@@ -82,7 +82,7 @@ export const Footer: React.FC<FooterProps> = ({
               <li>
                 <button
                   onClick={onOpenGenderModal}
-                  className="hover:text-charcoal underline text-xs text-charcoal/70 transition-colors focus:outline-none pt-1"
+                  className="text-left hover:text-charcoal underline text-xs text-charcoal/70 transition-colors focus:outline-none pt-1 block"
                 >
                   Mahila / Purush Version Badlein
                 </button>

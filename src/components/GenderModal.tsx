@@ -15,7 +15,7 @@ export const GenderModal: React.FC<GenderModalProps> = ({ isOpen, onSelect, onCl
       role="dialog"
       aria-modal="true"
       aria-labelledby="gender-modal-heading"
-      className="fixed inset-0 z-50 bg-charcoal/60 backdrop-blur-xs flex items-center justify-center p-4"
+      className="fixed inset-0 z-[100] bg-charcoal/70 backdrop-blur-sm flex items-center justify-center p-4"
     >
       <div className="bg-white rounded-3xl border border-charcoal/15 shadow-2xl max-w-lg w-full p-6 sm:p-8 text-center relative animate-fadeIn">
         

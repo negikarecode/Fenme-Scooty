@@ -29,11 +29,17 @@ export const App: React.FC = () => {
   useEffect(() => {
     const handlePopState = () => {
       setPathname(window.location.pathname);
+      window.scrollTo(0, 0);
     };
 
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
+
+  // Ensure window scrolls to top on route change between / and /men
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   // Handle route redirect if preference exists on initial visit
   useEffect(() => {

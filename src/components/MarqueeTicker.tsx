@@ -8,7 +8,7 @@ interface MarqueeTickerProps {
 
 export const MarqueeTicker: React.FC<MarqueeTickerProps> = ({
   tickerItems = [
-    "1000+ MAHILAYEIN SEEKH CHUKI HAIN",
+    "1,000+ MAHILAYEIN SEEKH CHUKI HAIN",
     "16 SE 60 SAAL TAK",
     "CYCLE AATI HO YA NAHI",
     "GHAR KE PAAS TRAINING",

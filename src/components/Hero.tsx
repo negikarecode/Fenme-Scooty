@@ -150,7 +150,7 @@ export const Hero: React.FC<HeroProps> = ({ data, isMen = false }) => {
             {/* Trust Metrics Row */}
             <div className="pt-4 grid grid-cols-3 gap-4 max-w-lg border-t border-charcoal/10">
               <div>
-                <span className="block text-2xl sm:text-3xl font-serif font-extrabold text-charcoal">1000+</span>
+                <span className="block text-2xl sm:text-3xl font-serif font-extrabold text-charcoal">1,000+</span>
                 <span className="text-xs sm:text-sm font-semibold text-charcoal/70">
                   Students Trained
                 </span>

@@ -99,11 +99,11 @@ export const siteData: SiteData = {
     heroHeadline: "Learn Scooty With Confidence — Ab Bina Dar Chalayein!",
     heroSubtext: "100% Female Trainers • Aapke Ghar Ke Paas • Free Scooty & Petrol",
     heroReassurance: "Cycle aati ho ya nahi, learn scooter riding comfortably and without stress with patient 1-on-1 guidance.",
-    aboutBlurbFooter: "Empowering women across Delhi NCR, Lucknow, Mathura, and Jodhpur with safe, stress-free scooter training."
+    aboutBlurbFooter: "Empowering women across Delhi NCR, Ghaziabad, Faridabad, Lucknow, Mathura, and Jodhpur with safe, stress-free scooter training."
   },
   announcement: "100% Female Trainers • Free Scooty & Petrol Included • Ghar Ke Paas Training",
   tickerItems: [
-    "1000+ Students Trained",
+    "1,000+ Students Trained",
     "Ages 16 to 60",
     "Cycle Aati Ho Ya Nahi",
     "Ghar Ke Paas Training",
@@ -113,7 +113,7 @@ export const siteData: SiteData = {
   story: {
     title: "About Us",
     subtitle: "Hamari Kahani — Scooty Freedom Starts Here!",
-    founderStory: "Started in 2024 by Kajal Kaur with just 1 trainer and 1 scooty, Femme Scooty began with one simple thought: 'Why should women depend on others for short distances?' Today, we have trained 1000+ students aged 16 to 60 across 6 cities.",
+    founderStory: "Started in 2024 by Kajal Kaur with just 1 trainer and 1 scooty, Femme Scooty began with one simple thought: 'Why should women depend on others for short distances?' Today, we have trained 1,000+ students aged 16 to 60 across 6 cities.",
     mission: "Our polite and patient female trainers guide you step-by-step without rushing or scolding. Aapki umar chahe 16 ho ya 60, learning to ride a scooty is now easy, safe, and empowering.",
     stats: [
       { label: "Students Trained", value: "1,000+" },

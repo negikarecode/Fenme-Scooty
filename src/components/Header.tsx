@@ -84,58 +84,58 @@ export const Header: React.FC<HeaderProps> = ({
 
       {/* Main Sticky Navigation Bar */}
       <header className="w-full bg-[#FAF9F6]/95 backdrop-blur-md border-b border-charcoal/10 transition-all">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
-          {/* Wordmark with Active Gender Dot */}
-          <div className="flex items-center gap-3">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-3 xl:gap-6">
+          {/* Wordmark with Wing Badge */}
+          <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
             <a
               href={isMen ? '/men' : '/'}
               onClick={(e) => {
                 e.preventDefault();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="group flex items-baseline gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded"
+              className="group flex items-baseline gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded shrink-0"
             >
-              <span className="font-serif text-2xl sm:text-3xl font-extrabold tracking-tight text-charcoal">
+              <span className="font-serif text-2xl sm:text-3xl font-extrabold tracking-tight text-charcoal whitespace-nowrap">
                 {data.brand.wordmark}
               </span>
-              <span
-                className={`w-2.5 h-2.5 rounded-full transition-transform group-hover:scale-125 ${
-                  isMen ? 'bg-slateBlue-500' : 'bg-blush-400'
-                }`}
-              />
             </a>
 
-            {/* Version Badge */}
+            {/* Version Badge with status dot inside border */}
             <span
-              className={`hidden sm:inline-block text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full border ${
+              className={`hidden sm:inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border whitespace-nowrap shadow-2xs ${
                 isMen
                   ? 'bg-slateBlue-100 text-slateBlue-800 border-slateBlue-300'
                   : 'bg-blush-100 text-blush-800 border-blush-300'
               }`}
             >
-              {isMen ? 'Men\'s Wing' : 'Women\'s Wing'}
+              <span
+                className={`w-2 h-2 rounded-full shrink-0 ${
+                  isMen ? 'bg-slateBlue-500' : 'bg-blush-500'
+                }`}
+              />
+              <span>{isMen ? "Men's Wing" : "Women's Wing"}</span>
             </span>
           </div>
 
           {/* Clean 50-50 Desktop Nav Links */}
-          <nav className="hidden lg:flex items-center gap-6 xl:gap-8" aria-label="Primary Navigation">
+          <nav className="hidden lg:flex items-center gap-3.5 xl:gap-6 shrink-0" aria-label="Primary Navigation">
             {data.navLinks.map((link) => (
               <button
                 key={link.href}
                 onClick={() => handleNavClick(link.href)}
-                className="text-xs lg:text-sm font-bold text-charcoal/80 hover:text-charcoal transition-colors focus:outline-none"
+                className="text-xs lg:text-sm font-bold text-charcoal/80 hover:text-charcoal transition-colors focus:outline-none whitespace-nowrap"
               >
                 {link.label}
               </button>
             ))}
           </nav>
 
-          {/* Right Header Action & Switcher */}
-          <div className="hidden sm:flex items-center gap-3">
+          {/* Right Header Action & Switcher with spacing from FAQs */}
+          <div className="hidden sm:flex items-center gap-2.5 xl:gap-3.5 shrink-0 pl-2 lg:pl-4 xl:pl-6">
             {/* Version Toggle Pill */}
             <button
               onClick={onSwitchGender}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold border transition-colors shadow-xs ${
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold border transition-colors shadow-xs whitespace-nowrap ${
                 isMen
                   ? 'bg-blush-100 hover:bg-blush-200 text-charcoal border-blush-300'
                   : 'bg-slateBlue-100 hover:bg-slateBlue-200 text-charcoal border-slateBlue-300'
@@ -146,7 +146,7 @@ export const Header: React.FC<HeaderProps> = ({
 
             <a
               href={`tel:${data.brand.phone.replace(/\s+/g, '')}`}
-              className="text-xs sm:text-sm font-semibold text-charcoal hover:underline px-2 py-2 hidden xl:inline-flex items-center gap-1.5"
+              className="text-xs sm:text-sm font-semibold text-charcoal hover:underline px-2 py-2 hidden xl:inline-flex items-center gap-1.5 whitespace-nowrap"
             >
               <PhoneIcon className="w-3.5 h-3.5 text-charcoal/70" />
               <span>{data.brand.formattedPhone}</span>
@@ -154,7 +154,7 @@ export const Header: React.FC<HeaderProps> = ({
 
             <button
               onClick={handleBookClick}
-              className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-white font-bold text-xs sm:text-sm tracking-wide shadow-xs hover:shadow transition-all ${
+              className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-white font-bold text-xs sm:text-sm tracking-wide shadow-xs hover:shadow transition-all whitespace-nowrap shrink-0 ${
                 isMen ? 'bg-charcoal hover:bg-slateBlue-600' : 'bg-charcoal hover:bg-blush-600'
               }`}
             >

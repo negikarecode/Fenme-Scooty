@@ -58,9 +58,9 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ data, isMen = false 
               ))}
             </div>
 
-            {/* Quick Stat Bar */}
+            {/* Quick Stat Bar: Balanced 2x2 on mobile, 4-column on desktop */}
             <div
-              className={`p-4 sm:p-5 rounded-xl border border-charcoal/10 flex flex-wrap items-center justify-around gap-4 text-center ${
+              className={`p-4 sm:p-5 rounded-xl border border-charcoal/10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center ${
                 isMen ? 'bg-slateBlue-100/70' : 'bg-sky-100/70'
               }`}
             >
@@ -74,22 +74,22 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ data, isMen = false 
 
           </div>
 
-          {/* Right Column: Clean Editorial Visual Card */}
-          <div className="lg:col-span-5">
-            <div className="relative mx-auto max-w-md lg:max-w-none">
+          {/* Right Column: Clean Editorial Visual Card vertically centered */}
+          <div className="lg:col-span-5 flex items-center justify-center">
+            <div className="relative w-full max-w-md lg:max-w-none">
               
-              {/* Training Image Container */}
-              <div className="rounded-2xl overflow-hidden border border-charcoal/15 shadow-md bg-cream-100 relative group">
+              {/* Training Image Container sized to balance left column */}
+              <div className="rounded-2xl overflow-hidden border border-charcoal/15 shadow-md bg-cream-100 relative group min-h-[380px] sm:min-h-[460px] flex flex-col justify-end">
                 <img
                   src={isMen ? '/images/men-about-story.jpg' : '/images/about-story.jpg'}
                   alt="Scooty Training Session"
-                  className="w-full h-80 sm:h-96 object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-charcoal/75 via-charcoal/20 to-transparent" />
                 
                 {/* Visual Overlay Caption */}
-                <div className="absolute bottom-5 left-5 right-5 text-white space-y-1">
+                <div className="relative z-10 p-5 sm:p-6 text-white space-y-1">
                   <span
                     className={`text-xs font-bold uppercase tracking-wider block ${
                       isMen ? 'text-slateBlue-200' : 'text-blush-200'

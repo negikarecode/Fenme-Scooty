@@ -19,11 +19,11 @@ export const menSiteData: SiteData = {
     heroHeadline: "Learn Scooty With Confidence — Ab Bina Dar Chalayein!",
     heroSubtext: "Experienced Male Trainers • Aapke Ghar Ke Paas • Free Scooty & Petrol",
     heroReassurance: "Cycle aati ho ya nahi, learn scooter riding comfortably and without judgment with patient 1-on-1 guidance.",
-    aboutBlurbFooter: "Empowering learners across Delhi NCR, Lucknow, Mathura, and Jodhpur with safe, stress-free scooter training."
+    aboutBlurbFooter: "Empowering learners across Delhi NCR, Ghaziabad, Faridabad, Lucknow, Mathura, and Jodhpur with safe, stress-free scooter training."
   },
   announcement: "Experienced Male Trainers • Free Scooty & Petrol Included • Ghar Ke Paas Training",
   tickerItems: [
-    "1000+ Students Trained",
+    "1,000+ Students Trained",
     "Ages 16 to 60",
     "Cycle Aati Ho Ya Nahi",
     "Ghar Ke Paas Training",
@@ -33,7 +33,7 @@ export const menSiteData: SiteData = {
   story: {
     title: "About Us",
     subtitle: "Hamari Kahani — Scooty Freedom Starts Here!",
-    founderStory: "Started in 2024 as a dedicated wing of Femme Scooty, our men's training program ensures that students, working professionals, and senior citizens can learn two-wheeler riding safely and without judgment. Today, we have trained 1000+ students aged 16 to 60 across 6 cities.",
+    founderStory: "Started in 2024 as a dedicated wing of Femme Scooty, our men's training program ensures that students, working professionals, and senior citizens can learn two-wheeler riding safely and without judgment. Today, we have trained 1,000+ students aged 16 to 60 across 6 cities.",
     mission: "Our certified male instructors guide you step-by-step with patience and zero judgment. Chahe aapki umar 16 ho ya 60, learning two-wheeler riding is now simple, practical, and safe.",
     stats: [
       { label: "Students Trained", value: "1,000+" },
@@ -372,7 +372,7 @@ export const menSiteData: SiteData = {
       answer: "Yes, 100% certified male trainers with a patient, respectful approach."
     },
     {
-      question: "Can I choose my class timing? (Kya main apna time slot choose kar sakte hain?)",
+      question: "Can I choose my class timing? (Kya aap apna time slot choose kar sakte hain?)",
       answer: "Yes, morning, evening, and weekend slots are available."
     },
     {

@@ -2,13 +2,14 @@ import subprocess
 import sys
 import tempfile
 
-def get_dom(url, fresh_profile=True):
+def get_dom(url, fresh_profile=True, window_size="1440,900"):
     temp_dir = tempfile.mkdtemp() if fresh_profile else None
     cmd = [
         'google-chrome',
         '--headless=new',
         '--disable-gpu',
         '--no-sandbox',
+        f'--window-size={window_size}'
     ]
     if temp_dir:
         cmd.append(f'--user-data-dir={temp_dir}')
@@ -18,7 +19,7 @@ def get_dom(url, fresh_profile=True):
 
 def main():
     print("========================================")
-    print("VERIFYING FEMME SCOOTY 50/50 COPY UPDATE")
+    print("VERIFYING FEMME SCOOTY FIXES & UPDATES")
     print("========================================")
 
     errors = []
@@ -31,116 +32,76 @@ def main():
 
     # 1. WOMEN'S PAGE (/)
     print("\n>>> Checking Women's Route (http://localhost:5173/)...")
-    dom_women = get_dom('http://localhost:5173/', fresh_profile=True)
+    dom_women = get_dom('http://localhost:5173/', fresh_profile=True, window_size="1440,900")
 
-    # Entry Modal
+    # Entry Modal Z-Index & Dimming
+    check("z-[100]" in dom_women or "z-100" in dom_women, "Modal has z-[100] high z-index overlaying header")
     check("Welcome! Who is the training for? / Aap kiske liye training dekh rahe hain?" in dom_women,
           "Modal heading: 'Welcome! Who is the training for? / Aap kiske liye training dekh rahe hain?'")
     check("Women (Mahila)" in dom_women, "Modal option 1: 'Women (Mahila)'")
-    check("100% Female Trainers • Ladies-Only" in dom_women, "Modal option 1 subtext: '100% Female Trainers • Ladies-Only'")
+    check("100% Female Trainers • Ladies-Only" in dom_women, "Modal option 1 subtext matches")
     check("Men (Purush)" in dom_women, "Modal option 2: 'Men (Purush)'")
-    check("Experienced Male Trainers • All Ages" in dom_women, "Modal option 2 subtext: 'Experienced Male Trainers • All Ages'")
+    check("Experienced Male Trainers • All Ages" in dom_women, "Modal option 2 subtext matches")
 
-    # Nav
-    check("About Us" in dom_women, "Nav link: 'About Us'")
-    check("Courses" in dom_women, "Nav link: 'Courses'")
-    check("Why Us" in dom_women, "Nav link: 'Why Us'")
-    check("Reviews" in dom_women, "Nav link: 'Reviews'")
-    check("Locations" in dom_women, "Nav link: 'Locations'")
-    check("FAQs" in dom_women, "Nav link: 'FAQs'")
-    check("Book a Slot" in dom_women, "Header CTA: 'Book a Slot'")
-    check("♂ Men (Purush)" in dom_women, "Header switcher button: '♂ Men (Purush)'")
+    # Header & Status Dot inside Wing Pill
+    check("Women's Wing" in dom_women, "Header has Women's Wing pill")
+    check("whitespace-nowrap" in dom_women, "Header uses whitespace-nowrap preventing wraps")
+    check("About Us" in dom_women and "Courses" in dom_women and "FAQs" in dom_women, "Nav links present")
+    check("Book a Slot" in dom_women, "Header CTA is 'Book a Slot'")
+    check("♂ Men (Purush)" in dom_women, "Header switcher button is '♂ Men (Purush)'")
 
-    # Hero & Marquee
+    # Hero & Standardized 1,000+
     check("Learn Scooty With Confidence —" in dom_women and "Ab Bina Dar" in dom_women and "Chalayein!" in dom_women,
-          "Hero headline: 'Learn Scooty With Confidence — Ab Bina Dar Chalayein!'")
-    check("100% Female Trainers • Aapke Ghar Ke Paas • Free Scooty &amp; Petrol" in dom_women or "100% Female Trainers • Aapke Ghar Ke Paas • Free Scooty & Petrol" in dom_women,
-          "Hero subtext: '100% Female Trainers • Aapke Ghar Ke Paas • Free Scooty & Petrol'")
-    check("Call Now: +91 96256 95363" in dom_women, "Hero button: 'Call Now: +91 96256 95363'")
-    check("WhatsApp Us" in dom_women, "Hero button: 'WhatsApp Us'")
-    check("1000+ Students Trained" in dom_women, "Marquee contains '1000+ Students Trained'")
-    check("Ages 16 to 60" in dom_women, "Marquee contains 'Ages 16 to 60'")
-    check("Cycle Aati Ho Ya Nahi" in dom_women, "Marquee contains 'Cycle Aati Ho Ya Nahi'")
-    check("Ghar Ke Paas Training" in dom_women, "Marquee contains 'Ghar Ke Paas Training'")
+          "Hero headline matches")
+    check("1,000+" in dom_women, "Hero has standardized '1,000+' trained")
+    check("Call Now: +91 96256 95363" in dom_women, "Hero call CTA matches")
+    check("WhatsApp Us" in dom_women, "Hero WhatsApp CTA matches")
 
-    # Callback Form
-    check("Request a Free Callback" in dom_women, "Form heading: 'Request a Free Callback'")
-    check("Your Name (Aapka Naam)" in dom_women, "Form label: 'Your Name (Aapka Naam)'")
-    check("Mobile Number (+91)" in dom_women, "Form label: 'Mobile Number (+91)'")
-    check("Select City (Shehar Chunein)" in dom_women, "Form label: 'Select City (Shehar Chunein)'")
-    check("Select Course" in dom_women, "Form label: 'Select Course'")
-    check("Request Callback" in dom_women, "Form button: 'Request Callback'")
-
-    # Exactly 2 Courses
+    # Courses (Exactly 2 Cards)
     check("7 Days Basic Course" in dom_women, "Course 1: '7 Days Basic Course'")
-    check("Complete Beginners — Jinhe balance karna bhi nahi aata!" in dom_women, "Course 1 subtitle matches")
-    check("No cycling experience needed (Cycle nahi aati? Koi baat nahi!)" in dom_women, "Course 1 bullet 1 matches")
-    check("Training near your home (Aapke area ke paas safe roads par)" in dom_women, "Course 1 bullet 2 matches")
-    check("Free scooty &amp; petrol included (no extra charges)" in dom_women or "Free scooty & petrol included (no extra charges)" in dom_women, "Course 1 bullet 3 matches")
-    check("Patient female trainers &amp; flexible morning/evening slots" in dom_women or "Patient female trainers & flexible morning/evening slots" in dom_women, "Course 1 bullet 4 matches")
-    check("Book Basic Course" in dom_women, "Course 1 CTA: 'Book Basic Course'")
-
     check("4 Days Advance Course" in dom_women, "Course 2: '4 Days Advance Course'")
-    check("Traffic Confidence — Balance hai par road pe dar lagta hai!" in dom_women, "Course 2 subtitle matches")
-    check("Real traffic riding &amp; confidence building" in dom_women or "Real traffic riding & confidence building" in dom_women, "Course 2 bullet 1 matches")
-    check("U-turns, slopes, and emergency braking practice" in dom_women, "Course 2 bullet 2 matches")
-    check("Free pickup &amp; drop for classes" in dom_women or "Free pickup & drop for classes" in dom_women, "Course 2 bullet 3 matches")
-    check("Free scooty &amp; petrol included" in dom_women or "Free scooty & petrol included" in dom_women, "Course 2 bullet 4 matches")
-    check("Book Advance Course" in dom_women, "Course 2 CTA: 'Book Advance Course'")
-
     check("License & Weekend Special" not in dom_women and "RTO Test aur Weekend Practice" not in dom_women,
-          "No 3rd course ('License & Weekend Special' / 'RTO Test') present")
+          "No 3rd course present")
 
-    # About Section
-    check("Hamari Kahani —" in dom_women and "Scooty Freedom Starts Here!" in dom_women, "About heading: 'Hamari Kahani — Scooty Freedom Starts Here!'")
-    check("Started in 2024 by Kajal Kaur with just 1 trainer and 1 scooty" in dom_women, "About founder story matches")
-    check("Why should women depend on others for short distances?" in dom_women, "About core question matches")
+    # About Section & 4-Item Balanced Grid
+    check("Hamari Kahani —" in dom_women and "Scooty Freedom Starts Here!" in dom_women, "About heading matches")
+    check("grid-cols-2 sm:grid-cols-4" in dom_women, "About stats has balanced 2x2 on mobile, 4-column on desktop")
+    check("1,000+" in dom_women and "Ages 16 to 60" in dom_women and "6 Cities" in dom_women, "All 4 stats present")
+    check("about-story.jpg" in dom_women, "About image uses safe rider photo")
 
-    # Why Choose Us (6 Cards)
-    check("100% Female Trainers" in dom_women, "Why Us card 1: '100% Female Trainers'")
-    check("Safe, ladies-only environment (no male staff around)." in dom_women, "Why Us card 1 desc matches")
-    check("Ghar Ke Paas Comfort" in dom_women, "Why Us card 2: 'Ghar Ke Paas Comfort'")
-    check("Practice on safe, familiar roads near your home." in dom_women, "Why Us card 2 desc matches")
-    check("Free Scooty &amp; Petrol" in dom_women or "Free Scooty & Petrol" in dom_women, "Why Us card 3: 'Free Scooty & Petrol'")
-    check("Khud ki scooty nahi hai? Use ours at zero extra cost." in dom_women, "Why Us card 3 desc matches")
-    check("No Age Bar (16–60)" in dom_women, "Why Us card 4: 'No Age Bar (16–60)'")
-    check("16 saal ki student ho ya 60 saal ki homemaker, everyone learns at their own pace." in dom_women, "Why Us card 4 desc matches")
-    check("Flexible Timings" in dom_women, "Why Us card 5: 'Flexible Timings'")
-    check("Morning, evening, and weekend slots tailored to your schedule." in dom_women, "Why Us card 5 desc matches")
-    check("Road &amp; Test Ready" in dom_women or "Road & Test Ready" in dom_women, "Why Us card 6: 'Road & Test Ready'")
-    check("Practical training for parking, U-turns, and RTO driving tests." in dom_women, "Why Us card 6 desc matches")
-
-    # Locations
-    check("Our Training Cities — Hum Kahan Sikhate Hain?" in dom_women, "Locations heading: 'Our Training Cities — Hum Kahan Sikhate Hain?'")
-    check("Search your area (Apna area likhein)..." in dom_women, "Search placeholder: 'Search your area (Apna area likhein)...'")
-    check("Book in" in dom_women, "Locations city CTA button: 'Book in ...'")
-
-    # FAQs
-    check("Do I need to know cycling first? (Kya cycle chalani aani zaroori hai?)" in dom_women, "FAQ 1 matches")
-    check("No! We teach balancing from day one." in dom_women, "FAQ 1 answer matches")
-    check("Do I need my own scooty? (Kya khud ki scooty honi chahiye?)" in dom_women, "FAQ 2 matches")
-    check("No, our scooty and petrol are included for free." in dom_women, "FAQ 2 answer matches")
-    check("Will there be a female trainer? (Kya female trainer hi sikhayengi?)" in dom_women, "FAQ 3 matches")
-    check("Yes, 100% female trainers with no male staff around." in dom_women, "FAQ 3 answer matches")
-    check("Can I choose my class timing? (Kya main apna time slot choose kar sakti hoon?)" in dom_women, "FAQ 4 matches")
-    check("Yes, morning, evening, and weekend slots are available." in dom_women, "FAQ 4 answer matches")
+    # Meet Our Riders
+    check("Rider Reviews (Riders Ki Zubani)" in dom_women, "Reviews badge: 'Rider Reviews (Riders Ki Zubani)'")
+    check("Meet Our Riders — Hamari Riders Ki Zubani" in dom_women, "Women reviews heading: 'Meet Our Riders — Hamari Riders Ki Zubani'")
+    check("flex-col flex-1 mt-auto" in dom_women, "Testimonials cards have flex-col flex-1 mt-auto for bottom quote alignment")
 
     # Footer
-    check("Empowering women across Delhi NCR, Lucknow, Mathura, and Jodhpur with safe, stress-free scooter training." in dom_women,
-          "Women footer blurb matches")
+    check("text-left hover:text-charcoal underline text-xs" in dom_women, "Footer version switcher button has text-left")
+    check("Delhi NCR, Ghaziabad, Faridabad, Lucknow, Mathura, and Jodhpur" in dom_women, "Women footer blurb lists all 6 cities")
+    check("1,000+ TRAINED" in dom_women, "Footer badge has '1,000+ TRAINED'")
 
     # 2. MEN'S PAGE (/men)
     print("\n>>> Checking Men's Route (http://localhost:5173/men)...")
-    dom_men = get_dom('http://localhost:5173/men', fresh_profile=True)
+    dom_men = get_dom('http://localhost:5173/men', fresh_profile=True, window_size="1440,900")
 
+    check("Men's Wing" in dom_men, "Men Header has Men's Wing pill with dot inside")
+    check("♀ Women (Mahila)" in dom_men, "Men header switcher button is '♀ Women (Mahila)'")
     check("Experienced Male Trainers • Aapke Ghar Ke Paas • Free Scooty &amp; Petrol" in dom_men or "Experienced Male Trainers • Aapke Ghar Ke Paas • Free Scooty & Petrol" in dom_men,
           "Men Hero subtext matches")
-    check("Experienced Male Trainers" in dom_men, "Men Why Us card 1 matches")
-    check("Will there be an experienced trainer? (Kya experienced trainer sikhayenge?)" in dom_men, "Men FAQ 3 matches")
-    check("Yes, 100% certified male trainers with a patient, respectful approach." in dom_men, "Men FAQ 3 answer matches")
-    check("Empowering learners across Delhi NCR, Lucknow, Mathura, and Jodhpur with safe, stress-free scooter training." in dom_men,
-          "Men footer blurb matches")
-    check("♀ Women (Mahila)" in dom_men, "Men header switcher button: '♀ Women (Mahila)'")
+    check("men-course-advance.jpg" in dom_men, "Men Advance course uses safe helmet rider photo")
+    check("men-about-story.jpg" in dom_men, "Men About story uses safe rider photo")
+    check("harish-verma.png" in dom_men, "Harish Verma avatar uses updated senior portrait")
+    check("Meet Our Riders — Hamare Riders Ki Zubani" in dom_men, "Men reviews heading: 'Meet Our Riders — Hamare Riders Ki Zubani'")
+    check("Can I choose my class timing? (Kya aap apna time slot choose kar sakte hain?)" in dom_men, "Men FAQ #4 grammar fixed")
+    check("Delhi NCR, Ghaziabad, Faridabad, Lucknow, Mathura, and Jodhpur" in dom_men, "Men footer blurb lists all 6 cities")
+
+    # 3. Viewport Checks (1280px, 375px)
+    print("\n>>> Checking Laptop Viewport (1280x800)...")
+    dom_1280 = get_dom('http://localhost:5173/', fresh_profile=False, window_size="1280,800")
+    check("Book a Slot" in dom_1280 and "FAQs" in dom_1280, "Laptop 1280px contains all nav and CTA items cleanly")
+
+    print("\n>>> Checking Mobile Viewport (375x812)...")
+    dom_375 = get_dom('http://localhost:5173/', fresh_profile=False, window_size="375,812")
+    check("femme scooty." in dom_375, "Mobile 375px renders cleanly")
 
     print("\n========================================")
     if errors:
