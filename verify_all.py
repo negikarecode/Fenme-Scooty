@@ -49,6 +49,9 @@ def main():
     check("About Us" in dom_women and "Courses" in dom_women and "FAQs" in dom_women, "Nav links present")
     check("Book a Slot" in dom_women, "Header CTA is 'Book a Slot'")
     check("♂ Men (Purush)" in dom_women, "Header switcher button is '♂ Men (Purush)'")
+    # Verify no duplicate phone number in desktop navbar right side (tel link is in top bar only)
+    check("hidden xl:inline-flex items-center gap-1.5 whitespace-nowrap" not in dom_women,
+          "No duplicate phone link in navbar right actions")
 
     # Hero & Standardized 1,000+
     check("Learn Scooty With Confidence —" in dom_women and "Ab Bina Dar" in dom_women and "Chalayein!" in dom_women,
@@ -63,10 +66,12 @@ def main():
     check("License & Weekend Special" not in dom_women and "RTO Test aur Weekend Practice" not in dom_women,
           "No 3rd course present")
 
-    # About Section & 4-Item Balanced Grid
+    # About Section & 4-Item Balanced 2x2 Grid
     check("Hamari Kahani —" in dom_women and "Scooty Freedom Starts Here!" in dom_women, "About heading matches")
-    check("grid-cols-2 sm:grid-cols-4" in dom_women, "About stats has balanced 2x2 on mobile, 4-column on desktop")
-    check("1,000+" in dom_women and "Ages 16 to 60" in dom_women and "6 Cities" in dom_women, "All 4 stats present")
+    check("grid-cols-2 gap-3.5 sm:gap-4" in dom_women, "About stats has clean 2x2 grid")
+    check("1,000+" in dom_women and "Ages 16 to 60" in dom_women and "6 Cities" in dom_women and "100%" in dom_women,
+          "All 4 stats present with 100% Female/Male Trainers")
+    check("Female Trainers" in dom_women, "Female Trainers label present")
     check("about-story.jpg" in dom_women, "About image uses safe rider photo")
 
     # Why Choose Us (6th card: Zero-Pressure Learning)
@@ -77,6 +82,7 @@ def main():
     # Meet Our Riders
     check("Rider Reviews (Riders Ki Zubani)" in dom_women, "Reviews badge: 'Rider Reviews (Riders Ki Zubani)'")
     check("Meet Our Riders — Hamari Riders Ki Zubani" in dom_women, "Women reviews heading: 'Meet Our Riders — Hamari Riders Ki Zubani'")
+    check("h-[68px] sm:h-[72px]" in dom_women, "Author header has consistent h-[68px] sm:h-[72px] for perfect divider alignment")
     check("flex-col flex-1 mt-auto" in dom_women, "Testimonials cards have flex-col flex-1 mt-auto for bottom quote alignment")
 
     # Footer

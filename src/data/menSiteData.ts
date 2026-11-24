@@ -39,7 +39,7 @@ export const menSiteData: SiteData = {
       { label: "Students Trained", value: "1,000+" },
       { label: "Age Group", value: "Ages 16 to 60" },
       { label: "Active Cities", value: "6 Cities" },
-      { label: "Trainers", value: "Experienced Male" }
+      { label: "Male Trainers", value: "100%" }
     ],
     corePillars: [
       {

@@ -144,14 +144,6 @@ export const Header: React.FC<HeaderProps> = ({
               <span>{isMen ? '♀ Women (Mahila)' : '♂ Men (Purush)'}</span>
             </button>
 
-            <a
-              href={`tel:${data.brand.phone.replace(/\s+/g, '')}`}
-              className="text-xs sm:text-sm font-semibold text-charcoal hover:underline px-2 py-2 hidden xl:inline-flex items-center gap-1.5 whitespace-nowrap"
-            >
-              <PhoneIcon className="w-3.5 h-3.5 text-charcoal/70" />
-              <span>{data.brand.formattedPhone}</span>
-            </a>
-
             <button
               onClick={handleBookClick}
               className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-white font-bold text-xs sm:text-sm tracking-wide shadow-xs hover:shadow transition-all whitespace-nowrap shrink-0 ${

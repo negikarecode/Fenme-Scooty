@@ -29,16 +29,16 @@ export const App: React.FC = () => {
   useEffect(() => {
     const handlePopState = () => {
       setPathname(window.location.pathname);
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     };
 
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  // Ensure window scrolls to top on route change between / and /men
+  // Ensure window scrolls to top instantly on route change between / and /men
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   }, [pathname]);
 
   // Handle route redirect if preference exists on initial visit
@@ -58,7 +58,7 @@ export const App: React.FC = () => {
   const navigate = (path: string) => {
     window.history.pushState({}, '', path);
     setPathname(path);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   };
 
   const isMen = pathname === '/men' || pathname.startsWith('/men');

@@ -58,16 +58,23 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ data, isMen = false 
               ))}
             </div>
 
-            {/* Quick Stat Bar: Balanced 2x2 on mobile, 4-column on desktop */}
+            {/* Quick Stat Bar: Clean, spacious 2x2 grid so all labels align without overflow */}
             <div
-              className={`p-4 sm:p-5 rounded-xl border border-charcoal/10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center ${
+              className={`p-4 sm:p-5 rounded-2xl border border-charcoal/10 grid grid-cols-2 gap-3.5 sm:gap-4 text-center ${
                 isMen ? 'bg-slateBlue-100/70' : 'bg-sky-100/70'
               }`}
             >
               {data.story.stats.map((s, idx) => (
-                <div key={idx} className="px-2">
-                  <span className="block font-serif text-2xl sm:text-3xl font-bold text-charcoal">{s.value}</span>
-                  <span className="text-xs font-semibold text-charcoal/70">{s.label}</span>
+                <div
+                  key={idx}
+                  className="p-3 bg-white/60 rounded-xl border border-charcoal/5 flex flex-col justify-center overflow-hidden"
+                >
+                  <span className="block font-serif text-2xl sm:text-3xl font-bold text-charcoal truncate">
+                    {s.value}
+                  </span>
+                  <span className="text-xs font-semibold text-charcoal/70 truncate whitespace-nowrap mt-0.5">
+                    {s.label}
+                  </span>
                 </div>
               ))}
             </div>
