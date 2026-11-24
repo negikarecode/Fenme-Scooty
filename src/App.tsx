@@ -97,6 +97,7 @@ export const App: React.FC = () => {
         data={activeData}
         isMen={isMen}
         onSwitchGender={handleSwitchGender}
+        onSelectGender={handleSelectGender}
         onOpenGenderModal={() => setShowGenderModal(true)}
       />
 

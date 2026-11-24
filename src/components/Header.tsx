@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { SiteData } from '../data/siteData';
-import { ScooterIcon, PhoneIcon } from './Icons';
+import { ScooterIcon, PhoneIcon, ChevronDownIcon, CheckIcon } from './Icons';
 
 interface HeaderProps {
   data: SiteData;
   isMen?: boolean;
   onOpenBooking?: () => void;
   onSwitchGender?: () => void;
+  onSelectGender?: (gender: 'women' | 'men') => void;
   onOpenGenderModal?: () => void;
 }
 
@@ -15,9 +16,42 @@ export const Header: React.FC<HeaderProps> = ({
   isMen = false,
   onOpenBooking,
   onSwitchGender,
+  onSelectGender,
   onOpenGenderModal,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
+
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const mobileDropdownRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdowns on outside click or escape key
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Node;
+      if (dropdownRef.current && !dropdownRef.current.contains(target)) {
+        setDropdownOpen(false);
+      }
+      if (mobileDropdownRef.current && !mobileDropdownRef.current.contains(target)) {
+        setMobileDropdownOpen(false);
+      }
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setDropdownOpen(false);
+        setMobileDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
 
   const handleNavClick = (href: string) => {
     setMobileMenuOpen(false);
@@ -41,84 +75,77 @@ export const Header: React.FC<HeaderProps> = ({
     }
   };
 
+  const handleSelectMode = (gender: 'women' | 'men') => {
+    setDropdownOpen(false);
+    setMobileDropdownOpen(false);
+    if (onSelectGender) {
+      onSelectGender(gender);
+    } else if ((gender === 'men' && !isMen) || (gender === 'women' && isMen)) {
+      if (onSwitchGender) onSwitchGender();
+    } else {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }
+  };
+
   return (
     <div className="w-full sticky top-0 z-50">
-      {/* Top Announcement Bar */}
+      {/* 1. Full-Width Single-Line Top Announcement Bar */}
       <aside
         aria-label="Announcement"
         className={`w-full ${
           isMen ? 'bg-slateBlue-100 border-b border-slateBlue-200' : 'bg-sky-200 border-b border-sky-300/70'
-        } text-charcoal px-4 py-2 text-xs sm:text-sm font-medium tracking-wide`}
+        } text-charcoal text-xs sm:text-sm font-medium tracking-wide`}
       >
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2 mx-auto sm:mx-0">
-            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-white/80 text-charcoal shadow-xs">
+        <div className="w-full px-6 lg:px-10 py-2 flex items-center justify-between gap-4 whitespace-nowrap overflow-x-auto no-scrollbar">
+          {/* Left: Reassurance statement */}
+          <div className="flex items-center gap-2 shrink-0">
+            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-white/80 text-charcoal shadow-xs shrink-0">
               <ScooterIcon className="w-3.5 h-3.5" />
             </span>
             <span className="font-semibold tracking-wide text-xs sm:text-sm">
-              {data.announcement}
+              {isMen
+                ? "Experienced Male Trainers • Free Scooty & Petrol Included • Ghar Ke Paas Training"
+                : "100% Female Trainers • Free Scooty & Petrol Included • Ghar Ke Paas Training"}
             </span>
           </div>
 
-          <div className="hidden sm:flex items-center gap-4 text-xs font-medium">
-            <span className="text-charcoal/75">6 Cities: Delhi, Lucknow, Mathura, Jodhpur, Ghaziabad, Faridabad</span>
-            
-            {/* Version Switcher Trigger */}
-            <button
-              onClick={onOpenGenderModal}
-              className="text-charcoal/70 hover:text-charcoal underline focus:outline-none"
-            >
-              Switch Version (Mahila / Purush)
-            </button>
-
-            <a
-              href={`tel:${data.brand.phone.replace(/\s+/g, '')}`}
-              className="font-bold hover:underline inline-flex items-center gap-1.5 transition-colors"
-            >
-              <PhoneIcon className="w-3.5 h-3.5" />
-              {data.brand.formattedPhone}
-            </a>
+          {/* Center: 6 Cities list */}
+          <div className="hidden md:flex items-center text-xs sm:text-sm font-medium text-charcoal/75 shrink-0">
+            <span>6 Cities: Delhi, Lucknow, Mathura, Jodhpur, Ghaziabad, Faridabad</span>
           </div>
+
+          {/* Right: Phone number */}
+          <a
+            href={`tel:${data.brand.phone.replace(/\s+/g, '')}`}
+            className="font-bold hover:underline inline-flex items-center gap-1.5 transition-colors shrink-0 text-xs sm:text-sm ml-auto sm:ml-0"
+          >
+            <PhoneIcon className="w-3.5 h-3.5" />
+            <span>{data.brand.formattedPhone}</span>
+          </a>
         </div>
       </aside>
 
-      {/* Main Sticky Navigation Bar */}
+      {/* 2. Balanced Single-Line Navbar with Right-Side Wing Dropdown */}
       <header className="w-full bg-[#FAF9F6]/95 backdrop-blur-md border-b border-charcoal/10 transition-all">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-3 xl:gap-6">
-          {/* Wordmark with Wing Badge */}
-          <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
+        <div className="w-full px-6 lg:px-10 h-16 sm:h-20 flex items-center justify-between gap-4">
+          {/* Left: Logo without wing badge pill */}
+          <div className="flex items-center shrink-0">
             <a
               href={isMen ? '/men' : '/'}
               onClick={(e) => {
                 e.preventDefault();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
               }}
-              className="group flex items-baseline gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded shrink-0"
+              className="group flex items-baseline focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal rounded shrink-0"
             >
               <span className="font-serif text-2xl sm:text-3xl font-extrabold tracking-tight text-charcoal whitespace-nowrap">
                 {data.brand.wordmark}
               </span>
             </a>
-
-            {/* Version Badge with status dot inside border */}
-            <span
-              className={`hidden sm:inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border whitespace-nowrap shadow-2xs ${
-                isMen
-                  ? 'bg-slateBlue-100 text-slateBlue-800 border-slateBlue-300'
-                  : 'bg-blush-100 text-blush-800 border-blush-300'
-              }`}
-            >
-              <span
-                className={`w-2 h-2 rounded-full shrink-0 ${
-                  isMen ? 'bg-slateBlue-500' : 'bg-blush-500'
-                }`}
-              />
-              <span>{isMen ? "Men's Wing" : "Women's Wing"}</span>
-            </span>
           </div>
 
-          {/* Clean 50-50 Desktop Nav Links */}
-          <nav className="hidden lg:flex items-center gap-3.5 xl:gap-6 shrink-0" aria-label="Primary Navigation">
+          {/* Center: Nav links with uniform gap */}
+          <nav className="hidden lg:flex items-center gap-6 lg:gap-8 shrink-0" aria-label="Primary Navigation">
             {data.navLinks.map((link) => (
               <button
                 key={link.href}
@@ -130,20 +157,94 @@ export const Header: React.FC<HeaderProps> = ({
             ))}
           </nav>
 
-          {/* Right Header Action & Switcher with spacing from FAQs */}
-          <div className="hidden sm:flex items-center gap-2.5 xl:gap-3.5 shrink-0 pl-2 lg:pl-4 xl:pl-6">
-            {/* Version Toggle Pill */}
-            <button
-              onClick={onSwitchGender}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold border transition-colors shadow-xs whitespace-nowrap ${
-                isMen
-                  ? 'bg-blush-100 hover:bg-blush-200 text-charcoal border-blush-300'
-                  : 'bg-slateBlue-100 hover:bg-slateBlue-200 text-charcoal border-slateBlue-300'
-              }`}
-            >
-              <span>{isMen ? '♀ Women (Mahila)' : '♂ Men (Purush)'}</span>
-            </button>
+          {/* Right: Wing Dropdown, Phone, and Book a Slot CTA (Equidistant & Single-Line) */}
+          <div className="hidden lg:flex items-center gap-4 shrink-0">
+            {/* Wing Dropdown */}
+            <div className="relative" ref={dropdownRef}>
+              <button
+                type="button"
+                onClick={() => setDropdownOpen((prev) => !prev)}
+                className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-xs sm:text-sm font-bold border transition-colors shadow-xs whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-charcoal/20 ${
+                  isMen
+                    ? 'bg-slateBlue-100 hover:bg-slateBlue-200 text-charcoal border-slateBlue-300'
+                    : 'bg-blush-100 hover:bg-blush-200 text-charcoal border-blush-300'
+                }`}
+                aria-expanded={dropdownOpen}
+                aria-haspopup="true"
+                id="wing-dropdown-button"
+              >
+                <span
+                  className={`w-2 h-2 rounded-full shrink-0 ${
+                    isMen ? 'bg-slateBlue-600' : 'bg-blush-600'
+                  }`}
+                />
+                <span>{isMen ? 'Men (Purush)' : 'Women (Mahila)'}</span>
+                <ChevronDownIcon
+                  className={`w-3.5 h-3.5 text-charcoal/70 transition-transform duration-200 ${
+                    dropdownOpen ? 'rotate-180' : ''
+                  }`}
+                />
+              </button>
 
+              {dropdownOpen && (
+                <div
+                  className="absolute right-0 top-full mt-2 w-52 bg-white rounded-2xl shadow-xl border border-charcoal/10 py-1.5 z-50"
+                  role="menu"
+                  aria-labelledby="wing-dropdown-button"
+                >
+                  <div className="px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-charcoal/50 border-b border-charcoal/5">
+                    Select Training Wing
+                  </div>
+
+                  {/* Option 1: Women (Mahila) */}
+                  <button
+                    type="button"
+                    role="menuitem"
+                    onClick={() => handleSelectMode('women')}
+                    className={`w-full px-3.5 py-2.5 text-left text-xs font-bold flex items-center justify-between transition-colors ${
+                      !isMen
+                        ? 'bg-blush-50 text-charcoal'
+                        : 'text-charcoal/80 hover:bg-cream-100 hover:text-charcoal'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-blush-500 shrink-0" />
+                      <span>Women (Mahila)</span>
+                    </div>
+                    {!isMen && <CheckIcon className="w-4 h-4 text-blush-600 shrink-0" />}
+                  </button>
+
+                  {/* Option 2: Men (Purush) */}
+                  <button
+                    type="button"
+                    role="menuitem"
+                    onClick={() => handleSelectMode('men')}
+                    className={`w-full px-3.5 py-2.5 text-left text-xs font-bold flex items-center justify-between transition-colors ${
+                      isMen
+                        ? 'bg-slateBlue-50 text-charcoal'
+                        : 'text-charcoal/80 hover:bg-cream-100 hover:text-charcoal'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-slateBlue-600 shrink-0" />
+                      <span>Men (Purush)</span>
+                    </div>
+                    {isMen && <CheckIcon className="w-4 h-4 text-slateBlue-600 shrink-0" />}
+                  </button>
+                </div>
+              )}
+            </div>
+
+            {/* Phone Number */}
+            <a
+              href={`tel:${data.brand.phone.replace(/\s+/g, '')}`}
+              className="text-xs sm:text-sm font-semibold text-charcoal hover:underline inline-flex items-center gap-1.5 whitespace-nowrap"
+            >
+              <PhoneIcon className="w-3.5 h-3.5 text-charcoal/70" />
+              <span>{data.brand.formattedPhone}</span>
+            </a>
+
+            {/* Book a Slot CTA */}
             <button
               onClick={handleBookClick}
               className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-white font-bold text-xs sm:text-sm tracking-wide shadow-xs hover:shadow transition-all whitespace-nowrap shrink-0 ${
@@ -155,22 +256,57 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
           </div>
 
-          {/* Mobile Actions */}
-          <div className="flex sm:hidden items-center gap-2">
-            <button
-              onClick={onSwitchGender}
-              className={`px-2.5 py-1 rounded-full text-[11px] font-bold border ${
-                isMen
-                  ? 'bg-blush-100 text-charcoal border-blush-300'
-                  : 'bg-slateBlue-100 text-charcoal border-slateBlue-300'
-              }`}
-            >
-              {isMen ? 'Women' : 'Men'}
-            </button>
+          {/* Mobile Actions (< lg) */}
+          <div className="flex lg:hidden items-center gap-2.5">
+            {/* Mobile Wing Dropdown */}
+            <div className="relative" ref={mobileDropdownRef}>
+              <button
+                type="button"
+                onClick={() => setMobileDropdownOpen((prev) => !prev)}
+                className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-bold border ${
+                  isMen
+                    ? 'bg-slateBlue-100 text-charcoal border-slateBlue-300'
+                    : 'bg-blush-100 text-charcoal border-blush-300'
+                }`}
+              >
+                <span
+                  className={`w-1.5 h-1.5 rounded-full shrink-0 ${
+                    isMen ? 'bg-slateBlue-600' : 'bg-blush-600'
+                  }`}
+                />
+                <span>{isMen ? 'Men' : 'Women'}</span>
+                <ChevronDownIcon className="w-3 h-3 text-charcoal/70" />
+              </button>
+
+              {mobileDropdownOpen && (
+                <div className="absolute right-0 top-full mt-2 w-44 bg-white rounded-xl shadow-lg border border-charcoal/10 py-1 z-50">
+                  <button
+                    type="button"
+                    onClick={() => handleSelectMode('women')}
+                    className={`w-full px-3 py-2 text-left text-xs font-bold flex items-center justify-between ${
+                      !isMen ? 'bg-blush-50 text-charcoal' : 'text-charcoal/80'
+                    }`}
+                  >
+                    <span>Women (Mahila)</span>
+                    {!isMen && <CheckIcon className="w-3.5 h-3.5 text-blush-600" />}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleSelectMode('men')}
+                    className={`w-full px-3 py-2 text-left text-xs font-bold flex items-center justify-between ${
+                      isMen ? 'bg-slateBlue-50 text-charcoal' : 'text-charcoal/80'
+                    }`}
+                  >
+                    <span>Men (Purush)</span>
+                    {isMen && <CheckIcon className="w-3.5 h-3.5 text-slateBlue-600" />}
+                  </button>
+                </div>
+              )}
+            </div>
 
             <button
               onClick={handleBookClick}
-              className="px-3.5 py-1.5 rounded-full bg-charcoal text-white font-bold text-xs"
+              className="px-3.5 py-1.5 rounded-full bg-charcoal text-white font-bold text-xs whitespace-nowrap"
             >
               Book
             </button>
@@ -191,9 +327,9 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
         </div>
 
-        {/* Mobile Dropdown Menu */}
+        {/* Mobile Dropdown Drawer Menu */}
         {mobileMenuOpen && (
-          <div className="sm:hidden bg-[#FAF9F6] border-b border-charcoal/15 px-5 py-6 space-y-4 shadow-lg">
+          <div className="lg:hidden bg-[#FAF9F6] border-b border-charcoal/15 px-5 py-6 space-y-4 shadow-lg">
             <nav className="flex flex-col space-y-3">
               {data.navLinks.map((link) => (
                 <button
@@ -210,7 +346,7 @@ export const Header: React.FC<HeaderProps> = ({
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
-                  if (onSwitchGender) onSwitchGender();
+                  handleSelectMode(isMen ? 'women' : 'men');
                 }}
                 className={`w-full py-2.5 rounded-full border text-charcoal font-bold text-xs flex items-center justify-center gap-1.5 shadow-xs ${
                   isMen ? 'bg-blush-100 border-blush-300' : 'bg-slateBlue-100 border-slateBlue-300'
@@ -219,15 +355,17 @@ export const Header: React.FC<HeaderProps> = ({
                 <span>{isMen ? 'Switch to Women (Mahila) Version' : 'Switch to Men (Purush) Version'}</span>
               </button>
 
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  if (onOpenGenderModal) onOpenGenderModal();
-                }}
-                className="w-full text-center py-2 text-xs font-semibold text-charcoal/70 underline"
-              >
-                Switch Version (Mahila / Purush)
-              </button>
+              {onOpenGenderModal && (
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    onOpenGenderModal();
+                  }}
+                  className="w-full text-center py-2 text-xs font-semibold text-charcoal/70 underline"
+                >
+                  Switch Version (Mahila / Purush Modal)
+                </button>
+              )}
 
               <a
                 href={`tel:${data.brand.phone.replace(/\s+/g, '')}`}

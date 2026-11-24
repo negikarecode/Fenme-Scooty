@@ -43,15 +43,23 @@ def main():
     check("Men (Purush)" in dom_women, "Modal option 2: 'Men (Purush)'")
     check("Experienced Male Trainers • All Ages" in dom_women, "Modal option 2 subtext matches")
 
-    # Header & Status Dot inside Wing Pill
-    check("Women's Wing" in dom_women, "Header has Women's Wing pill")
-    check("whitespace-nowrap" in dom_women, "Header uses whitespace-nowrap preventing wraps")
+    # Top Announcement Bar (Full-Width Single-Line)
+    check("100% Female Trainers • Free Scooty & Petrol Included • Ghar Ke Paas Training" in dom_women or
+          "100% Female Trainers • Free Scooty &amp; Petrol Included • Ghar Ke Paas Training" in dom_women,
+          "Top bar left: '100% Female Trainers • Free Scooty & Petrol Included • Ghar Ke Paas Training'")
+    check("6 Cities: Delhi, Lucknow, Mathura, Jodhpur, Ghaziabad, Faridabad" in dom_women,
+          "Top bar center: '6 Cities: Delhi, Lucknow, Mathura, Jodhpur, Ghaziabad, Faridabad'")
+    check("+91 96256 95363" in dom_women, "Top bar right: '+91 96256 95363'")
+    check("Switch Version (Mahila / Purush)" not in dom_women,
+          "Duplicate 'Switch Version (Mahila / Purush)' removed from top announcement bar")
+
+    # Header & Right-Side Wing Dropdown
+    check("Women's Wing" not in dom_women, "No redundant 'Women's Wing' pill in logo area")
+    check("wing-dropdown-button" in dom_women, "Right-side Wing Dropdown button present")
+    check("Women (Mahila)" in dom_women, "Dropdown displays active 'Women (Mahila)' mode")
     check("About Us" in dom_women and "Courses" in dom_women and "FAQs" in dom_women, "Nav links present")
     check("Book a Slot" in dom_women, "Header CTA is 'Book a Slot'")
-    check("♂ Men (Purush)" in dom_women, "Header switcher button is '♂ Men (Purush)'")
-    # Verify no duplicate phone number in desktop navbar right side (tel link is in top bar only)
-    check("hidden xl:inline-flex items-center gap-1.5 whitespace-nowrap" not in dom_women,
-          "No duplicate phone link in navbar right actions")
+    check("whitespace-nowrap" in dom_women, "Header uses whitespace-nowrap preventing wraps")
 
     # Hero & Standardized 1,000+
     check("Learn Scooty With Confidence —" in dom_women and "Ab Bina Dar" in dom_women and "Chalayein!" in dom_women,
@@ -94,8 +102,16 @@ def main():
     print("\n>>> Checking Men's Route (http://localhost:5173/men)...")
     dom_men = get_dom('http://localhost:5173/men', fresh_profile=True, window_size="1440,900")
 
-    check("Men's Wing" in dom_men, "Men Header has Men's Wing pill with dot inside")
-    check("♀ Women (Mahila)" in dom_men, "Men header switcher button is '♀ Women (Mahila)'")
+    check("hidden sm:inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider" not in dom_men,
+          "No redundant 'Men's Wing' pill badge next to logo")
+    check("wing-dropdown-button" in dom_men, "Men Header has Wing Dropdown button")
+    check("Men (Purush)" in dom_men, "Men Header dropdown displays 'Men (Purush)'")
+    check("Experienced Male Trainers • Free Scooty & Petrol Included • Ghar Ke Paas Training" in dom_men or
+          "Experienced Male Trainers • Free Scooty &amp; Petrol Included • Ghar Ke Paas Training" in dom_men,
+          "Men top bar left: 'Experienced Male Trainers • Free Scooty & Petrol Included • Ghar Ke Paas Training'")
+    check("6 Cities: Delhi, Lucknow, Mathura, Jodhpur, Ghaziabad, Faridabad" in dom_men,
+          "Men top bar center: '6 Cities: Delhi, Lucknow, Mathura, Jodhpur, Ghaziabad, Faridabad'")
+    check("+91 96256 95363" in dom_men, "Men top bar right: '+91 96256 95363'")
     check("Experienced Male Trainers • Aapke Ghar Ke Paas • Free Scooty &amp; Petrol" in dom_men or "Experienced Male Trainers • Aapke Ghar Ke Paas • Free Scooty & Petrol" in dom_men,
           "Men Hero subtext matches")
     check("men-course-advance.jpg" in dom_men, "Men Advance course uses safe helmet rider photo")
