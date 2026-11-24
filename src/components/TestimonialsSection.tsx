@@ -29,16 +29,14 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ data, 
                   : 'bg-blush-200 text-charcoal border-blush-300'
               }`}
             >
-              Riders Ki Zubani
+              Rider Reviews (Riders Ki Zubani)
             </span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-charcoal tracking-tight">
-            Hamari Riders Ki Zubani
+            Meet Our Riders — Hamari Riders Ki Zubani
           </h2>
           <p className="text-base sm:text-lg text-charcoal/80 max-w-md mx-auto font-sans leading-relaxed">
-            {isMen
-              ? 'Dekhiye kaise alag-alag umar ke purushon ne aaram se bina kisi jhijhak ke scooty chalana seekha.'
-              : 'Dekhiye kaise alag-alag umar ki mahilaon ne aaram se scooty chalana seekha.'}
+            Read how learners of all ages gained two-wheeler independence with complete confidence.
           </p>
         </div>
 

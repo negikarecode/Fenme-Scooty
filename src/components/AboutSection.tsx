@@ -22,12 +22,12 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ data, isMen = false 
                   : 'bg-blush-100 text-charcoal border-blush-300'
               }`}
             >
-              <span>Hamare Baare Mein</span>
+              <span>About Us (Hamare Baare Mein)</span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-charcoal tracking-tight leading-tight">
               Hamari Kahani — <br className="hidden sm:inline" />
-              <span className="font-serif italic font-bold">{data.story.subtitle}</span>
+              <span className="font-serif italic font-bold">Scooty Freedom Starts Here!</span>
             </h2>
 
             <div className="space-y-4 text-base sm:text-lg text-charcoal/85 leading-relaxed font-sans">

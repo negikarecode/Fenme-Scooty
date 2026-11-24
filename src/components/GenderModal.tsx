@@ -19,10 +19,10 @@ export const GenderModal: React.FC<GenderModalProps> = ({ isOpen, onSelect, onCl
     >
       <div className="bg-white rounded-3xl border border-charcoal/15 shadow-2xl max-w-lg w-full p-6 sm:p-8 text-center relative animate-fadeIn">
         
-        {/* Optional Close Button */}
+        {/* Close Button */}
         <button
           onClick={onClose}
-          aria-label="Modal band karein"
+          aria-label="Close modal"
           className="absolute top-4 right-4 text-charcoal/40 hover:text-charcoal p-2 rounded-full hover:bg-cream-100 transition-colors"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -36,17 +36,17 @@ export const GenderModal: React.FC<GenderModalProps> = ({ isOpen, onSelect, onCl
           <span>Femme Scooty Training</span>
         </div>
 
-        {/* Heading & Subtext */}
+        {/* 50-50 Heading & Subtext */}
         <h2 id="gender-modal-heading" className="text-2xl sm:text-3xl font-serif font-extrabold text-charcoal tracking-tight leading-snug">
-          Swagat Hai! Aap Kiske Liye Training Dekh Rahe Hain?
+          Welcome! Who is the training for? / Aap kiske liye training dekh rahe hain?
         </h2>
-        <p className="text-sm sm:text-base text-charcoal/75 mt-1.5 mb-6">
-          Apna option chunein:
+        <p className="text-sm sm:text-base text-charcoal/75 mt-2 mb-6">
+          Please choose your option (Apna option chunein):
         </p>
 
-        {/* 2 Interactive Option Cards */}
+        {/* 2 Option Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left">
-          {/* Option 1: Mahila (Women) */}
+          {/* Option 1: Women (Mahila) */}
           <button
             onClick={() => onSelect('women')}
             className="w-full p-5 rounded-2xl bg-blush-50 hover:bg-blush-100 border-2 border-blush-300 text-left transition-all duration-200 group shadow-xs hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-blush-400"
@@ -60,14 +60,14 @@ export const GenderModal: React.FC<GenderModalProps> = ({ isOpen, onSelect, onCl
               </span>
             </div>
             <h3 className="text-lg font-bold text-charcoal group-hover:text-blush-800 transition-colors">
-              Mahila (Women)
+              Women (Mahila)
             </h3>
             <p className="text-xs sm:text-sm text-charcoal/80 mt-1 font-medium leading-relaxed">
-              100% Mahila Trainers • Ladies-Only Safe Mahol
+              100% Female Trainers • Ladies-Only
             </p>
           </button>
 
-          {/* Option 2: Purush (Men) */}
+          {/* Option 2: Men (Purush) */}
           <button
             onClick={() => onSelect('men')}
             className="w-full p-5 rounded-2xl bg-slateBlue-50 hover:bg-slateBlue-100 border-2 border-slateBlue-300 text-left transition-all duration-200 group shadow-xs hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-slateBlue-400"
@@ -81,10 +81,10 @@ export const GenderModal: React.FC<GenderModalProps> = ({ isOpen, onSelect, onCl
               </span>
             </div>
             <h3 className="text-lg font-bold text-charcoal group-hover:text-slateBlue-800 transition-colors">
-              Purush (Men)
+              Men (Purush)
             </h3>
             <p className="text-xs sm:text-sm text-charcoal/80 mt-1 font-medium leading-relaxed">
-              Experienced Male Trainers • Sabhi Umar Ke Liye
+              Experienced Male Trainers • All Ages
             </p>
           </button>
         </div>
@@ -92,21 +92,21 @@ export const GenderModal: React.FC<GenderModalProps> = ({ isOpen, onSelect, onCl
         {/* Small Clear Text Link at Bottom */}
         <div className="mt-6 pt-4 border-t border-charcoal/10 text-xs sm:text-sm text-charcoal/70">
           <p>
-            Aap baad mein bhi kabhi bhi{' '}
+            You can switch between{' '}
             <button
               onClick={() => onSelect('women')}
               className="font-bold underline text-charcoal hover:text-blush-700 focus:outline-none"
             >
-              Mahila
+              Women
             </button>
             {' '}/{' '}
             <button
               onClick={() => onSelect('men')}
               className="font-bold underline text-charcoal hover:text-slateBlue-700 focus:outline-none"
             >
-              Purush
+              Men
             </button>
-            {' '}Version badal sakte hain.
+            {' '}versions anytime (Aap kabhi bhi version badal sakte hain).
           </p>
         </div>
 

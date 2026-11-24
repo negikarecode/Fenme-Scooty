@@ -27,13 +27,13 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ data, isMen = false }) =
                 : 'bg-blush-100 text-charcoal border-blush-300'
             } mx-auto`}
           >
-            <span>Aam Sawal</span>
+            <span>FAQs (Aam Sawal-Jawab)</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-charcoal tracking-tight">
-            Aam Sawal-Jawab
+            Frequently Asked Questions — Aam Sawal-Jawab
           </h2>
           <p className="text-base sm:text-lg text-charcoal/80 font-medium max-w-lg mx-auto leading-relaxed">
-            Scooty seekhne se pehle aapke dimaag mein aane wale aam sawal.
+            Common questions about our scooter training programs.
           </p>
         </div>
 
@@ -66,11 +66,13 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ data, isMen = false }) =
                   </span>
                 </button>
 
-                {isOpen && (
-                  <div className="px-5 sm:px-6 pb-5 pt-1 text-sm sm:text-base text-charcoal/85 leading-relaxed font-sans border-t border-charcoal/10 bg-cream-50/40">
-                    <p className="pl-10">{faq.answer}</p>
-                  </div>
-                )}
+                <div
+                  className={`px-5 sm:px-6 pb-5 pt-1 text-sm sm:text-base text-charcoal/85 leading-relaxed font-sans border-t border-charcoal/10 bg-cream-50/40 ${
+                    isOpen ? 'block' : 'hidden'
+                  }`}
+                >
+                  <p className="pl-10">{faq.answer}</p>
+                </div>
               </div>
             );
           })}
@@ -83,8 +85,8 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ data, isMen = false }) =
           }`}
         >
           <div>
-            <h4 className="font-bold text-base text-charcoal">Koi aur sawal hai jo yahan nahi mila?</h4>
-            <p className="text-sm text-charcoal/80 mt-1">Direct hamari training team se WhatsApp par baat karein.</p>
+            <h4 className="font-bold text-base text-charcoal">Have another question? (Koi aur sawal hai?)</h4>
+            <p className="text-sm text-charcoal/80 mt-1">Chat directly with our head training coordinator on WhatsApp.</p>
           </div>
           <a
             href={data.brand.whatsappUrl}
@@ -94,7 +96,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ data, isMen = false }) =
               isMen ? 'bg-charcoal hover:bg-slateBlue-600' : 'bg-charcoal hover:bg-blush-600'
             }`}
           >
-            WhatsApp Par Poochhein
+            Chat on WhatsApp
           </a>
         </div>
 

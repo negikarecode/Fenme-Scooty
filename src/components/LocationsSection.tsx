@@ -51,10 +51,10 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({ data, isMen 
             <span>Locations</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-charcoal tracking-tight">
-            Hum Kahan Sikhate Hain?
+            Our Training Cities — Hum Kahan Sikhate Hain?
           </h2>
           <p className="text-base sm:text-lg text-charcoal/80 font-medium max-w-xl mx-auto leading-relaxed">
-            Delhi NCR, Lucknow, Mathura, Jodhpur, Ghaziabad aur Faridabad mein aapke ghar ke paas training.
+            Active across 6 major cities with convenient doorstep neighborhood practice.
           </p>
         </div>
 
@@ -89,7 +89,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({ data, isMen 
                 <div className="w-full h-56 sm:h-64 rounded-xl overflow-hidden border border-charcoal/15 mb-5 relative group">
                   <img
                     src={currentCity.image}
-                    alt={`${currentCity.name} Scooty Training Hub`}
+                    alt={`${currentCity.name} Scooter Training Hub`}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute top-3 left-3">
@@ -125,13 +125,13 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({ data, isMen 
                     isMen ? 'bg-charcoal hover:bg-slateBlue-600' : 'bg-charcoal hover:bg-blush-600'
                   }`}
                 >
-                  {currentCity.name} Mein Book Karein
+                  Book in {currentCity.name}
                 </button>
                 <a
                   href={`tel:${data.brand.phone.replace(/\s+/g, '')}`}
                   className="py-3.5 px-4 rounded-full bg-white border border-charcoal/20 text-charcoal font-bold text-xs sm:text-sm text-center hover:bg-cream-100 transition-colors"
                 >
-                  Coordinator Ko Call Karein
+                  Call City Coordinator
                 </a>
               </div>
             </div>
@@ -146,17 +146,17 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({ data, isMen 
                     Covered Neighborhoods & Localities
                   </h4>
                   <p className="text-xs sm:text-sm text-charcoal/70">
-                    {currentCity.name} mein apne ghar ke paas ka area check karein
+                    Find your closest training corridor in {currentCity.name}
                   </p>
                 </div>
 
                 {/* Search Input */}
-                <div className="relative w-full sm:w-64">
+                <div className="relative w-full sm:w-72">
                   <input
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Apna area likhein..."
+                    placeholder="Search your area (Apna area likhein)..."
                     className="w-full px-4 py-2 rounded-full border border-charcoal/25 bg-cream-50 text-xs sm:text-sm text-charcoal placeholder-charcoal/40 focus:outline-none focus:ring-2 focus:ring-charcoal"
                   />
                   {searchQuery && (
@@ -194,10 +194,10 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({ data, isMen 
                 ) : (
                   <div className="py-8 text-center w-full space-y-2">
                     <p className="text-sm text-charcoal/70">
-                      "{searchQuery}" ke naam se koi area list mein nahi mila.
+                      No listed locality matched "{searchQuery}".
                     </p>
                     <p className="text-xs text-charcoal/60">
-                      Chinta na karein, hum aapke ghar ke paas training arrange kar dete hain. Call ya WhatsApp karein.
+                      Don't worry, we arrange practice on safe roads near your doorstep. Call or message us on WhatsApp.
                     </p>
                   </div>
                 )}
@@ -207,7 +207,7 @@ export const LocationsSection: React.FC<LocationsSectionProps> = ({ data, isMen 
               <div className="mt-6 pt-4 border-t border-charcoal/10 flex items-center justify-between text-xs text-charcoal/70">
                 <span className="flex items-center gap-1.5">
                   <MapPinIcon className="w-3.5 h-3.5 text-sage-700" />
-                  <span>Aapke ghar ke paas wali shaant sadak par 100% safe training</span>
+                  <span>Aapke ghar ke paas safe roads par 1-on-1 practical training</span>
                 </span>
                 <span className="font-semibold text-charcoal">
                   {filteredHubs.length} Localities

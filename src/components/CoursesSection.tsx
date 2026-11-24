@@ -92,13 +92,13 @@ export const CoursesSection: React.FC<CoursesSectionProps> = ({
                 : 'bg-blush-100 text-charcoal border-blush-300'
             } mx-auto`}
           >
-            <span>{isMen ? 'Men\'s Training Courses' : 'Hamare Courses'}</span>
+            <span>Our Courses (Hamare Courses)</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-charcoal tracking-tight">
-            Hamare Training Courses
+            Our Training Courses
           </h2>
           <p className="text-base sm:text-lg text-charcoal/80 font-medium max-w-xl mx-auto leading-relaxed">
-            Aapki zaroorat aur suvidha ke hisaab se banaye gaye 2 aasan programs.
+            Tailored courses designed for your pace and convenience.
           </p>
         </div>
 
@@ -107,6 +107,8 @@ export const CoursesSection: React.FC<CoursesSectionProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-stretch">
             {data.courses.map((course) => {
               const theme = getCardTheme(course.accentColor);
+              const isBasic = course.id === '7-days-basic';
+
               return (
                 <div
                   key={course.id}
@@ -133,7 +135,7 @@ export const CoursesSection: React.FC<CoursesSectionProps> = ({
                     <div className="absolute inset-0 bg-gradient-to-t from-charcoal/50 via-transparent to-transparent" />
                     <div className="absolute bottom-3 left-3 right-3 text-white">
                       <p className="text-[11px] font-semibold uppercase tracking-wider text-white/90">
-                        Kinke Liye Hai:
+                        Target Audience (Kinke Liye Hai):
                       </p>
                       <p className="text-xs sm:text-sm font-bold drop-shadow">
                         {course.idealFor}
@@ -151,7 +153,7 @@ export const CoursesSection: React.FC<CoursesSectionProps> = ({
                     </p>
                   </div>
 
-                  {/* Short 3-4 Bullet Points in Simple Hinglish */}
+                  {/* 50-50 English/Hinglish Bullet Points */}
                   <ul className="space-y-2.5 mb-6 text-sm sm:text-[15px] text-charcoal/90 flex-1">
                     {course.features.map((feature, idx) => (
                       <li key={idx} className="flex items-start gap-2.5">
@@ -163,13 +165,13 @@ export const CoursesSection: React.FC<CoursesSectionProps> = ({
                     ))}
                   </ul>
 
-                  {/* Bottom Aligned Clean Pill CTA Button */}
+                  {/* Bottom Aligned CTA Button */}
                   <div className="mt-auto pt-2">
                     <button
                       onClick={() => handleEnrollClick(course.id)}
                       className={`w-full py-3.5 px-5 rounded-full ${theme.pillBtnBg} font-bold text-sm tracking-wide border shadow-sm hover:shadow transition-all text-center`}
                     >
-                      Course Book Karein
+                      {isBasic ? 'Book Basic Course' : 'Book Advance Course'}
                     </button>
                   </div>
 

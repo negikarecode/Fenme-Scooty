@@ -4,94 +4,93 @@ export const menSiteData: SiteData = {
   brand: {
     name: "Femme Scooty | Men",
     wordmark: "femme scooty.",
-    tagline: "Experienced Male Trainers Ke Saath Safe Scooty Training",
-    subTagline: "Ab Bina Dar, Khud Scooty Chalana Seekhein",
+    tagline: "Delhi NCR & UP's Trusted Two-Wheeler Scooter Training For Men",
+    subTagline: "Learn Scooty With Confidence — Ab Bina Dar Chalayein!",
     foundedYear: 2024,
     founder: "Kajal Kaur",
     studentsTrained: 1000,
-    ageRange: "16 se 60 Saal",
+    ageRange: "Ages 16 to 60",
     phone: "+91 96256 95363",
     formattedPhone: "+91 96256 95363",
     whatsappNumber: "919625695363",
-    whatsappUrl: "https://wa.me/919625695363?text=Namaste,%20mujhe%20men%20scooty%20training%20ke%20baare%20mein%20jaankari%20chahiye.",
+    whatsappUrl: "https://wa.me/919625695363?text=Hello,%20I%20would%20like%20details%20about%20scooter%20training%20for%20men.",
     email: "info@femmescooty.in",
-    address: "Delhi NCR, Lucknow, Mathura, Jodhpur, Ghaziabad aur Faridabad",
-    heroHeadline: "Ab Bina Dar, Khud Scooty Chalana Seekhein",
-    heroSubtext: "Experienced Male Trainers • Ghar Ke Paas Training • Scooty aur Petrol Free",
-    heroReassurance: "Cycle aati ho ya nahi, hum aapko aaram se, bina kisi judgment ya tension ke scooty chalana sikhayenge.",
-    aboutBlurbFooter: "Femme Scooty Men sabhi umar ke purushon ko aasan aur bina kisi judgment ke scooty chalana sikhata hai. Experienced male trainers, aapke ghar ke paas safe mahol."
+    address: "Delhi NCR, Lucknow, Mathura, Jodhpur, Ghaziabad and Faridabad",
+    heroHeadline: "Learn Scooty With Confidence — Ab Bina Dar Chalayein!",
+    heroSubtext: "Experienced Male Trainers • Aapke Ghar Ke Paas • Free Scooty & Petrol",
+    heroReassurance: "Cycle aati ho ya nahi, learn scooter riding comfortably and without judgment with patient 1-on-1 guidance.",
+    aboutBlurbFooter: "Empowering learners across Delhi NCR, Lucknow, Mathura, and Jodhpur with safe, stress-free scooter training."
   },
-  announcement: "Experienced Male Trainers • Free Scooty aur Petrol • Ghar Ke Paas Training",
+  announcement: "Experienced Male Trainers • Free Scooty & Petrol Included • Ghar Ke Paas Training",
   tickerItems: [
-    "1000+ RIDERS SEEKH CHUKE HAIN",
-    "16 SE 60 SAAL TAK",
-    "CYCLE AATI HO YA NAHI",
-    "GHAR KE PAAS TRAINING",
-    "EXPERIENCED MALE TRAINERS",
-    "FREE SCOOTY AUR PETROL",
-    "JUDGMENT-FREE TRAINING"
+    "1000+ Students Trained",
+    "Ages 16 to 60",
+    "Cycle Aati Ho Ya Nahi",
+    "Ghar Ke Paas Training",
+    "Experienced Male Trainers",
+    "Free Scooty & Petrol Included"
   ],
   story: {
-    title: "Hamari Kahani",
-    subtitle: "Har Umar Ke Liye Safe Riding",
-    founderStory: "Femme Scooty ne purushon ke liye ye dedicated program shuru kiya taaki chahe school-college ke young students hon, working men hon, ya senior citizens—har koi bina kisi sharam ya jhijhak ke safe mahol mein scooty seekh sake.",
-    mission: "Hamare certified male trainers respectful, patient aur friendly tareeqe se 1-on-1 sikhate hain. Chahe aapki umar 16 saal ho ya 60 saal, scooty chalana seekhna ab bilkul aasan aur safe hai.",
+    title: "About Us",
+    subtitle: "Hamari Kahani — Scooty Freedom Starts Here!",
+    founderStory: "Started in 2024 as a dedicated wing of Femme Scooty, our men's training program ensures that students, working professionals, and senior citizens can learn two-wheeler riding safely and without judgment. Today, we have trained 1000+ students aged 16 to 60 across 6 cities.",
+    mission: "Our certified male instructors guide you step-by-step with patience and zero judgment. Chahe aapki umar 16 ho ya 60, learning two-wheeler riding is now simple, practical, and safe.",
     stats: [
-      { label: "Riders Seekh Chuke", value: "1,000+" },
-      { label: "Umar Ki Seema", value: "16 se 60 Saal" },
-      { label: "Active Shehar", value: "6 Shehar" },
+      { label: "Students Trained", value: "1,000+" },
+      { label: "Age Group", value: "Ages 16 to 60" },
+      { label: "Active Cities", value: "6 Cities" },
       { label: "Trainers", value: "Experienced Male" }
     ],
     corePillars: [
       {
-        title: "7 Din Mein Zero se Hero",
-        desc: "Cycle ka balance nahi aata? Zero se basic balance aur comfortable throttle control sikhate hain."
+        title: "Zero to Hero in 7 Days",
+        desc: "No cycling experience needed! Zero se basic balance aur throttle handling aaram se sikhate hain."
       },
       {
         title: "Experienced Male Trainers",
-        desc: "Patient aur polite male instructors jo bina kisi judgment ke aaram se guide karte hain."
+        desc: "Certified, respectful male instructors who guide with zero judgment or pressure."
       },
       {
-        title: "Ghar Ke Paas Shaant Sadak",
-        desc: "Door jaane ki zaroorat nahi, aapke ghar ke paas safe aur traffic-free sadak par practice hoti hai."
+        title: "Ghar Ke Paas Safe Roads",
+        desc: "Door travel karne ki tension nahi. Practice on safe, low-traffic neighborhood roads near your home."
       },
       {
-        title: "Free Scooty aur Petrol",
-        desc: "Training ke liye hamari automatic scooty aur petrol use karein, koi alag kharcha nahi hai."
+        title: "Free Scooty & Petrol",
+        desc: "Automatic gearless scooty and fuel provided during training with zero hidden costs."
       }
     ]
   },
   courses: [
     {
       id: "7-days-basic",
-      name: "7 Din ka Basic Course",
-      badge: "Sabse Popular",
-      duration: "7 Din • Roz 1 Ghanta",
-      idealFor: "Jinhe balance karna bhi nahi aata",
-      tagline: "Pehle din se hi aapka darr nikal jayega",
+      name: "7 Days Basic Course",
+      badge: "Most Popular",
+      duration: "7 Days • 1 Hour Daily",
+      idealFor: "Complete Beginners — Jinhe balance karna bhi nahi aata!",
+      tagline: "Master two-wheeler balance from day one!",
       accentColor: "sky",
       image: "/images/men-course-basic.jpg",
       features: [
-        "Cycle nahi aati? Koi baat nahi, zero se shuru karenge",
-        "Aapke ghar ke paas safe aur shaant sadak par 1-on-1 practice",
-        "Scooty aur petrol hamari taraf se bilkul free",
-        "Experienced male trainer – bina kisi jhijhak ke seekhein"
+        "No cycling experience needed (Cycle nahi aati? Koi baat nahi!)",
+        "Training near your home (Aapke area ke paas safe roads par)",
+        "Free scooty & petrol included (no extra charges)",
+        "Patient male trainers & flexible morning/evening slots"
       ]
     },
     {
       id: "4-days-advance",
-      name: "4 Din ka Advance Course",
-      badge: "Traffic & Road Confidence",
-      duration: "4 Din • Roz 1 Ghanta",
-      idealFor: "Balance hai par bheed-bhaad aur traffic mein dar lagta hai",
-      tagline: "Gali se nikal kar main road par aaram se chalayein",
+      name: "4 Days Advance Course",
+      badge: "Traffic Confidence",
+      duration: "4 Days • 1 Hour Daily",
+      idealFor: "Traffic Confidence — Balance hai par road pe dar lagta hai!",
+      tagline: "Master city traffic, turns & slopes with ease!",
       accentColor: "sage",
       image: "/images/men-course-advance.jpg",
       features: [
-        "City traffic aur bheed wali sadkon par safe handling",
-        "U-turn, flyover slope aur emergency braking control",
-        "Rearview mirrors aur lane discipline ki sahi aadat",
-        "Free scooty aur petrol training ke dauran"
+        "Real traffic riding & confidence building",
+        "U-turns, slopes, and emergency braking practice",
+        "Free pickup & drop for classes",
+        "Free scooty & petrol included"
       ]
     }
   ],
@@ -99,37 +98,37 @@ export const menSiteData: SiteData = {
     {
       id: "male-trainers",
       title: "Experienced Male Trainers",
-      description: "Certified aur professional male trainers jo bina kisi judgment ke aaram se aur dhyan se sikhate hain.",
+      description: "Certified male trainers in a friendly, judgment-free environment.",
       iconName: "users"
     },
     {
       id: "ghar-ke-paas",
-      title: "Ghar Ke Paas Safe Roads",
-      description: "Door travel karne ki tension nahi. Training aapke ghar ke paas wali shaant sadak par hoti hai.",
+      title: "Ghar Ke Paas Comfort",
+      description: "Practice on safe, familiar roads near your home.",
       iconName: "mapPin"
     },
     {
       id: "scooty-petrol-free",
-      title: "Free Scooty aur Petrol",
-      description: "Khud ki scooty nahi hai? Hamari automatic scooty aur petrol use karein, koi hidden charges nahi.",
+      title: "Free Scooty & Petrol",
+      description: "Khud ki scooty nahi hai? Use ours at zero extra cost.",
       iconName: "sparkles"
     },
     {
       id: "umar-no-bar",
-      title: "Umar Ki Koi Seema Nahi",
-      description: "16 saal ke students se lekar 60 saal ke senior citizens tak, har umar ke liye comfortable pace.",
+      title: "No Age Bar (16–60)",
+      description: "16 saal ke student hon ya 60 saal ke senior citizen, everyone learns at their own pace.",
       iconName: "award"
     },
     {
       id: "flexible-timing",
-      title: "Apni Pasand Ka Time",
-      description: "Subah ya shaam, jo time aapke office, business ya college ke schedule ke hisaab se suit kare.",
+      title: "Flexible Timings",
+      description: "Morning, evening, and weekend slots tailored to your schedule.",
       iconName: "calendar"
     },
     {
       id: "test-ready",
-      title: "RTO Test Ki Taiyari",
-      description: "Figure-8, emergency brake aur traffic rules ki training taaki driving test aasaani se pass ho.",
+      title: "Road & Test Ready",
+      description: "Practical training for parking, U-turns, and RTO driving tests.",
       iconName: "shield"
     }
   ],
@@ -137,29 +136,29 @@ export const menSiteData: SiteData = {
     {
       id: "rajesh-sharma",
       name: "Rajesh Sharma",
-      role: "Working Professional (46 Saal)",
+      role: "Working Professional (46 Years)",
       city: "Delhi",
       rating: 5,
       image: "/images/rajesh-sharma.png",
-      quote: "46 saal ki umar mein scooty seekhna mushkil lag raha tha, par trainer ne bina judge kiye itne aaram se sikhaya ki ab daily office scooty se aaram se jaata hoon."
+      quote: "At 46, learning two-wheeler balance felt intimidating. But the trainer was respectful and judgment-free. Ab daily office traffic mein aaram se ride karta hoon!"
     },
     {
       id: "amit-patel",
       name: "Amit Patel",
-      role: "College Student (20 Saal)",
+      role: "College Student (20 Years)",
       city: "Lucknow",
       rating: 5,
       image: "/images/amit-patel.png",
-      quote: "Cycle aati thi par scooty traffic mein chalaney mein dar lagta tha. 4 din ke advance course mein saara dar nikal gaya! Trainers bohot friendly hain."
+      quote: "I knew basic bicycle balance, but traffic on main roads scared me. In just 4 days of the advance course, I gained real road confidence!"
     },
     {
       id: "harish-verma",
       name: "Harish Verma",
-      role: "Senior Citizen (58 Saal)",
+      role: "Senior Citizen (58 Years)",
       city: "Ghaziabad",
       rating: 5,
       image: "/images/harish-verma.png",
-      quote: "Retirement ke baad market aur chotey kaamo ke liye scooty zaroori thi. Trainer ne safe colony mein patience se sikhaya. Zindagi ka sabse accha decision raha!"
+      quote: "After retirement, having two-wheeler freedom for groceries and daily chores was essential. Trainer taught me with great patience in safe colony lanes."
     }
   ],
   cities: [
@@ -168,7 +167,7 @@ export const menSiteData: SiteData = {
       name: "Delhi",
       state: "National Capital Region",
       image: "/images/delhi.png",
-      description: "West, East, South aur North Delhi ke saare bade areas mein ghar ke paas training.",
+      description: "West, East, South, and North Delhi areas covered with doorstep lane training.",
       hubs: [
         "Vikaspuri",
         "Tilak Nagar",
@@ -200,7 +199,7 @@ export const menSiteData: SiteData = {
       name: "Lucknow",
       state: "Uttar Pradesh",
       image: "/images/lucknow.png",
-      description: "Gomti Nagar, Hazratganj, Aliganj sahit pure Lucknow ke localities mein training.",
+      description: "Gomti Nagar, Hazratganj, Aliganj, and all prime Lucknow localities.",
       hubs: [
         "Hazratganj",
         "Gomti Nagar",
@@ -236,7 +235,7 @@ export const menSiteData: SiteData = {
       name: "Mathura",
       state: "Uttar Pradesh",
       image: "/images/mathura.png",
-      description: "Mathura aur Vrindavan ke safe corridors mein aaram se seekhein.",
+      description: "Mathura and Vrindavan peaceful residential corridors for calm practice.",
       hubs: [
         "Krishna Janmabhoomi",
         "Dwarkadhish Temple Area",
@@ -277,7 +276,7 @@ export const menSiteData: SiteData = {
       name: "Jodhpur",
       state: "Rajasthan",
       image: "/images/jodhpur.png",
-      description: "Jodhpur shahar ke sabhi areas mein shaant sadkon par structured classes.",
+      description: "Structured scooter training across calm neighborhood roads in Jodhpur.",
       hubs: [
         "Sardar Market & Clock Tower",
         "Navchowkiya",
@@ -305,7 +304,7 @@ export const menSiteData: SiteData = {
       name: "Ghaziabad",
       state: "Uttar Pradesh",
       image: "/images/ghaziabad.png",
-      description: "Indirapuram, Vaishali, Vasundhara sahit sabhi societies mein door-step training.",
+      description: "Indirapuram, Vaishali, Vasundhara, and surrounding society gates.",
       hubs: [
         "Vaishali",
         "Kaushambi",
@@ -330,7 +329,7 @@ export const menSiteData: SiteData = {
       name: "Faridabad",
       state: "Haryana",
       image: "/images/faridabad.png",
-      description: "Greater Faridabad aur Old Faridabad ke calm sectors mein structured classes.",
+      description: "Greater Faridabad and Old Faridabad quiet sectors with 1-on-1 trainers.",
       hubs: [
         "Ballabgarh",
         "Neharpar",
@@ -361,36 +360,36 @@ export const menSiteData: SiteData = {
   ],
   faqs: [
     {
-      question: "Kya mujhe pehle se cycle chalani aani zaroori hai?",
-      answer: "Bilkul nahi! Hamare kaafi students ne pehle kabhi cycle nahi chalayi hoti. Automatic gearless scooty par pairon ke support ke saath aasan step-by-step tareeqe se balance sikhate hain."
+      question: "Do I need to know cycling first? (Kya cycle chalani aani zaroori hai?)",
+      answer: "No! We teach balancing from day one. Over 70% of our students have never ridden a bicycle before. Automatic gearless scooty par pairon ke support se step-by-step balance seekhna bohot aasan hai."
     },
     {
-      question: "Kya training ke liye apni khud ki scooty lani padegi?",
-      answer: "Nahi, bilkul zaroorat nahi hai. Hum aapko training ke liye automatic scooty aur petrol dono provide karte hain, jiska koi alag kharcha nahi hai."
+      question: "Do I need my own scooty? (Kya khud ki scooty honi chahiye?)",
+      answer: "No, our scooty and petrol are included for free. If you prefer learning on your own scooter, that is welcome too with zero issues."
     },
     {
-      question: "Kya trainers sach mein experienced aur patient hain?",
-      answer: "Haan, 100% experienced male instructors hain jo bina kisi judgment, daant ya jaldbazi ke respectful aur patient tareeqe se sikhate hain."
+      question: "Will there be an experienced trainer? (Kya experienced trainer sikhayenge?)",
+      answer: "Yes, 100% certified male trainers with a patient, respectful approach."
     },
     {
-      question: "Kya senior citizens (50+ saal) scooty chalana seekh sakte hain?",
-      answer: "Haan, bilkul! Hamare paas 50 se 60 saal ke kaafi working aur retired men aate hain. Unke liye extra safe, shaant sadak par comfortable pace par practice karwayi jaati hai."
+      question: "Can I choose my class timing? (Kya main apna time slot choose kar sakte hain?)",
+      answer: "Yes, morning, evening, and weekend slots are available."
     },
     {
-      question: "Class ka time kya rehta hai aur slot kaise book karein?",
-      answer: "Subah 6:00 baje se 10:00 baje tak aur shaam ko 4:30 baje se 7:30 baje tak ke flexible slots hain. Working men ke liye Saturday-Sunday weekend batches bhi hain."
+      question: "Can senior citizens (ages 50+) learn? (Kya 50+ saal ke log seekh sakte hain?)",
+      answer: "Absolutely! We regularly train learners up to age 60 with extra safety, patience, and a comfortable, unhurried pace."
     },
     {
-      question: "Agar 7 din ke baad bhi thoda confidence chahiye toh?",
-      answer: "Aap aasan flexible top-up sessions le sakte hain jab tak aap heavy traffic aur main road par 100% aatmasamman ke saath ride na karne lagein."
+      question: "What if I need extra practice? (Agar aur practice chahiye toh?)",
+      answer: "Flexible top-up sessions are readily available until you feel 100% confident on city roads."
     }
   ],
   navLinks: [
-    { label: "Hamare Baare Mein", href: "#about" },
+    { label: "About Us", href: "#about" },
     { label: "Courses", href: "#courses" },
-    { label: "Kyu Chunein", href: "#why-us" },
+    { label: "Why Us", href: "#why-us" },
     { label: "Reviews", href: "#reviews" },
     { label: "Locations", href: "#locations" },
-    { label: "Sawal-Jawab", href: "#faq" }
+    { label: "FAQs", href: "#faq" }
   ]
 };

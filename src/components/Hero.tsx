@@ -38,7 +38,7 @@ export const Hero: React.FC<HeroProps> = ({ data, isMen = false }) => {
     e.preventDefault();
     const cleanPhone = formData.phone.replace(/\D/g, '');
     if (cleanPhone.length < 10) {
-      setPhoneError('Kripya 10-digit ka mobile number likhein');
+      setPhoneError('Please enter a valid 10-digit mobile number');
       return;
     }
 
@@ -51,13 +51,9 @@ export const Hero: React.FC<HeroProps> = ({ data, isMen = false }) => {
 
   const handleWhatsAppDirect = () => {
     const text = encodeURIComponent(
-      `Namaste Femme Scooty! Mera naam ${formData.fullName || 'Student'} hai. Mujhe ${
-        formData.course === '7-days-basic'
-          ? '7 Din ka Basic Course'
-          : '4 Din ka Advance Course'
-      } ke baare mein jaankari chahiye. Shehar: ${formData.city}. Phone: ${formData.phone || 'NA'}. Version: ${
-        isMen ? 'Men' : 'Women'
-      }.`
+      `Hello Femme Scooty! My name is ${formData.fullName || 'Student'}, interested in ${
+        formData.course === '7-days-basic' ? '7 Days Basic Course' : '4 Days Advance Course'
+      } in ${formData.city}. Phone: ${formData.phone || 'NA'}. Version: ${isMen ? 'Men' : 'Women'}.`
     );
     window.open(`https://wa.me/919625695363?text=${text}`, '_blank');
   };
@@ -67,7 +63,7 @@ export const Hero: React.FC<HeroProps> = ({ data, isMen = false }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
-          {/* Left Column: Clear Hinglish Editorial Headline, Subtext & Big CTAs */}
+          {/* Left Column: 50-50 English/Hinglish Headline, Subtext & Obvious CTAs */}
           <div className="lg:col-span-7 space-y-6 sm:space-y-8">
             
             {/* Clean Pill Badges */}
@@ -80,7 +76,7 @@ export const Hero: React.FC<HeroProps> = ({ data, isMen = false }) => {
                 }`}
               >
                 <ScooterIcon className={`w-3.5 h-3.5 ${isMen ? 'text-slateBlue-700' : 'text-blush-700'}`} />
-                <span>{isMen ? 'Experienced Male Trainers' : '100% Mahila Trainers'}</span>
+                <span>{isMen ? 'Experienced Male Trainers' : '100% Female Trainers'}</span>
               </span>
 
               <span className="clean-badge bg-sage-100 text-charcoal border-sage-300">
@@ -93,13 +89,13 @@ export const Hero: React.FC<HeroProps> = ({ data, isMen = false }) => {
               </span>
             </div>
 
-            {/* Clear, High-Contrast Headline for Ages 16 to 60 */}
+            {/* Headline */}
             <div className="space-y-3">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-charcoal tracking-tight leading-[1.18]">
-                <span>Ab Bina Dar, </span>
+                <span>Learn Scooty With Confidence — </span>
                 <span className="relative inline-block px-1">
                   <span className="relative z-10 font-serif italic text-charcoal">
-                    Khud Scooty
+                    Ab Bina Dar
                   </span>
                   <span
                     className={`absolute inset-x-0 bottom-1 sm:bottom-2 h-3 sm:h-4 rounded-sm -z-0 ${
@@ -108,7 +104,7 @@ export const Hero: React.FC<HeroProps> = ({ data, isMen = false }) => {
                     aria-hidden="true"
                   />
                 </span>
-                <span className="block mt-1">Chalana Seekhein</span>
+                <span className="block mt-1">Chalayein!</span>
               </h1>
 
               {/* Subtext */}
@@ -116,7 +112,7 @@ export const Hero: React.FC<HeroProps> = ({ data, isMen = false }) => {
                 {data.brand.heroSubtext}
               </p>
 
-              {/* Reassuring Note for Learners */}
+              {/* Reassuring Note for Middle-Aged First-Timers */}
               <div className="p-4 sm:p-5 rounded-2xl bg-white/90 border border-charcoal/10 shadow-sm max-w-xl">
                 <p className="text-base sm:text-lg text-charcoal/90 leading-relaxed font-sans">
                   {data.brand.heroReassurance}
@@ -124,7 +120,7 @@ export const Hero: React.FC<HeroProps> = ({ data, isMen = false }) => {
               </div>
             </div>
 
-            {/* Big, Obvious Action Buttons */}
+            {/* Big Obvious Action Buttons */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 pt-1">
               {/* Call CTA */}
               <a
@@ -132,7 +128,7 @@ export const Hero: React.FC<HeroProps> = ({ data, isMen = false }) => {
                 className="inline-flex items-center justify-center gap-3 px-7 py-4 rounded-full bg-charcoal hover:bg-charcoal-muted text-white font-bold text-base shadow-sm hover:shadow transition-all"
               >
                 <PhoneIcon className={`w-5 h-5 ${isMen ? 'text-slateBlue-300' : 'text-blush-300'}`} />
-                <span>Call Karein: {data.brand.formattedPhone}</span>
+                <span>Call Now: {data.brand.formattedPhone}</span>
               </a>
 
               {/* WhatsApp CTA */}
@@ -147,7 +143,7 @@ export const Hero: React.FC<HeroProps> = ({ data, isMen = false }) => {
                 }`}
               >
                 <WhatsAppIcon className="w-5 h-5 text-charcoal" />
-                <span>WhatsApp Par Baat Karein</span>
+                <span>WhatsApp Us</span>
               </a>
             </div>
 
@@ -156,16 +152,16 @@ export const Hero: React.FC<HeroProps> = ({ data, isMen = false }) => {
               <div>
                 <span className="block text-2xl sm:text-3xl font-serif font-extrabold text-charcoal">1000+</span>
                 <span className="text-xs sm:text-sm font-semibold text-charcoal/70">
-                  {isMen ? 'Riders Seekh Chuke' : 'Mahilayein Seekh Chuki'}
+                  Students Trained
                 </span>
               </div>
               <div className="border-l border-charcoal/15 pl-4">
                 <span className="block text-2xl sm:text-3xl font-serif font-extrabold text-charcoal">16 to 60</span>
-                <span className="text-xs sm:text-sm font-semibold text-charcoal/70">Saal Tak Ki Umar</span>
+                <span className="text-xs sm:text-sm font-semibold text-charcoal/70">Ages Trained</span>
               </div>
               <div className="border-l border-charcoal/15 pl-4">
-                <span className="block text-2xl sm:text-3xl font-serif font-extrabold text-charcoal">6 Shehar</span>
-                <span className="text-xs sm:text-sm font-semibold text-charcoal/70">Mein Active Training</span>
+                <span className="block text-2xl sm:text-3xl font-serif font-extrabold text-charcoal">6 Cities</span>
+                <span className="text-xs sm:text-sm font-semibold text-charcoal/70">Active Training</span>
               </div>
             </div>
 
@@ -187,10 +183,10 @@ export const Hero: React.FC<HeroProps> = ({ data, isMen = false }) => {
                     <CheckIcon className="w-7 h-7 text-charcoal" />
                   </div>
                   <h3 className="font-serif text-2xl font-bold text-charcoal">
-                    Dhanyawaad!
+                    Thank You! (Dhanyawaad)
                   </h3>
                   <p className="text-base text-charcoal/80 max-w-xs mx-auto">
-                    Aapki request mil gayi hai. Hamari training coordinator aapse jald hi call par baat karenge.
+                    Your request has been received. Our training coordinator will call you back shortly.
                   </p>
                   <div className="pt-2">
                     <button
@@ -200,7 +196,7 @@ export const Hero: React.FC<HeroProps> = ({ data, isMen = false }) => {
                       }`}
                     >
                       <WhatsAppIcon className="w-4 h-4 text-charcoal" />
-                      <span>WhatsApp Par Direct Chat Karein</span>
+                      <span>Chat on WhatsApp Directly</span>
                     </button>
                   </div>
                 </div>
@@ -208,24 +204,24 @@ export const Hero: React.FC<HeroProps> = ({ data, isMen = false }) => {
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
                     <h3 className="font-serif text-2xl sm:text-3xl font-bold text-charcoal">
-                      Free Call Back Mangwayein
+                      Request a Free Callback
                     </h3>
                     <p className="text-sm text-charcoal/70 mt-1">
-                      Bas 2 minute ka aasan form bharein, hum aapko call karenge.
+                      Fill this quick 2-minute form and our coordinator will call you back.
                     </p>
                   </div>
 
                   {/* Name Field */}
                   <div className="space-y-1.5">
                     <label className="block text-sm font-semibold text-charcoal">
-                      Aapka Naam
+                      Your Name (Aapka Naam)
                     </label>
                     <input
                       type="text"
                       name="fullName"
                       value={formData.fullName}
                       onChange={handleInputChange}
-                      placeholder="Apna poora naam likhein"
+                      placeholder="Enter your full name"
                       required
                       className="w-full px-4 py-3 rounded-xl border border-charcoal/20 bg-cream-50 text-sm sm:text-base text-charcoal placeholder-charcoal/40 focus:outline-none focus:ring-2 focus:ring-charcoal"
                     />
@@ -254,7 +250,7 @@ export const Hero: React.FC<HeroProps> = ({ data, isMen = false }) => {
                   {/* City Dropdown */}
                   <div className="space-y-1.5">
                     <label className="block text-sm font-semibold text-charcoal">
-                      Apna Shehar Chunein
+                      Select City (Shehar Chunein)
                     </label>
                     <select
                       name="city"
@@ -273,7 +269,7 @@ export const Hero: React.FC<HeroProps> = ({ data, isMen = false }) => {
                   {/* Course Dropdown */}
                   <div className="space-y-1.5">
                     <label className="block text-sm font-semibold text-charcoal">
-                      Kaunsa Course Chahiye?
+                      Select Course
                     </label>
                     <select
                       name="course"
@@ -297,11 +293,11 @@ export const Hero: React.FC<HeroProps> = ({ data, isMen = false }) => {
                       isMen ? 'bg-charcoal hover:bg-slateBlue-600' : 'bg-charcoal hover:bg-blush-600'
                     }`}
                   >
-                    {submitting ? 'Request Bheji Jaa Rahi Hai...' : 'Call Back Book Karein'}
+                    {submitting ? 'Sending Request...' : 'Request Callback'}
                   </button>
 
                   <p className="text-center text-xs text-charcoal/60 pt-1">
-                    Aapki jaankari 100% surakshit hai. Koi faltu spam call nahi aayegi.
+                    Your details are 100% confidential. No spam calls.
                   </p>
                 </form>
               )}

@@ -75,7 +75,7 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({
             className="flex-1 py-3 px-3 rounded-full bg-charcoal text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-transform"
           >
             <PhoneIcon className={`w-4 h-4 ${isMen ? 'text-slateBlue-300' : 'text-blush-300'}`} />
-            <span>Call Karein</span>
+            <span>Call Now</span>
           </a>
 
           {/* Quick WhatsApp */}
@@ -90,7 +90,7 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({
             }`}
           >
             <WhatsAppIcon className="w-4 h-4 text-charcoal" />
-            <span>WhatsApp Karein</span>
+            <span>WhatsApp Us</span>
           </a>
         </div>
       </aside>

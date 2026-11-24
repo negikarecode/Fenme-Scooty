@@ -61,14 +61,14 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
 
           <div className="hidden sm:flex items-center gap-4 text-xs font-medium">
-            <span className="text-charcoal/75">6 Shehar: Delhi, Lucknow, Mathura, Jodhpur, Ghaziabad, Faridabad</span>
+            <span className="text-charcoal/75">6 Cities: Delhi, Lucknow, Mathura, Jodhpur, Ghaziabad, Faridabad</span>
             
             {/* Version Switcher Trigger */}
             <button
               onClick={onOpenGenderModal}
               className="text-charcoal/70 hover:text-charcoal underline focus:outline-none"
             >
-              Mahila / Purush Version Badlein
+              Switch Version (Mahila / Purush)
             </button>
 
             <a
@@ -85,7 +85,7 @@ export const Header: React.FC<HeaderProps> = ({
       {/* Main Sticky Navigation Bar */}
       <header className="w-full bg-[#FAF9F6]/95 backdrop-blur-md border-b border-charcoal/10 transition-all">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
-          {/* Editorial Wordmark with Active Gender Dot */}
+          {/* Wordmark with Active Gender Dot */}
           <div className="flex items-center gap-3">
             <a
               href={isMen ? '/men' : '/'}
@@ -105,7 +105,7 @@ export const Header: React.FC<HeaderProps> = ({
               />
             </a>
 
-            {/* Tag Badge */}
+            {/* Version Badge */}
             <span
               className={`hidden sm:inline-block text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full border ${
                 isMen
@@ -113,11 +113,11 @@ export const Header: React.FC<HeaderProps> = ({
                   : 'bg-blush-100 text-blush-800 border-blush-300'
               }`}
             >
-              {isMen ? 'Men\'s Version' : 'Women\'s Version'}
+              {isMen ? 'Men\'s Wing' : 'Women\'s Wing'}
             </span>
           </div>
 
-          {/* Desktop Nav Links */}
+          {/* Clean 50-50 Desktop Nav Links */}
           <nav className="hidden lg:flex items-center gap-6 xl:gap-8" aria-label="Primary Navigation">
             {data.navLinks.map((link) => (
               <button
@@ -141,7 +141,7 @@ export const Header: React.FC<HeaderProps> = ({
                   : 'bg-slateBlue-100 hover:bg-slateBlue-200 text-charcoal border-slateBlue-300'
               }`}
             >
-              <span>{isMen ? '♀ Mahila Version Dekhein' : '♂ Purush Version Dekhein'}</span>
+              <span>{isMen ? '♀ Women (Mahila)' : '♂ Men (Purush)'}</span>
             </button>
 
             <a
@@ -159,7 +159,7 @@ export const Header: React.FC<HeaderProps> = ({
               }`}
             >
               <span className={`w-2 h-2 rounded-full ${isMen ? 'bg-slateBlue-300' : 'bg-blush-300'}`}></span>
-              <span>Slot Book Karein</span>
+              <span>Book a Slot</span>
             </button>
           </div>
 
@@ -173,7 +173,7 @@ export const Header: React.FC<HeaderProps> = ({
                   : 'bg-slateBlue-100 text-charcoal border-slateBlue-300'
               }`}
             >
-              {isMen ? 'Mahila' : 'Purush'}
+              {isMen ? 'Women' : 'Men'}
             </button>
 
             <button
@@ -224,7 +224,7 @@ export const Header: React.FC<HeaderProps> = ({
                   isMen ? 'bg-blush-100 border-blush-300' : 'bg-slateBlue-100 border-slateBlue-300'
                 }`}
               >
-                <span>{isMen ? 'Switch to Mahila (Women) Version' : 'Switch to Purush (Men) Version'}</span>
+                <span>{isMen ? 'Switch to Women (Mahila) Version' : 'Switch to Men (Purush) Version'}</span>
               </button>
 
               <button
@@ -234,7 +234,7 @@ export const Header: React.FC<HeaderProps> = ({
                 }}
                 className="w-full text-center py-2 text-xs font-semibold text-charcoal/70 underline"
               >
-                Mahila / Purush Version Badlein
+                Switch Version (Mahila / Purush)
               </button>
 
               <a
@@ -249,7 +249,7 @@ export const Header: React.FC<HeaderProps> = ({
                 onClick={handleBookClick}
                 className="w-full text-center py-2.5 rounded-full bg-charcoal text-white font-bold text-xs shadow-xs"
               >
-                Slot Book Karein
+                Book a Slot
               </button>
             </div>
           </div>

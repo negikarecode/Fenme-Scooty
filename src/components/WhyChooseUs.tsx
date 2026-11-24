@@ -62,15 +62,15 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ data, isMen = false })
                 : 'bg-sage-100 text-charcoal border-sage-300'
             } mx-auto`}
           >
-            <span>{isMen ? 'Why Choose Femme Scooty Men' : 'Femme Scooty Kyu Chunein'}</span>
+            <span>Why Choose Us</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-charcoal tracking-tight">
-            {isMen ? 'Femme Scooty Men Kyu Chunein?' : 'Femme Scooty Kyu Chunein?'}
+            {isMen ? 'Why Choose Femme Scooty Men' : 'Why Choose Femme Scooty'}
           </h2>
           <p className="text-base sm:text-lg text-charcoal/80 font-medium max-w-xl mx-auto leading-relaxed">
             {isMen
-              ? 'Sabhi umar ke purushon ke aaram, judgment-free mahol aur safe riding ke liye banaya gaya training center.'
-              : 'Mahilaon ke aaram, suraksha aur azaadi ke liye banaya gaya training center.'}
+              ? 'Designed for complete safety, comfort, and real-road confidence for all ages.'
+              : 'Designed for complete safety, comfort, and real-road confidence for women.'}
           </p>
         </div>
 
@@ -92,7 +92,7 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ data, isMen = false })
                   </span>
                 </div>
 
-                {/* Title in Clear Hinglish */}
+                {/* Title in Clean 50-50 English/Hinglish */}
                 <h3 className="font-sans text-lg sm:text-xl font-bold text-charcoal mb-2">
                   {benefit.title}
                 </h3>

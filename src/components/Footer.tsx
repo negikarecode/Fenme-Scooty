@@ -28,7 +28,7 @@ export const Footer: React.FC<FooterProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12">
           
-          {/* Column 1: Brand Wordmark & Blurb */}
+          {/* Column 1: Brand Wordmark & 50-50 Blurb */}
           <div className="lg:col-span-4 space-y-4">
             <div className="flex items-baseline gap-1.5">
               <span className="font-serif text-3xl font-extrabold tracking-tight text-charcoal">
@@ -58,15 +58,15 @@ export const Footer: React.FC<FooterProps> = ({
                     : 'bg-slateBlue-100 hover:bg-slateBlue-200 text-charcoal border-slateBlue-300'
                 }`}
               >
-                {isMen ? '♀ Mahila Version Dekhein' : '♂ Purush Version Dekhein'}
+                {isMen ? '♀ Women (Mahila) Version' : '♂ Men (Purush) Version'}
               </button>
             </div>
           </div>
 
-          {/* Column 2: Zaroori Links */}
+          {/* Column 2: Quick Links */}
           <div className="lg:col-span-2 space-y-3">
             <h4 className="font-sans font-bold text-xs uppercase tracking-widest text-charcoal border-b border-charcoal/15 pb-2">
-              Zaroori Links
+              Quick Links
             </h4>
             <ul className="space-y-2.5 text-sm font-semibold text-charcoal/80">
               {data.navLinks.map((link) => (
@@ -93,7 +93,7 @@ export const Footer: React.FC<FooterProps> = ({
           {/* Column 3: Active Training Cities */}
           <div className="lg:col-span-3 space-y-3">
             <h4 className="font-sans font-bold text-xs uppercase tracking-widest text-charcoal border-b border-charcoal/15 pb-2">
-              Shehar (6 Shehar)
+              Training Cities (6 Shehar)
             </h4>
             <div className="grid grid-cols-2 gap-2 text-sm font-semibold text-charcoal/80">
               {data.cities.map((city) => (
@@ -108,14 +108,14 @@ export const Footer: React.FC<FooterProps> = ({
               ))}
             </div>
             <p className="text-xs text-charcoal/70 pt-1">
-              Aapke ghar ke paas wali shaant sadak par 100% safe training.
+              Doorstep training arranged on safe, low-traffic neighborhood lanes.
             </p>
           </div>
 
-          {/* Column 4: Direct Contact & Social Links */}
+          {/* Column 4: Contact & Social */}
           <div className="lg:col-span-3 space-y-3">
             <h4 className="font-sans font-bold text-xs uppercase tracking-widest text-charcoal border-b border-charcoal/15 pb-2">
-              Sampark Karein
+              Contact Us
             </h4>
             <div className="space-y-3 text-sm text-charcoal/90">
               <div>

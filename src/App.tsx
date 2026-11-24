@@ -18,7 +18,12 @@ export const App: React.FC = () => {
   const [pathname, setPathname] = useState<string>(
     typeof window !== 'undefined' ? window.location.pathname : '/'
   );
-  const [showGenderModal, setShowGenderModal] = useState<boolean>(false);
+  const [showGenderModal, setShowGenderModal] = useState<boolean>(() => {
+    if (typeof window !== 'undefined') {
+      return !localStorage.getItem('femme_scooty_gender_preference');
+    }
+    return false;
+  });
 
   // Sync browser back/forward buttons
   useEffect(() => {
@@ -30,14 +35,10 @@ export const App: React.FC = () => {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  // Check localStorage preference on initial visit
+  // Handle route redirect if preference exists on initial visit
   useEffect(() => {
     const storedPref = localStorage.getItem('femme_scooty_gender_preference');
-    if (!storedPref) {
-      // First visit: Show entry modal
-      setShowGenderModal(true);
-    } else {
-      // If user has saved preference and is at root, navigate to their preference
+    if (storedPref) {
       if (storedPref === 'men' && window.location.pathname === '/') {
         window.history.replaceState({}, '', '/men');
         setPathname('/men');
