@@ -69,6 +69,11 @@ def main():
     check("1,000+" in dom_women and "Ages 16 to 60" in dom_women and "6 Cities" in dom_women, "All 4 stats present")
     check("about-story.jpg" in dom_women, "About image uses safe rider photo")
 
+    # Why Choose Us (6th card: Zero-Pressure Learning)
+    check("Zero-Pressure Learning" in dom_women, "Why Us card 6 title: 'Zero-Pressure Learning'")
+    check("Cycle nahi aati? Koi baat nahi! Patient trainers aapko bilkul basic se, bina kisi jhijhak ke sikhate hain." in dom_women,
+          "Why Us card 6 desc matches on Women route")
+
     # Meet Our Riders
     check("Rider Reviews (Riders Ki Zubani)" in dom_women, "Reviews badge: 'Rider Reviews (Riders Ki Zubani)'")
     check("Meet Our Riders — Hamari Riders Ki Zubani" in dom_women, "Women reviews heading: 'Meet Our Riders — Hamari Riders Ki Zubani'")
@@ -91,6 +96,9 @@ def main():
     check("men-about-story.jpg" in dom_men, "Men About story uses safe rider photo")
     check("harish-verma.png" in dom_men, "Harish Verma avatar uses updated senior portrait")
     check("Meet Our Riders — Hamare Riders Ki Zubani" in dom_men, "Men reviews heading: 'Meet Our Riders — Hamare Riders Ki Zubani'")
+    check("Zero-Pressure Learning" in dom_men, "Men Why Us card 6 title: 'Zero-Pressure Learning'")
+    check("Cycle nahi aati? Koi baat nahi! Patient trainers aapko bilkul basic se, bina kisi jhijhak ke sikhate hain." in dom_men,
+          "Men Why Us card 6 desc matches on Men route")
     check("Can I choose my class timing? (Kya aap apna time slot choose kar sakte hain?)" in dom_men, "Men FAQ #4 grammar fixed")
     check("Delhi NCR, Ghaziabad, Faridabad, Lucknow, Mathura, and Jodhpur" in dom_men, "Men footer blurb lists all 6 cities")
 

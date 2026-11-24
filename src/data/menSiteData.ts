@@ -126,9 +126,9 @@ export const menSiteData: SiteData = {
       iconName: "calendar"
     },
     {
-      id: "test-ready",
-      title: "Road & Test Ready",
-      description: "Practical training for parking, U-turns, and RTO driving tests.",
+      id: "zero-pressure",
+      title: "Zero-Pressure Learning",
+      description: "Cycle nahi aati? Koi baat nahi! Patient trainers aapko bilkul basic se, bina kisi jhijhak ke sikhate hain.",
       iconName: "shield"
     }
   ],
