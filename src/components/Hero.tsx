@@ -48,14 +48,17 @@ export const Hero: React.FC<HeroProps> = ({ data }) => {
     }, 400);
   };
 
-  const handleWhatsAppDirect = () => {
-    const text = encodeURIComponent(
-      `Hello Femme Scooty! My name is ${formData.fullName || 'Student'}, interested in ${
-        formData.course === '7-days-basic' ? '7 Days Basic Course' : '4 Days Advance Course'
-      } in ${formData.city}. Phone: ${formData.phone || 'NA'}.`
-    );
-    window.open(`https://wa.me/919625695363?text=${text}`, '_blank');
+  const getCourseDisplayName = (courseId: string) => {
+    const found = data.courses.find((c) => c.id === courseId);
+    return found ? found.name : courseId;
   };
+
+  // Pre-filled WhatsApp message for Smart Callback Handoff
+  const courseDisplayName = getCourseDisplayName(formData.course);
+  const callbackWhatsAppText = encodeURIComponent(
+    `Hi Femme Scooty, mera naam ${formData.fullName.trim() || 'Student'} hai. Mujhe ${formData.city} mein ${courseDisplayName} ke liye training chahiye. Mera number: ${formData.phone.trim() || 'NA'}.`
+  );
+  const callbackWhatsAppUrl = `https://wa.me/919625695363?text=${callbackWhatsAppText}`;
 
   return (
     <section className="relative w-full bg-graph-grid border-b border-charcoal/10 overflow-hidden py-10 sm:py-16 lg:py-20">
@@ -169,29 +172,46 @@ export const Hero: React.FC<HeroProps> = ({ data }) => {
               </div>
 
               {submitted ? (
-                <div className="py-8 text-center space-y-4">
-                  <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mx-auto">
+                /* 1. Smart Callback Form -> Pre-Filled WhatsApp Handoff Confirmation State */
+                <div className="py-6 text-center space-y-4 animate-fadeIn">
+                  <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mx-auto shadow-xs">
                     <CheckIcon className="w-8 h-8" />
                   </div>
-                  <h4 className="font-serif text-2xl font-bold text-charcoal">
-                    Thank You, {formData.fullName || 'Rider'}!
-                  </h4>
-                  <p className="text-sm text-charcoal/80 max-w-xs mx-auto">
-                    Hamare senior coordinator aapko agle 15-30 minute ke andar call karke poori jaankari denge.
-                  </p>
-                  <button
-                    onClick={handleWhatsAppDirect}
-                    className="w-full py-3 px-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-sm flex items-center justify-center gap-2 transition-colors shadow-sm"
-                  >
-                    <WhatsAppIcon className="w-4 h-4 text-white" />
-                    <span>Want instant reply? Chat on WhatsApp</span>
-                  </button>
-                  <button
-                    onClick={() => setSubmitted(false)}
-                    className="text-xs text-charcoal/60 underline hover:text-charcoal block mx-auto pt-2"
-                  >
-                    Submit another request
-                  </button>
+                  <div className="space-y-1">
+                    <h4 className="font-serif text-2xl font-bold text-charcoal">
+                      Thank you, {formData.fullName.trim() || 'Rider'}!
+                    </h4>
+                    <p className="text-sm font-medium text-charcoal/85 max-w-xs mx-auto">
+                      Hamari team aapko jaldi call karegi.
+                    </p>
+                  </div>
+
+                  <div className="pt-2">
+                    <a
+                      href={callbackWhatsAppUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      id="hero-whatsapp-handoff-btn"
+                      className="w-full py-3.5 px-4 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-sm sm:text-base flex items-center justify-center gap-2.5 transition-all shadow-md hover:shadow-lg active:scale-[0.99]"
+                    >
+                      <WhatsAppIcon className="w-5 h-5 text-white shrink-0" />
+                      <span>Send Details on WhatsApp Now</span>
+                    </a>
+                  </div>
+
+                  <div className="pt-1">
+                    <button
+                      type="button"
+                      id="hero-reset-form-btn"
+                      onClick={() => {
+                        setSubmitted(false);
+                        setFormData({ fullName: '', phone: '', city: 'Delhi', course: '7-days-basic' });
+                      }}
+                      className="text-xs text-charcoal/60 underline hover:text-charcoal block mx-auto py-1 font-semibold"
+                    >
+                      Submit Another Request
+                    </button>
+                  </div>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
@@ -287,11 +307,27 @@ export const Hero: React.FC<HeroProps> = ({ data }) => {
                     </button>
                   </div>
 
+                  {/* 3. Trust & Booking Reassurance Line Directly Below Request Callback Button */}
+                  <div className="pt-1 text-center">
+                    <p className="text-[11px] sm:text-xs font-semibold text-charcoal/70 tracking-tight flex items-center justify-center gap-1.5 flex-wrap">
+                      <span>No Hidden Petrol Charges</span>
+                      <span className="text-charcoal/30">•</span>
+                      <span>Flexible Slot Rescheduling</span>
+                      <span className="text-charcoal/30">•</span>
+                      <span>100% Female Trainers</span>
+                    </p>
+                  </div>
+
                   {/* Or WhatsApp Directly */}
                   <div className="pt-1">
                     <button
                       type="button"
-                      onClick={handleWhatsAppDirect}
+                      onClick={() => {
+                        const directUrl = `https://wa.me/919625695363?text=${encodeURIComponent(
+                          `Hello Femme Scooty! My name is ${formData.fullName.trim() || 'Student'}, interested in ${courseDisplayName} in ${formData.city}. Phone: ${formData.phone.trim() || 'NA'}.`
+                        )}`;
+                        window.open(directUrl, '_blank');
+                      }}
                       className="w-full py-2.5 px-4 rounded-xl border border-charcoal/20 bg-white hover:bg-cream-100 text-charcoal font-bold text-xs flex items-center justify-center gap-2 transition-colors"
                     >
                       <WhatsAppIcon className="w-4 h-4 text-emerald-700" />

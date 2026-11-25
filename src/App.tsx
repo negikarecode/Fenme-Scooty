@@ -68,7 +68,7 @@ export const App: React.FC<{ initialPath?: string }> = () => {
     <div className="min-h-screen flex flex-col bg-cream-50 text-charcoal overflow-x-clip relative">
       <Header data={siteData} />
 
-      <main className="flex-1 pb-14 sm:pb-0">
+      <main className="flex-1 pb-20 md:pb-0">
         <Hero data={siteData} />
         <MarqueeTicker tickerItems={siteData.tickerItems} />
         <CoursesSection data={siteData} />

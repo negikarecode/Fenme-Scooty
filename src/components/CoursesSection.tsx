@@ -154,13 +154,95 @@ export const CoursesSection: React.FC<CoursesSectionProps> = ({
           })}
         </div>
 
+        {/* 2. 3-Step "Day 1 to Day 7" Learning Journey Strip (Right below 2 Course Cards) */}
+        <div className="mt-14 sm:mt-16 max-w-4xl mx-auto">
+          <div className="text-center mb-6 sm:mb-8 space-y-2">
+            <span className="clean-badge bg-sage-100 text-charcoal border-sage-300 mx-auto text-xs font-bold">
+              Step-by-Step Training
+            </span>
+            <h3 className="font-serif text-2xl sm:text-3xl font-extrabold text-charcoal tracking-tight">
+              How You Learn — 7 Din Ka Safar
+            </h3>
+            <p className="text-xs sm:text-sm text-charcoal/70 max-w-md mx-auto">
+              Structured progressive learning designed for zero-pressure comfort.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
+            {/* Step 1 */}
+            <div className="bg-white rounded-2xl border border-blush-200/90 p-5 sm:p-6 shadow-xs space-y-2.5 hover:shadow-sm transition-shadow">
+              <div className="flex items-center justify-between">
+                <span className="w-7 h-7 rounded-full bg-blush-100 text-charcoal font-bold text-xs flex items-center justify-center border border-blush-200">
+                  01
+                </span>
+                <span className="text-[11px] font-bold text-charcoal/60 uppercase tracking-wider bg-cream-100 px-2.5 py-0.5 rounded-full border border-charcoal/5">
+                  Days 1–2
+                </span>
+              </div>
+              <h4 className="font-bold text-sm sm:text-base text-charcoal leading-snug">
+                Day 1–2: Balance & Handle Control
+              </h4>
+              <p className="text-xs sm:text-sm text-charcoal/75 leading-relaxed font-sans">
+                Bina dar ke scooty sambhalna aur slow speed balance seekhein.
+              </p>
+            </div>
+
+            {/* Step 2 */}
+            <div className="bg-white rounded-2xl border border-sky-200/90 p-5 sm:p-6 shadow-xs space-y-2.5 hover:shadow-sm transition-shadow">
+              <div className="flex items-center justify-between">
+                <span className="w-7 h-7 rounded-full bg-sky-100 text-charcoal font-bold text-xs flex items-center justify-center border border-sky-200">
+                  02
+                </span>
+                <span className="text-[11px] font-bold text-charcoal/60 uppercase tracking-wider bg-cream-100 px-2.5 py-0.5 rounded-full border border-charcoal/5">
+                  Days 3–5
+                </span>
+              </div>
+              <h4 className="font-bold text-sm sm:text-base text-charcoal leading-snug">
+                Day 3–5: Turns, Brakes & Gali Practice
+              </h4>
+              <p className="text-xs sm:text-sm text-charcoal/75 leading-relaxed font-sans">
+                Safe neighborhood lanes mein U-turns aur smooth braking ki practice.
+              </p>
+            </div>
+
+            {/* Step 3 */}
+            <div className="bg-white rounded-2xl border border-sage-200/90 p-5 sm:p-6 shadow-xs space-y-2.5 hover:shadow-sm transition-shadow">
+              <div className="flex items-center justify-between">
+                <span className="w-7 h-7 rounded-full bg-sage-100 text-charcoal font-bold text-xs flex items-center justify-center border border-sage-200">
+                  03
+                </span>
+                <span className="text-[11px] font-bold text-charcoal/60 uppercase tracking-wider bg-cream-100 px-2.5 py-0.5 rounded-full border border-charcoal/5">
+                  Days 6–7
+                </span>
+              </div>
+              <h4 className="font-bold text-sm sm:text-base text-charcoal leading-snug">
+                Day 6–7: Road & Traffic Confidence
+              </h4>
+              <p className="text-xs sm:text-sm text-charcoal/75 leading-relaxed font-sans">
+                Main road aur traffic mein bina kisi jhijhak ke chalana seekhein.
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Bottom Guarantee Banner */}
-        <div className="mt-12 sm:mt-16 p-6 rounded-2xl bg-white border border-charcoal/15 max-w-3xl mx-auto text-center space-y-2 shadow-xs">
+        <div className="mt-12 sm:mt-14 p-6 rounded-2xl bg-white border border-charcoal/15 max-w-3xl mx-auto text-center space-y-2 shadow-xs">
           <p className="text-sm sm:text-base font-bold text-charcoal">
             🤝 100% Worry-Free Training Guarantee
           </p>
           <p className="text-xs sm:text-sm text-charcoal/75 leading-relaxed">
             Free scooty aur petrol training ke dauran hum provide karte hain. Aapko alag se koi hidden charges nahi dene hote.
+          </p>
+        </div>
+
+        {/* 3. Trust & Booking Reassurance Line beneath Courses section */}
+        <div className="mt-6 text-center">
+          <p className="text-xs sm:text-sm font-bold text-charcoal/75 tracking-tight flex items-center justify-center gap-2 flex-wrap">
+            <span>No Hidden Petrol Charges</span>
+            <span className="text-charcoal/40">•</span>
+            <span>Flexible Slot Rescheduling</span>
+            <span className="text-charcoal/40">•</span>
+            <span>100% Female Trainers</span>
           </p>
         </div>
 

@@ -16,14 +16,12 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({
 
   useEffect(() => {
     const handleScroll = () => {
-      // Show WhatsApp button only after scrolling past hero (scrollY > 300) to prevent hero card overlap
+      // Show desktop floating WhatsApp button after scrolling past hero (scrollY > 300)
       setShowWhatsApp(window.scrollY > 300);
       setShowScrollTop(window.scrollY > 400);
     };
 
-    // Initial check on mount
     handleScroll();
-
     window.addEventListener('scroll', handleScroll, { passive: true });
 
     const footer = document.querySelector('footer');
@@ -60,31 +58,33 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({
     whatsappUrl ||
     `https://wa.me/919625695363?text=${encodeURIComponent(defaultMessage)}`;
 
+  const cleanPhone = phone.replace(/\s+/g, '');
+
   return (
     <>
-      {/* 1. Compact, Clean Floating WhatsApp Button - Visible after scrolling past Hero (scrollY > 300) */}
+      {/* 1. Desktop Floating WhatsApp Button (hidden on < 768px / md:hidden; visible on md:flex after scrollY > 300) */}
       <a
         href={targetWhatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat with us on WhatsApp"
         id="floating-whatsapp-btn"
-        className={`fixed bottom-20 sm:bottom-6 right-4 sm:right-6 z-40 bg-[#25D366] hover:bg-[#20bd5a] text-white p-3 sm:px-4 sm:py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 font-bold text-sm sm:text-base group active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#25D366]/40 ${
+        className={`hidden md:flex fixed bottom-6 right-6 z-40 bg-[#25D366] hover:bg-[#20bd5a] text-white p-3 px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 items-center justify-center gap-2 font-bold text-sm group active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#25D366]/40 ${
           showWhatsApp
             ? 'opacity-100 pointer-events-auto translate-y-0'
             : 'opacity-0 pointer-events-none translate-y-4'
         }`}
       >
-        <WhatsAppIcon className="w-5 h-5 sm:w-6 sm:h-6 text-white shrink-0 group-hover:scale-110 transition-transform" />
-        <span className="hidden sm:inline whitespace-nowrap tracking-wide font-sans text-sm">WhatsApp Us</span>
+        <WhatsAppIcon className="w-5 h-5 text-white shrink-0 group-hover:scale-110 transition-transform" />
+        <span className="whitespace-nowrap tracking-wide font-sans text-sm">WhatsApp Us</span>
       </a>
 
-      {/* 2. Floating Scroll-to-Top Button */}
+      {/* 2. Floating Scroll-to-Top Button (hidden on mobile to keep sticky bar clean; visible on desktop) */}
       <button
         onClick={scrollToTop}
         aria-label="Scroll to top of page"
         id="floating-scroll-top-btn"
-        className={`fixed bottom-36 sm:bottom-20 right-4 sm:right-6 z-40 w-11 h-11 rounded-full bg-charcoal text-cream-50 hover:bg-blush-600 border border-charcoal/30 flex items-center justify-center shadow-md transition-all duration-300 focus:outline-none ${
+        className={`hidden md:flex fixed bottom-20 right-6 z-40 w-11 h-11 rounded-full bg-charcoal text-cream-50 hover:bg-blush-600 border border-charcoal/30 items-center justify-center shadow-md transition-all duration-300 focus:outline-none ${
           isScrollTopVisible
             ? 'opacity-100 pointer-events-auto translate-y-0 hover:scale-105 active:scale-95'
             : 'opacity-0 pointer-events-none translate-y-4'
@@ -93,26 +93,32 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({
         <ArrowUpIcon className="w-5 h-5 text-white" />
       </button>
 
-      {/* 3. Sticky Mobile Bottom Action Bar (One-tap Call & WhatsApp) */}
-      <aside aria-label="Quick contact" className="sm:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-charcoal/20 px-3 py-2.5 shadow-2xl">
-        <div className="flex items-center gap-2">
-          {/* Quick Call */}
+      {/* 4. Sticky Mobile Bottom Action Bar (< 768px / md:hidden) */}
+      <aside
+        aria-label="Quick contact"
+        id="mobile-bottom-action-bar"
+        className="md:hidden fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-charcoal/20 px-3.5 py-2.5 shadow-2xl"
+      >
+        <div className="flex items-center gap-2.5">
+          {/* Left: Call Now in dark charcoal */}
           <a
-            href={`tel:${phone.replace(/\s+/g, '')}`}
-            className="flex-1 py-3 px-3 rounded-full bg-charcoal text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-transform"
+            href={`tel:${cleanPhone}`}
+            id="mobile-call-btn"
+            className="flex-1 py-3 px-3 rounded-full bg-charcoal hover:bg-charcoal/90 text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-transform"
           >
             <PhoneIcon className="w-4 h-4 text-blush-300" />
             <span>Call Now</span>
           </a>
 
-          {/* Quick WhatsApp */}
+          {/* Right: WhatsApp Us in WhatsApp green */}
           <a
             href={targetWhatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 py-3 px-3 rounded-full font-bold text-xs uppercase tracking-wider border border-charcoal/20 flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-transform bg-blush-200 text-charcoal"
+            id="mobile-whatsapp-btn"
+            className="flex-1 py-3 px-3 rounded-full font-bold text-xs uppercase tracking-wider text-white bg-[#25D366] hover:bg-[#20bd5a] flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-transform"
           >
-            <WhatsAppIcon className="w-4 h-4 text-emerald-700" />
+            <WhatsAppIcon className="w-4 h-4 text-white" />
             <span>WhatsApp Us</span>
           </a>
         </div>
