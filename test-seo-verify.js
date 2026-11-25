@@ -34,9 +34,12 @@ async function verifySEO() {
   }
   console.log("[PASS] sitemap.xml lists both / and /men with correct priorities");
 
-  // 3. Vercel.json 301 redirects check
-  console.log("\n[Check 3] Verifying vercel.json 301 redirects...");
+  // 3. Vercel.json 301 redirects & cleanUrls check
+  console.log("\n[Check 3] Verifying vercel.json routing & redirects...");
   const vercel = JSON.parse(fs.readFileSync('vercel.json', 'utf-8'));
+  if (vercel.cleanUrls === true) {
+    throw new Error("[FAIL] vercel.json has cleanUrls: true which 308-redirects Google verification HTML files");
+  }
   const redirectSources = vercel.redirects.map(r => r.source);
   const requiredRedirects = ['/thank-you', '/thank-you/', '/home', '/home/'];
   for (const req of requiredRedirects) {
@@ -45,7 +48,19 @@ async function verifySEO() {
       throw new Error(`[FAIL] vercel.json missing permanent 301 redirect for ${req} -> /`);
     }
   }
-  console.log("[PASS] vercel.json contains permanent 301 redirects for WordPress migration");
+  console.log("[PASS] vercel.json contains permanent 301 redirects and preserves static .html verification files");
+
+  // 3b. Google Search Console Verification static check
+  console.log("\n[Check 3b] Verifying Google Search Console HTML verification file...");
+  const gscFile = 'dist/googlececabe9654ee537e.html';
+  if (!fs.existsSync(gscFile)) {
+    throw new Error("[FAIL] dist/googlececabe9654ee537e.html does not exist!");
+  }
+  const gscContent = fs.readFileSync(gscFile, 'utf-8').trim();
+  if (gscContent !== 'google-site-verification: googlececabe9654ee537e.html') {
+    throw new Error(`[FAIL] Google verification file content mismatch. Got: "${gscContent}"`);
+  }
+  console.log("[PASS] dist/googlececabe9654ee537e.html is present with exact verification token");
 
   // 4. Inspect dist/index.html (Prerendered Women)
   console.log("\n[Check 4] Inspecting dist/index.html head & prerendered content...");
@@ -166,6 +181,15 @@ async function verifySEO() {
   const sitemapRes = await page.goto(`${baseUrl}/sitemap.xml`);
   if (sitemapRes.status() !== 200) throw new Error(`[FAIL] /sitemap.xml returned status ${sitemapRes.status()}`);
   console.log("[PASS] /sitemap.xml loads cleanly over HTTP with status 200");
+
+  // Test googlececabe9654ee537e.html over HTTP
+  const gscRes = await page.goto(`${baseUrl}/googlececabe9654ee537e.html`);
+  if (gscRes.status() !== 200) throw new Error(`[FAIL] /googlececabe9654ee537e.html returned status ${gscRes.status()}`);
+  const gscHttpText = (await page.evaluate(() => document.body.innerText)).trim();
+  if (gscHttpText !== 'google-site-verification: googlececabe9654ee537e.html') {
+    throw new Error(`[FAIL] /googlececabe9654ee537e.html returned unexpected text: "${gscHttpText}"`);
+  }
+  console.log("[PASS] /googlececabe9654ee537e.html serves exact verification token over HTTP with status 200");
 
   // Test / page DOM
   await page.goto(`${baseUrl}/`, { waitUntil: 'networkidle0' });
