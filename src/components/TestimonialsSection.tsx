@@ -17,9 +17,9 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ data }
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16 space-y-3">
+        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16 space-y-3 reveal-on-scroll">
           <div className="inline-block">
-            <span className="clean-badge bg-blush-200 text-charcoal border-blush-300">
+            <span className="clean-badge bg-blush-200 text-charcoal border-blush-300 shadow-xs">
               Rider Reviews (Riders Ki Zubani)
             </span>
           </div>
@@ -31,16 +31,17 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ data }
           </p>
         </div>
 
-        {/* Clean Static 3-Column Grid */}
+        {/* Clean Static 3-Column Grid with Staggered Fade-Up & Hover Lift */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch">
-          {testimonials.map((t) => (
+          {testimonials.map((t, index) => (
             <div
               key={t.id}
-              className="flex flex-col h-full bg-white rounded-2xl border border-charcoal/10 p-6 sm:p-7 shadow-sm hover:shadow-md transition-all duration-300 relative group"
+              style={{ transitionDelay: `${index * 80}ms` }}
+              className="reveal-on-scroll flex flex-col h-full bg-white/95 backdrop-blur-sm rounded-2xl border border-charcoal/10 p-6 sm:p-7 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 relative group"
             >
               {/* Author Header with consistent min-height so divider is perfectly aligned across all cards */}
               <div className="flex items-center gap-3.5 h-[72px] min-h-[72px]">
-                <div className="w-12 h-12 rounded-full overflow-hidden border border-charcoal/15 bg-cream-100 shrink-0">
+                <div className="w-12 h-12 rounded-full overflow-hidden border border-charcoal/15 bg-cream-100 shrink-0 group-hover:scale-105 transition-transform">
                   <img
                     src={t.image}
                     alt={t.name}

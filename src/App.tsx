@@ -64,6 +64,27 @@ export const App: React.FC<{ initialPath?: string }> = () => {
     if (twDesc) twDesc.content = description;
   }, []);
 
+  // IntersectionObserver for subtle scroll-reveals
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    document.querySelectorAll('.reveal-on-scroll').forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col bg-cream-50 text-charcoal overflow-x-clip relative">
       <Header data={siteData} />

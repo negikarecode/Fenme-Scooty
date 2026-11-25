@@ -37,12 +37,12 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ data }) => {
   };
 
   return (
-    <section id="why-us" className="w-full py-16 sm:py-24 bg-cream-50 border-b border-charcoal/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="why-us" className="w-full py-16 sm:py-24 bg-cream-50 border-b border-charcoal/10 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-1.5 clean-badge bg-sage-100 text-charcoal border-sage-300 mx-auto">
+        <div className="text-center max-w-3xl mx-auto space-y-3 mb-12 sm:mb-16 reveal-on-scroll">
+          <div className="inline-flex items-center gap-1.5 clean-badge bg-sage-100 text-charcoal border-sage-300 mx-auto shadow-xs">
             <span>Why Choose Us</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-charcoal tracking-tight">
@@ -53,12 +53,13 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ data }) => {
           </p>
         </div>
 
-        {/* Balanced 6-Card Grid */}
+        {/* Balanced 6-Card Grid with Gentle Staggered Reveal & Hover Lift */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7 items-stretch">
           {data.benefits.map((benefit, index) => (
             <div
               key={benefit.id}
-              className="bg-white rounded-2xl border border-charcoal/10 p-6 sm:p-7 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group"
+              style={{ transitionDelay: `${index * 60}ms` }}
+              className="reveal-on-scroll bg-white/95 backdrop-blur-sm rounded-2xl border border-charcoal/10 p-6 sm:p-7 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group"
             >
               <div>
                 {/* Header Icon + Number */}
@@ -66,13 +67,13 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ data }) => {
                   <div className={`w-11 h-11 rounded-xl ${getPillTint(index)} border flex items-center justify-center transition-transform group-hover:scale-105 shadow-xs`}>
                     {renderIcon(benefit.iconName)}
                   </div>
-                  <span className="font-serif italic text-sm font-bold text-charcoal/30">
+                  <span className="font-serif italic text-sm font-bold text-charcoal/30 group-hover:text-charcoal/50 transition-colors">
                     0{index + 1}
                   </span>
                 </div>
 
                 {/* Title */}
-                <h3 className="font-sans text-lg sm:text-xl font-bold text-charcoal mb-2">
+                <h3 className="font-sans text-lg sm:text-xl font-bold text-charcoal mb-2 group-hover:text-charcoal transition-colors">
                   {benefit.title}
                 </h3>
 

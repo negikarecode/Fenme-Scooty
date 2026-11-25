@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { SiteData } from '../data/siteData';
 import { ScooterIcon, PhoneIcon, WhatsAppIcon, ShieldCheckIcon, CheckIcon } from './Icons';
+import { CountUp } from './CountUp';
 
 interface CallbackFormData {
   fullName: string;
@@ -62,14 +63,28 @@ export const Hero: React.FC<HeroProps> = ({ data }) => {
 
   return (
     <section className="relative w-full bg-graph-grid border-b border-charcoal/10 overflow-hidden py-10 sm:py-16 lg:py-20">
+      {/* 1. Ambient Pastel Depth: Subtle Radial Glow Blobs */}
+      <div className="absolute -top-24 -left-20 w-96 h-96 bg-blush-200/25 rounded-full blur-3xl pointer-events-none -z-0" />
+      <div className="absolute top-1/3 -right-24 w-[28rem] h-[28rem] bg-sage-200/20 rounded-full blur-3xl pointer-events-none -z-0" />
+      <div className="absolute -bottom-20 left-1/3 w-80 h-80 bg-sky-200/15 rounded-full blur-3xl pointer-events-none -z-0" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
           
           {/* Left Column: Headline, Subtext & CTAs */}
-          <div className="lg:col-span-7 space-y-6 sm:space-y-8">
+          <div className="lg:col-span-7 space-y-6 sm:space-y-8 reveal-on-scroll">
             
-            {/* Clean Pill Badges */}
+            {/* Clean Pill Badges with Live Green Pulsing Dot */}
             <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+              {/* Live Status Pill */}
+              <span className="clean-badge bg-white/90 backdrop-blur-md text-charcoal border-charcoal/15 shadow-xs">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                <span>Slots Open This Week</span>
+              </span>
+
               <span className="clean-badge bg-blush-100 text-charcoal border-blush-300">
                 <ScooterIcon className="w-3.5 h-3.5 text-blush-700" />
                 <span>100% Female Trainers</span>
@@ -103,7 +118,7 @@ export const Hero: React.FC<HeroProps> = ({ data }) => {
             </div>
 
             {/* Reassurance Callout Card */}
-            <div className="p-4 sm:p-5 rounded-2xl bg-white border border-charcoal/15 shadow-sm space-y-2">
+            <div className="p-4 sm:p-5 rounded-2xl bg-white/95 backdrop-blur-sm border border-charcoal/15 shadow-sm space-y-2 hover:shadow-md transition-shadow">
               <div className="flex items-center gap-2 text-charcoal font-bold text-sm sm:text-base">
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
                 <span>Cycle Aati Ho Ya Nahi — Seekhna Aasan Hai!</span>
@@ -117,7 +132,7 @@ export const Hero: React.FC<HeroProps> = ({ data }) => {
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-1">
               <a
                 href={`tel:${data.brand.phone.replace(/\s+/g, '')}`}
-                className="px-7 py-3.5 rounded-full bg-charcoal text-cream-50 font-bold text-sm sm:text-base flex items-center justify-center gap-2.5 shadow-sm hover:shadow-md hover:bg-charcoal/90 transition-all active:scale-[0.99]"
+                className="px-7 py-3.5 rounded-full bg-charcoal text-cream-50 font-bold text-sm sm:text-base flex items-center justify-center gap-2.5 shadow-sm hover:shadow-md hover:bg-charcoal/90 hover:-translate-y-0.5 transition-all active:scale-[0.98]"
               >
                 <PhoneIcon className="w-5 h-5 text-blush-300" />
                 <span>Call Now: {data.brand.formattedPhone}</span>
@@ -127,18 +142,20 @@ export const Hero: React.FC<HeroProps> = ({ data }) => {
                 href={data.brand.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-7 py-3.5 rounded-full bg-emerald-700 text-white font-bold text-sm sm:text-base flex items-center justify-center gap-2.5 shadow-sm hover:shadow-md hover:bg-emerald-800 transition-all active:scale-[0.99]"
+                className="px-7 py-3.5 rounded-full bg-emerald-700 text-white font-bold text-sm sm:text-base flex items-center justify-center gap-2.5 shadow-sm hover:shadow-md hover:bg-emerald-800 hover:-translate-y-0.5 transition-all active:scale-[0.98]"
               >
                 <WhatsAppIcon className="w-5 h-5 text-white" />
                 <span>WhatsApp Us</span>
               </a>
             </div>
 
-            {/* Trust Badges */}
+            {/* Trust Badges with Animated CountUp */}
             <div className="flex flex-wrap items-center gap-4 sm:gap-6 pt-2 text-xs sm:text-sm font-semibold text-charcoal/80">
               <span className="flex items-center gap-1.5">
                 <CheckIcon className="w-4 h-4 text-emerald-600" />
-                <span>1,000+ Students Trained</span>
+                <span>
+                  <CountUp end={1000} suffix="+" duration={800} className="font-bold text-charcoal" /> Students Trained
+                </span>
               </span>
               <span className="flex items-center gap-1.5">
                 <CheckIcon className="w-4 h-4 text-emerald-600" />
@@ -153,14 +170,14 @@ export const Hero: React.FC<HeroProps> = ({ data }) => {
           </div>
 
           {/* Right Column: Clean Callback Card */}
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-5 reveal-on-scroll">
             <div
               id="hero-booking-form"
-              className="bg-white rounded-3xl border-2 border-charcoal/15 shadow-xl p-6 sm:p-8 relative"
+              className="bg-white/95 backdrop-blur-sm rounded-3xl border-2 border-charcoal/15 shadow-xl hover:shadow-2xl transition-all duration-300 p-6 sm:p-8 relative"
             >
               {/* Card Header */}
               <div className="mb-6 space-y-1 text-center">
-                <span className="clean-badge bg-sage-200 text-charcoal mx-auto mb-2 text-xs font-bold">
+                <span className="clean-badge bg-sage-200 text-charcoal mx-auto mb-2 text-xs font-bold shadow-xs">
                   Quick Callback (Turant Jankari)
                 </span>
                 <h3 className="font-serif text-2xl sm:text-3xl font-extrabold text-charcoal tracking-tight">
@@ -172,7 +189,7 @@ export const Hero: React.FC<HeroProps> = ({ data }) => {
               </div>
 
               {submitted ? (
-                /* 1. Smart Callback Form -> Pre-Filled WhatsApp Handoff Confirmation State */
+                /* Smart Callback Form -> Pre-Filled WhatsApp Handoff Confirmation State */
                 <div className="py-6 text-center space-y-4 animate-fadeIn">
                   <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mx-auto shadow-xs">
                     <CheckIcon className="w-8 h-8" />
@@ -192,7 +209,7 @@ export const Hero: React.FC<HeroProps> = ({ data }) => {
                       target="_blank"
                       rel="noopener noreferrer"
                       id="hero-whatsapp-handoff-btn"
-                      className="w-full py-3.5 px-4 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-sm sm:text-base flex items-center justify-center gap-2.5 transition-all shadow-md hover:shadow-lg active:scale-[0.99]"
+                      className="w-full py-3.5 px-4 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-sm sm:text-base flex items-center justify-center gap-2.5 transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 active:scale-[0.98]"
                     >
                       <WhatsAppIcon className="w-5 h-5 text-white shrink-0" />
                       <span>Send Details on WhatsApp Now</span>
@@ -207,7 +224,7 @@ export const Hero: React.FC<HeroProps> = ({ data }) => {
                         setSubmitted(false);
                         setFormData({ fullName: '', phone: '', city: 'Delhi', course: '7-days-basic' });
                       }}
-                      className="text-xs text-charcoal/60 underline hover:text-charcoal block mx-auto py-1 font-semibold"
+                      className="text-xs text-charcoal/60 underline hover:text-charcoal block mx-auto py-1 font-semibold active:scale-[0.98]"
                     >
                       Submit Another Request
                     </button>
@@ -227,7 +244,7 @@ export const Hero: React.FC<HeroProps> = ({ data }) => {
                       placeholder="e.g. Priya Sharma"
                       value={formData.fullName}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 rounded-xl border border-charcoal/20 bg-cream-50/50 text-charcoal placeholder-charcoal/40 text-sm focus:outline-none focus:ring-2 focus:ring-charcoal focus:border-transparent font-medium"
+                      className="w-full px-4 py-3 rounded-xl border border-charcoal/20 bg-cream-50/50 text-charcoal placeholder-charcoal/40 text-sm focus:outline-none focus:ring-2 focus:ring-charcoal focus:border-transparent font-medium transition-colors"
                     />
                   </div>
 
@@ -250,7 +267,7 @@ export const Hero: React.FC<HeroProps> = ({ data }) => {
                         onChange={handleInputChange}
                         className={`w-full pl-14 pr-4 py-3 rounded-xl border ${
                           phoneError ? 'border-red-500 bg-red-50/30' : 'border-charcoal/20 bg-cream-50/50'
-                        } text-charcoal placeholder-charcoal/40 text-sm focus:outline-none focus:ring-2 focus:ring-charcoal font-medium`}
+                        } text-charcoal placeholder-charcoal/40 text-sm focus:outline-none focus:ring-2 focus:ring-charcoal font-medium transition-colors`}
                       />
                     </div>
                     {phoneError && (
@@ -267,7 +284,7 @@ export const Hero: React.FC<HeroProps> = ({ data }) => {
                       name="city"
                       value={formData.city}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 rounded-xl border border-charcoal/20 bg-cream-50/50 text-charcoal text-sm focus:outline-none focus:ring-2 focus:ring-charcoal font-medium cursor-pointer"
+                      className="w-full px-4 py-3 rounded-xl border border-charcoal/20 bg-cream-50/50 text-charcoal text-sm focus:outline-none focus:ring-2 focus:ring-charcoal font-medium cursor-pointer transition-colors"
                     >
                       {data.cities.map((city) => (
                         <option key={city.id} value={city.name}>
@@ -286,7 +303,7 @@ export const Hero: React.FC<HeroProps> = ({ data }) => {
                       name="course"
                       value={formData.course}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 rounded-xl border border-charcoal/20 bg-cream-50/50 text-charcoal text-sm focus:outline-none focus:ring-2 focus:ring-charcoal font-medium cursor-pointer"
+                      className="w-full px-4 py-3 rounded-xl border border-charcoal/20 bg-cream-50/50 text-charcoal text-sm focus:outline-none focus:ring-2 focus:ring-charcoal font-medium cursor-pointer transition-colors"
                     >
                       {data.courses.map((course) => (
                         <option key={course.id} value={course.id}>
@@ -301,13 +318,13 @@ export const Hero: React.FC<HeroProps> = ({ data }) => {
                     <button
                       type="submit"
                       disabled={submitting}
-                      className="w-full py-3.5 px-6 rounded-xl text-white font-bold text-sm tracking-wide shadow-md transition-all active:scale-[0.99] disabled:opacity-75 bg-charcoal hover:bg-blush-600"
+                      className="w-full py-3.5 px-6 rounded-xl text-white font-bold text-sm tracking-wide shadow-md transition-all hover:shadow-lg hover:-translate-y-0.5 active:scale-[0.98] disabled:opacity-75 bg-charcoal hover:bg-blush-600 cursor-pointer"
                     >
                       {submitting ? 'Sending Request...' : 'Get Callback & Fee Details'}
                     </button>
                   </div>
 
-                  {/* 3. Trust & Booking Reassurance Line Directly Below Request Callback Button */}
+                  {/* Trust & Booking Reassurance Line Directly Below Request Callback Button */}
                   <div className="pt-1 text-center">
                     <p className="text-[11px] sm:text-xs font-semibold text-charcoal/70 tracking-tight flex items-center justify-center gap-1.5 flex-wrap">
                       <span>No Hidden Petrol Charges</span>
@@ -328,7 +345,7 @@ export const Hero: React.FC<HeroProps> = ({ data }) => {
                         )}`;
                         window.open(directUrl, '_blank');
                       }}
-                      className="w-full py-2.5 px-4 rounded-xl border border-charcoal/20 bg-white hover:bg-cream-100 text-charcoal font-bold text-xs flex items-center justify-center gap-2 transition-colors"
+                      className="w-full py-2.5 px-4 rounded-xl border border-charcoal/20 bg-white hover:bg-cream-100 active:scale-[0.98] text-charcoal font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-xs"
                     >
                       <WhatsAppIcon className="w-4 h-4 text-emerald-700" />
                       <span>Prefer WhatsApp? Click to message directly</span>
