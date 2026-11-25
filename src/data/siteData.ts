@@ -225,8 +225,8 @@ export const siteData: SiteData = {
     {
       id: "simran-kaur",
       name: "Simran Kaur",
-      role: "Working Professional (28 Years)",
-      city: "Delhi / NCR",
+      role: "Working Professional (28 Yrs)",
+      city: "Delhi NCR",
       rating: 5,
       image: "/images/simran-kaur.png",
       quote: "Relying on cabs every morning was exhausting. Femme Scooty helped build my road confidence quickly. Ab daily office apni scooty se travel karti hoon!"

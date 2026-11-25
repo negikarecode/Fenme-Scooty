@@ -60,7 +60,7 @@ export const Hero: React.FC<HeroProps> = ({ data }) => {
   return (
     <section className="relative w-full bg-graph-grid border-b border-charcoal/10 overflow-hidden py-10 sm:py-16 lg:py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
           
           {/* Left Column: Headline, Subtext & CTAs */}
           <div className="lg:col-span-7 space-y-6 sm:space-y-8">

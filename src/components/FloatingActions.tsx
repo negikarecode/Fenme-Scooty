@@ -11,12 +11,18 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({
   whatsappUrl,
 }) => {
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [showWhatsApp, setShowWhatsApp] = useState(false);
   const [footerVisible, setFooterVisible] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
+      // Show WhatsApp button only after scrolling past hero (scrollY > 300) to prevent hero card overlap
+      setShowWhatsApp(window.scrollY > 300);
       setShowScrollTop(window.scrollY > 400);
     };
+
+    // Initial check on mount
+    handleScroll();
 
     window.addEventListener('scroll', handleScroll, { passive: true });
 
@@ -45,7 +51,7 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({
     });
   };
 
-  const isVisible = showScrollTop && !footerVisible;
+  const isScrollTopVisible = showScrollTop && !footerVisible;
 
   // Pre-filled message for Ladies Scooty Training
   const defaultMessage = "Hi Femme Scooty, mujhe Ladies Scooty Training ke baare mein jaankari chahiye.";
@@ -56,17 +62,21 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({
 
   return (
     <>
-      {/* 1. Clean, Persistent Floating WhatsApp Button (#25D366) */}
+      {/* 1. Compact, Clean Floating WhatsApp Button - Visible after scrolling past Hero (scrollY > 300) */}
       <a
         href={targetWhatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat with us on WhatsApp"
         id="floating-whatsapp-btn"
-        className="fixed bottom-20 sm:bottom-6 right-5 sm:right-6 z-40 bg-[#25D366] hover:bg-[#20bd5a] text-white p-3.5 sm:px-5 sm:py-3.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2.5 font-bold text-sm sm:text-base group active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#25D366]/40"
+        className={`fixed bottom-20 sm:bottom-6 right-4 sm:right-6 z-40 bg-[#25D366] hover:bg-[#20bd5a] text-white p-3 sm:px-4 sm:py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 font-bold text-sm sm:text-base group active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#25D366]/40 ${
+          showWhatsApp
+            ? 'opacity-100 pointer-events-auto translate-y-0'
+            : 'opacity-0 pointer-events-none translate-y-4'
+        }`}
       >
         <WhatsAppIcon className="w-5 h-5 sm:w-6 sm:h-6 text-white shrink-0 group-hover:scale-110 transition-transform" />
-        <span className="hidden sm:inline whitespace-nowrap tracking-wide font-sans">WhatsApp Us</span>
+        <span className="hidden sm:inline whitespace-nowrap tracking-wide font-sans text-sm">WhatsApp Us</span>
       </a>
 
       {/* 2. Floating Scroll-to-Top Button */}
@@ -74,8 +84,8 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({
         onClick={scrollToTop}
         aria-label="Scroll to top of page"
         id="floating-scroll-top-btn"
-        className={`fixed bottom-36 sm:bottom-22 right-5 sm:right-6 z-40 w-11 h-11 rounded-full bg-charcoal text-cream-50 hover:bg-blush-600 border border-charcoal/30 flex items-center justify-center shadow-md transition-all duration-300 focus:outline-none ${
-          isVisible
+        className={`fixed bottom-36 sm:bottom-20 right-4 sm:right-6 z-40 w-11 h-11 rounded-full bg-charcoal text-cream-50 hover:bg-blush-600 border border-charcoal/30 flex items-center justify-center shadow-md transition-all duration-300 focus:outline-none ${
+          isScrollTopVisible
             ? 'opacity-100 pointer-events-auto translate-y-0 hover:scale-105 active:scale-95'
             : 'opacity-0 pointer-events-none translate-y-4'
         }`}

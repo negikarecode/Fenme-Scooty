@@ -136,9 +136,9 @@ export const Footer: React.FC<FooterProps> = ({ data }) => {
         </div>
       </div>
 
-      {/* Clean Dark Charcoal Copyright Bar - Without any Wing labels */}
-      <div className="w-full bg-charcoal text-cream-50 py-5 px-4 sm:px-6 lg:px-8 border-t border-charcoal/30">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-cream-100/70">
+      {/* Clean Dark Charcoal Copyright Bar - Extra bottom & right padding so floating buttons never overlap footer text */}
+      <div className="w-full bg-charcoal text-cream-50 pt-5 pb-20 sm:pb-24 px-4 sm:px-6 lg:px-8 border-t border-charcoal/30">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-cream-100/70 sm:pr-24">
           <p className="text-center sm:text-left">
             Copyright © 2026 Ladies Scooty Training Centre | Femme Scooty | All Rights Reserved
           </p>

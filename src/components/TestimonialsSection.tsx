@@ -38,8 +38,8 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ data }
               key={t.id}
               className="flex flex-col h-full bg-white rounded-2xl border border-charcoal/10 p-6 sm:p-7 shadow-sm hover:shadow-md transition-all duration-300 relative group"
             >
-              {/* Author Header */}
-              <div className="flex items-center gap-3.5 h-[68px] sm:h-[72px]">
+              {/* Author Header with consistent min-height so divider is perfectly aligned across all cards */}
+              <div className="flex items-center gap-3.5 h-[72px] min-h-[72px]">
                 <div className="w-12 h-12 rounded-full overflow-hidden border border-charcoal/15 bg-cream-100 shrink-0">
                   <img
                     src={t.image}
