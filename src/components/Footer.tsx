@@ -4,17 +4,9 @@ import { PhoneIcon, WhatsAppIcon, MapPinIcon } from './Icons';
 
 interface FooterProps {
   data: SiteData;
-  isMen?: boolean;
-  onSwitchGender?: () => void;
-  onOpenGenderModal?: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({
-  data,
-  isMen = false,
-  onSwitchGender,
-  onOpenGenderModal,
-}) => {
+export const Footer: React.FC<FooterProps> = ({ data }) => {
   const handleScroll = (href: string) => {
     const el = document.querySelector(href);
     if (el) {
@@ -23,18 +15,18 @@ export const Footer: React.FC<FooterProps> = ({
   };
 
   return (
-    <footer className={`w-full ${isMen ? 'bg-[#F0F4FA]' : 'bg-[#FDF0F3]'} border-t border-charcoal/20`}>
+    <footer className="w-full bg-[#FDF0F3] border-t border-charcoal/20">
       {/* 4-Column Main Footer Grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12">
           
-          {/* Column 1: Brand Wordmark & 50-50 Blurb */}
+          {/* Column 1: Brand Wordmark & Blurb */}
           <div className="lg:col-span-4 space-y-4">
             <div className="flex items-baseline gap-1.5">
               <span className="font-serif text-3xl font-extrabold tracking-tight text-charcoal">
                 {data.brand.wordmark}
               </span>
-              <span className={`w-2.5 h-2.5 rounded-full ${isMen ? 'bg-slateBlue-500' : 'bg-blush-400'}`} />
+              <span className="w-2.5 h-2.5 rounded-full bg-blush-400" />
             </div>
 
             <p className="text-sm text-charcoal/85 leading-relaxed font-sans pr-4">
@@ -48,18 +40,6 @@ export const Footer: React.FC<FooterProps> = ({
               <span className="clean-badge bg-sage-200 text-charcoal font-bold text-xs">
                 6 CITIES
               </span>
-              
-              {/* Switcher Button in Footer */}
-              <button
-                onClick={onSwitchGender}
-                className={`clean-badge font-bold text-xs transition-colors shadow-xs ${
-                  isMen
-                    ? 'bg-blush-200 hover:bg-blush-300 text-charcoal border-blush-300'
-                    : 'bg-slateBlue-100 hover:bg-slateBlue-200 text-charcoal border-slateBlue-300'
-                }`}
-              >
-                {isMen ? '♀ Women (Mahila) Version' : '♂ Men (Purush) Version'}
-              </button>
             </div>
           </div>
 
@@ -79,14 +59,6 @@ export const Footer: React.FC<FooterProps> = ({
                   </button>
                 </li>
               ))}
-              <li>
-                <button
-                  onClick={onOpenGenderModal}
-                  className="text-left hover:text-charcoal underline text-xs text-charcoal/70 transition-colors focus:outline-none pt-1 block"
-                >
-                  Mahila / Purush Version Badlein
-                </button>
-              </li>
             </ul>
           </div>
 
@@ -102,7 +74,7 @@ export const Footer: React.FC<FooterProps> = ({
                   onClick={() => handleScroll('#locations')}
                   className="text-left hover:text-charcoal flex items-center gap-1.5 transition-colors focus:outline-none"
                 >
-                  <MapPinIcon className={`w-3.5 h-3.5 shrink-0 ${isMen ? 'text-slateBlue-600' : 'text-blush-600'}`} />
+                  <MapPinIcon className="w-3.5 h-3.5 shrink-0 text-blush-600" />
                   <span>{city.name}</span>
                 </button>
               ))}
@@ -123,7 +95,7 @@ export const Footer: React.FC<FooterProps> = ({
                   href={`tel:${data.brand.phone.replace(/\s+/g, '')}`}
                   className="inline-flex items-center gap-2 font-bold hover:underline"
                 >
-                  <PhoneIcon className={`w-4 h-4 shrink-0 ${isMen ? 'text-slateBlue-700' : 'text-blush-700'}`} />
+                  <PhoneIcon className="w-4 h-4 shrink-0 text-blush-700" />
                   <span>Call: {data.brand.formattedPhone}</span>
                 </a>
               </div>
@@ -164,11 +136,11 @@ export const Footer: React.FC<FooterProps> = ({
         </div>
       </div>
 
-      {/* Clean Dark Charcoal Copyright Bar */}
+      {/* Clean Dark Charcoal Copyright Bar - Without any Wing labels */}
       <div className="w-full bg-charcoal text-cream-50 py-5 px-4 sm:px-6 lg:px-8 border-t border-charcoal/30">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-cream-100/70">
           <p className="text-center sm:text-left">
-            Copyright © 2026 Ladies Scooty Training Centre | Femme Scooty {isMen ? '| Men\'s Wing' : ''} | All Rights Reserved
+            Copyright © 2026 Ladies Scooty Training Centre | Femme Scooty | All Rights Reserved
           </p>
           <p className="text-center sm:text-right font-medium text-cream-100/90">
             Powered by Ladies Scooty Training Centre | Femme Scooty

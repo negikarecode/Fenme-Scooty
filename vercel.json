@@ -2,6 +2,16 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/men",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/men/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/thank-you",
       "destination": "/",
       "permanent": true
@@ -43,10 +53,6 @@
     }
   ],
   "rewrites": [
-    {
-      "source": "/men",
-      "destination": "/men/index.html"
-    },
     {
       "source": "/(.*)",
       "destination": "/index.html"

@@ -4,24 +4,17 @@ import { CheckIcon } from './Icons';
 
 interface AboutSectionProps {
   data: SiteData;
-  isMen?: boolean;
 }
 
-export const AboutSection: React.FC<AboutSectionProps> = ({ data, isMen = false }) => {
+export const AboutSection: React.FC<AboutSectionProps> = ({ data }) => {
   return (
     <section id="about" className="w-full py-16 sm:py-24 bg-cream-50 border-b border-charcoal/10 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
-          {/* Left Column: Brand Story & 4 Clean Checkmarks */}
+          {/* Left Column: Brand Story & Pillars */}
           <div className="lg:col-span-7 space-y-6">
-            <div
-              className={`clean-badge ${
-                isMen
-                  ? 'bg-slateBlue-100 text-charcoal border-slateBlue-300'
-                  : 'bg-blush-100 text-charcoal border-blush-300'
-              }`}
-            >
+            <div className="clean-badge bg-blush-100 text-charcoal border-blush-300">
               <span>About Us (Hamare Baare Mein)</span>
             </div>
 
@@ -39,7 +32,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ data, isMen = false 
               </p>
             </div>
 
-            {/* 4 Clean Pillars */}
+            {/* 4 Pillars */}
             <div className="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
               {data.story.corePillars.map((pillar, idx) => (
                 <div key={idx} className="p-4 sm:p-5 rounded-xl bg-white border border-charcoal/10 shadow-sm space-y-2">
@@ -58,12 +51,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ data, isMen = false 
               ))}
             </div>
 
-            {/* Quick Stat Bar: Clean, spacious 2x2 grid so all labels align without overflow */}
-            <div
-              className={`p-4 sm:p-5 rounded-2xl border border-charcoal/10 grid grid-cols-2 gap-3.5 sm:gap-4 text-center ${
-                isMen ? 'bg-slateBlue-100/70' : 'bg-sky-100/70'
-              }`}
-            >
+            {/* Quick Stat Bar */}
+            <div className="p-4 sm:p-5 rounded-2xl border border-charcoal/10 grid grid-cols-2 gap-3.5 sm:gap-4 text-center bg-sky-100/70">
               {data.story.stats.map((s, idx) => (
                 <div
                   key={idx}
@@ -81,14 +70,13 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ data, isMen = false 
 
           </div>
 
-          {/* Right Column: Clean Editorial Visual Card vertically centered */}
+          {/* Right Column: Editorial Visual Card */}
           <div className="lg:col-span-5 flex items-center justify-center">
             <div className="relative w-full max-w-md lg:max-w-none">
               
-              {/* Training Image Container sized to balance left column */}
               <div className="rounded-2xl overflow-hidden border border-charcoal/15 shadow-md bg-cream-100 relative group min-h-[380px] sm:min-h-[460px] flex flex-col justify-end">
                 <img
-                  src={isMen ? '/images/men-about-story.jpg' : '/images/about-story.jpg'}
+                  src="/images/about-story.jpg"
                   alt="Scooty Training Session"
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   loading="lazy"
@@ -97,17 +85,11 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ data, isMen = false 
                 
                 {/* Visual Overlay Caption */}
                 <div className="relative z-10 p-5 sm:p-6 text-white space-y-1">
-                  <span
-                    className={`text-xs font-bold uppercase tracking-wider block ${
-                      isMen ? 'text-slateBlue-200' : 'text-blush-200'
-                    }`}
-                  >
-                    Zero Tension Guarantee
+                  <span className="clean-badge bg-white/90 text-charcoal text-[11px] font-bold">
+                    Safe Neighborhood Roads
                   </span>
-                  <p className="font-serif italic text-base sm:text-lg font-medium leading-snug">
-                    {isMen
-                      ? '"Pehle din se hi tension khatam. Trainer itne patience se sikhate hain ki bina kisi jhijhak ke aaram se seekh sakte hain."'
-                      : '"Pehle din se hi tension khatam. Didi itne aaram se sikhati hain ki darr bilkul nikal jata hai."'}
+                  <p className="text-xs sm:text-sm text-white/90 font-medium">
+                    1-on-1 practical training arranged near your home with patient female trainers.
                   </p>
                 </div>
               </div>

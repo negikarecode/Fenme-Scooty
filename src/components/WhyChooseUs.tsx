@@ -4,10 +4,9 @@ import { UsersIcon, SparklesIcon, MapPinIcon, AwardIcon, CalendarIcon, ShieldChe
 
 interface WhyChooseUsProps {
   data: SiteData;
-  isMen?: boolean;
 }
 
-export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ data, isMen = false }) => {
+export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ data }) => {
   const renderIcon = (iconName: Benefit['iconName']) => {
     switch (iconName) {
       case 'users':
@@ -26,18 +25,6 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ data, isMen = false })
   };
 
   const getPillTint = (index: number) => {
-    if (isMen) {
-      const tints = [
-        'bg-slateBlue-100 border-slateBlue-200',
-        'bg-sage-100 border-sage-200',
-        'bg-sky-100 border-sky-200',
-        'bg-slateBlue-100 border-slateBlue-200',
-        'bg-sage-100 border-sage-200',
-        'bg-sky-100 border-sky-200',
-      ];
-      return tints[index % tints.length];
-    }
-
     const tints = [
       'bg-blush-100 border-blush-200',
       'bg-sky-100 border-sky-200',
@@ -55,22 +42,14 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ data, isMen = false })
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-12 sm:mb-16">
-          <div
-            className={`inline-flex items-center gap-1.5 clean-badge ${
-              isMen
-                ? 'bg-slateBlue-100 text-charcoal border-slateBlue-300'
-                : 'bg-sage-100 text-charcoal border-sage-300'
-            } mx-auto`}
-          >
+          <div className="inline-flex items-center gap-1.5 clean-badge bg-sage-100 text-charcoal border-sage-300 mx-auto">
             <span>Why Choose Us</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-charcoal tracking-tight">
-            {isMen ? 'Why Choose Femme Scooty Men' : 'Why Choose Femme Scooty'}
+            Why Choose Femme Scooty
           </h2>
           <p className="text-base sm:text-lg text-charcoal/80 font-medium max-w-xl mx-auto leading-relaxed">
-            {isMen
-              ? 'Designed for complete safety, comfort, and real-road confidence for all ages.'
-              : 'Designed for complete safety, comfort, and real-road confidence for women.'}
+            Designed for complete safety, comfort, and real-road confidence for women.
           </p>
         </div>
 
@@ -92,13 +71,13 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ data, isMen = false })
                   </span>
                 </div>
 
-                {/* Title in Clean 50-50 English/Hinglish */}
+                {/* Title */}
                 <h3 className="font-sans text-lg sm:text-xl font-bold text-charcoal mb-2">
                   {benefit.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-sm sm:text-base text-charcoal/80 leading-relaxed font-sans">
+                <p className="text-sm text-charcoal/75 leading-relaxed font-sans">
                   {benefit.description}
                 </p>
               </div>

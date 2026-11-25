@@ -4,10 +4,9 @@ import { ChevronDownIcon } from './Icons';
 
 interface FAQSectionProps {
   data: SiteData;
-  isMen?: boolean;
 }
 
-export const FAQSection: React.FC<FAQSectionProps> = ({ data, isMen = false }) => {
+export const FAQSection: React.FC<FAQSectionProps> = ({ data }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const toggleFAQ = (index: number) => {
@@ -20,13 +19,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ data, isMen = false }) =
         
         {/* Section Header */}
         <div className="text-center space-y-3 mb-12 sm:mb-16">
-          <div
-            className={`inline-flex items-center gap-1.5 clean-badge ${
-              isMen
-                ? 'bg-slateBlue-100 text-charcoal border-slateBlue-300'
-                : 'bg-blush-100 text-charcoal border-blush-300'
-            } mx-auto`}
-          >
+          <div className="inline-flex items-center gap-1.5 clean-badge bg-blush-100 text-charcoal border-blush-300 mx-auto">
             <span>FAQs (Aam Sawal-Jawab)</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-charcoal tracking-tight">
@@ -79,11 +72,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ data, isMen = false }) =
         </div>
 
         {/* Bottom Reassuring Help Banner */}
-        <div
-          className={`mt-12 p-6 sm:p-7 rounded-2xl border border-charcoal/15 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left ${
-            isMen ? 'bg-slateBlue-100/70' : 'bg-sky-100/80'
-          }`}
-        >
+        <div className="mt-12 p-6 sm:p-7 rounded-2xl border border-charcoal/15 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left bg-sky-100/80">
           <div>
             <h4 className="font-bold text-base text-charcoal">Have another question? (Koi aur sawal hai?)</h4>
             <p className="text-sm text-charcoal/80 mt-1">Chat directly with our head training coordinator on WhatsApp.</p>
@@ -92,9 +81,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ data, isMen = false }) =
             href={data.brand.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className={`px-6 py-3 rounded-full text-white font-bold text-sm tracking-wide shrink-0 transition-colors shadow-sm ${
-              isMen ? 'bg-charcoal hover:bg-slateBlue-600' : 'bg-charcoal hover:bg-blush-600'
-            }`}
+            className="px-6 py-3 rounded-full text-white font-bold text-sm tracking-wide shrink-0 transition-colors shadow-sm bg-charcoal hover:bg-blush-600"
           >
             Chat on WhatsApp
           </a>

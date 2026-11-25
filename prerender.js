@@ -9,7 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 async function prerender() {
-  console.log("=== PRERENDERING / AND /MEN FOR STATIC SEO & FAST CRAWLING ===");
+  console.log("=== PRERENDERING / FOR STATIC SEO & FAST CRAWLING ===");
 
   // 1. Build SSR bundle
   console.log("Building SSR bundle...");
@@ -33,47 +33,22 @@ async function prerender() {
   const template = fs.readFileSync(templatePath, 'utf-8');
 
   // 3. Prerender Women (/)
-  console.log("Prerendering / (Women)...");
-  const womenHtml = renderToString(React.createElement(App, { initialPath: '/' }));
+  console.log("Prerendering / (Femme Scooty)...");
+  const html = renderToString(React.createElement(App, { initialPath: '/' }));
   const rootDiv = '<div id="root">';
   if (!template.includes(rootDiv)) {
     throw new Error('dist/index.html does not contain <div id="root">');
   }
-  const prerenderedWomen = template.replace(rootDiv, `${rootDiv}${womenHtml}`);
-  fs.writeFileSync(templatePath, prerenderedWomen, 'utf-8');
-  console.log(`[PASS] dist/index.html prerendered with ${womenHtml.length} characters.`);
+  const prerendered = template.replace(rootDiv, `${rootDiv}${html}`);
+  fs.writeFileSync(templatePath, prerendered, 'utf-8');
+  console.log(`[PASS] dist/index.html prerendered with ${html.length} characters.`);
 
-  // 4. Prerender Men (/men)
-  console.log("Prerendering /men (Men)...");
-  const menHtml = renderToString(React.createElement(App, { initialPath: '/men' }));
-  
-  // Customize head tags for Men
-  let menTemplate = template
-    .replace(
-      '<title>Femme Scooty | Ladies Scooty Training Centre in Delhi NCR, Lucknow, Mathura &amp; Jodhpur</title>',
-      "<title>Femme Scooty Men's Wing | Scooty Training in Delhi NCR, Lucknow, Mathura &amp; Jodhpur</title>"
-    )
-    .replace(
-      '<link rel="canonical" href="https://fenme-scooty.vercel.app/" />',
-      '<link rel="canonical" href="https://fenme-scooty.vercel.app/men" />'
-    )
-    .replaceAll(
-      'content="Learn scooty riding in 7 days with 100% female trainers near your home. Free scooty &amp; petrol included. Serving Delhi, Ghaziabad, Faridabad, Lucknow, Mathura &amp; Jodhpur. Call +91 96256 95363."',
-      'content="Learn scooty riding in 7 days with experienced male trainers near your home. Free scooty &amp; petrol included. Serving Delhi, Ghaziabad, Faridabad, Lucknow, Mathura &amp; Jodhpur. Call +91 96256 95363."'
-    )
-    .replace(
-      'content="https://fenme-scooty.vercel.app/"',
-      'content="https://fenme-scooty.vercel.app/men"'
-    )
-    .replaceAll(
-      'content="Femme Scooty | Ladies Scooty Training Centre in Delhi NCR, Lucknow, Mathura &amp; Jodhpur"',
-      "content=\"Femme Scooty Men's Wing | Scooty Training in Delhi NCR, Lucknow, Mathura &amp; Jodhpur\""
-    )
-    .replace(rootDiv, `${rootDiv}${menHtml}`);
-
-  fs.mkdirSync(path.resolve(__dirname, 'dist/men'), { recursive: true });
-  fs.writeFileSync(path.resolve(__dirname, 'dist/men/index.html'), menTemplate, 'utf-8');
-  console.log(`[PASS] dist/men/index.html prerendered with ${menHtml.length} characters.`);
+  // 4. Ensure no dist/men exists
+  const menDistPath = path.resolve(__dirname, 'dist/men');
+  if (fs.existsSync(menDistPath)) {
+    fs.rmSync(menDistPath, { recursive: true, force: true });
+    console.log("[CLEAN] Removed dist/men folder.");
+  }
 
   // 5. Clean up temporary SSR bundle
   fs.rmSync(path.resolve(__dirname, 'dist-ssr'), { recursive: true, force: true });

@@ -4,13 +4,11 @@ import { CheckIcon } from './Icons';
 
 interface CoursesSectionProps {
   data: SiteData;
-  isMen?: boolean;
   onSelectCourse?: (courseId: string) => void;
 }
 
 export const CoursesSection: React.FC<CoursesSectionProps> = ({
   data,
-  isMen = false,
   onSelectCourse,
 }) => {
   const handleEnrollClick = (courseId: string) => {
@@ -29,28 +27,6 @@ export const CoursesSection: React.FC<CoursesSectionProps> = ({
   };
 
   const getCardTheme = (color: Course['accentColor']) => {
-    if (isMen) {
-      switch (color) {
-        case 'sky':
-        case 'blush':
-          return {
-            cardBg: 'bg-slateBlue-50/80',
-            border: 'border-slateBlue-200',
-            badgeBg: 'bg-slateBlue-200 text-charcoal',
-            pillBtnBg: 'bg-white hover:bg-slateBlue-100 text-charcoal border-charcoal/20',
-            checkBg: 'bg-slateBlue-200 text-charcoal',
-          };
-        case 'sage':
-          return {
-            cardBg: 'bg-sage-50/80',
-            border: 'border-sage-200',
-            badgeBg: 'bg-sage-200 text-charcoal',
-            pillBtnBg: 'bg-white hover:bg-sage-100 text-charcoal border-charcoal/20',
-            checkBg: 'bg-sage-200 text-charcoal',
-          };
-      }
-    }
-
     switch (color) {
       case 'blush':
         return {
@@ -85,100 +61,107 @@ export const CoursesSection: React.FC<CoursesSectionProps> = ({
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-12 sm:mb-16">
-          <div
-            className={`inline-flex items-center gap-1.5 clean-badge ${
-              isMen
-                ? 'bg-slateBlue-100 text-charcoal border-slateBlue-300'
-                : 'bg-blush-100 text-charcoal border-blush-300'
-            } mx-auto`}
-          >
+          <div className="inline-flex items-center gap-1.5 clean-badge bg-blush-100 text-charcoal border-blush-300 mx-auto">
             <span>Our Courses (Hamare Courses)</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-charcoal tracking-tight">
             Our Training Courses
           </h2>
           <p className="text-base sm:text-lg text-charcoal/80 font-medium max-w-xl mx-auto leading-relaxed">
-            Tailored courses designed for your pace and convenience.
+            Choose the right program based on your comfort and experience level.
           </p>
         </div>
 
-        {/* Centered, Balanced 2-Column Equal-Height Pastel Cards Grid */}
-        <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-stretch">
-            {data.courses.map((course) => {
-              const theme = getCardTheme(course.accentColor);
-              const isBasic = course.id === '7-days-basic';
+        {/* 2-Card Centered Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 max-w-4xl mx-auto items-stretch">
+          {data.courses.map((course) => {
+            const theme = getCardTheme(course.accentColor);
 
-              return (
-                <div
-                  key={course.id}
-                  className={`flex flex-col h-full rounded-2xl border ${theme.border} ${theme.cardBg} p-6 sm:p-8 shadow-sm hover:shadow-md transition-all duration-300 relative group`}
-                >
-                  {/* Top Badge */}
-                  <div className="flex items-center justify-between mb-4">
-                    <span className={`text-xs font-bold px-3 py-1 rounded-full border border-charcoal/10 ${theme.badgeBg}`}>
+            return (
+              <div
+                key={course.id}
+                className={`rounded-3xl border ${theme.border} ${theme.cardBg} p-7 sm:p-9 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between relative group`}
+              >
+                <div>
+                  {/* Top Badge & Duration */}
+                  <div className="flex items-center justify-between gap-2 mb-4">
+                    <span className={`clean-badge ${theme.badgeBg} text-xs font-bold`}>
                       {course.badge}
                     </span>
-                    <span className="text-xs sm:text-sm font-bold text-charcoal/70">
+                    <span className="text-xs font-bold text-charcoal/70 bg-white/70 px-3 py-1 rounded-full border border-charcoal/10">
                       {course.duration}
                     </span>
                   </div>
 
-                  {/* Scooter Training Visual */}
-                  <div className="w-full h-52 sm:h-60 rounded-xl overflow-hidden mb-5 border border-charcoal/10 bg-cream-100 relative">
+                  {/* Course Title & Tagline */}
+                  <h3 className="font-serif text-2xl sm:text-3xl font-extrabold text-charcoal mb-2">
+                    {course.name}
+                  </h3>
+                  <p className="text-sm font-semibold text-charcoal/80 mb-4">
+                    {course.tagline}
+                  </p>
+
+                  {/* Course Image Preview */}
+                  <div className="w-full h-44 sm:h-48 rounded-2xl overflow-hidden border border-charcoal/15 mb-5 relative">
                     <img
                       src={course.image}
                       alt={course.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-charcoal/50 via-transparent to-transparent" />
-                    <div className="absolute bottom-3 left-3 right-3 text-white">
-                      <p className="text-[11px] font-semibold uppercase tracking-wider text-white/90">
-                        Target Audience (Kinke Liye Hai):
-                      </p>
-                      <p className="text-xs sm:text-sm font-bold drop-shadow">
-                        {course.idealFor}
-                      </p>
-                    </div>
                   </div>
 
-                  {/* Course Title & Tagline */}
-                  <div className="space-y-1.5 mb-5">
-                    <h3 className="font-serif text-2xl sm:text-3xl font-bold text-charcoal">
-                      {course.name}
-                    </h3>
-                    <p className="font-serif italic text-sm sm:text-base text-charcoal/80">
-                      "{course.tagline}"
+                  {/* Ideal For Callout */}
+                  <div className="p-3.5 rounded-xl bg-white/80 border border-charcoal/10 mb-6">
+                    <span className="block text-[11px] font-bold uppercase tracking-wider text-charcoal/60 mb-0.5">
+                      Ideal For
+                    </span>
+                    <p className="text-xs sm:text-sm font-bold text-charcoal">
+                      {course.idealFor}
                     </p>
                   </div>
 
-                  {/* 50-50 English/Hinglish Bullet Points */}
-                  <ul className="space-y-2.5 mb-6 text-sm sm:text-[15px] text-charcoal/90 flex-1">
-                    {course.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start gap-2.5">
-                        <span className={`w-4 h-4 rounded-full ${theme.checkBg} border border-charcoal/20 flex items-center justify-center shrink-0 mt-1`}>
-                          <CheckIcon className="w-2.5 h-2.5 text-charcoal" />
+                  {/* Feature Checklist */}
+                  <div className="space-y-3 mb-8">
+                    <span className="block text-xs font-bold uppercase tracking-wider text-charcoal/70">
+                      What's Included:
+                    </span>
+                    {course.features.map((feat, idx) => (
+                      <div key={idx} className="flex items-start gap-2.5">
+                        <span className={`w-5 h-5 rounded-full ${theme.checkBg} flex items-center justify-center shrink-0 mt-0.5 border border-charcoal/10`}>
+                          <CheckIcon className="w-3 h-3 text-charcoal" />
                         </span>
-                        <span className="leading-snug">{feature}</span>
-                      </li>
+                        <span className="text-xs sm:text-sm font-medium text-charcoal/90 leading-snug">
+                          {feat}
+                        </span>
+                      </div>
                     ))}
-                  </ul>
-
-                  {/* Bottom Aligned CTA Button */}
-                  <div className="mt-auto pt-2">
-                    <button
-                      onClick={() => handleEnrollClick(course.id)}
-                      className={`w-full py-3.5 px-5 rounded-full ${theme.pillBtnBg} font-bold text-sm tracking-wide border shadow-sm hover:shadow transition-all text-center`}
-                    >
-                      {isBasic ? 'Book Basic Course' : 'Book Advance Course'}
-                    </button>
                   </div>
-
                 </div>
-              );
-            })}
-          </div>
+
+                {/* Bottom Enroll CTA Button */}
+                <div className="pt-2 border-t border-charcoal/10">
+                  <button
+                    onClick={() => handleEnrollClick(course.id)}
+                    className="w-full py-3.5 px-6 rounded-2xl bg-charcoal hover:bg-blush-600 text-white font-bold text-sm tracking-wide shadow-xs transition-colors flex items-center justify-center gap-2 group-hover:shadow"
+                  >
+                    <span>Enroll in {course.name}</span>
+                    <span className="text-white/70">→</span>
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Bottom Guarantee Banner */}
+        <div className="mt-12 sm:mt-16 p-6 rounded-2xl bg-white border border-charcoal/15 max-w-3xl mx-auto text-center space-y-2 shadow-xs">
+          <p className="text-sm sm:text-base font-bold text-charcoal">
+            🤝 100% Worry-Free Training Guarantee
+          </p>
+          <p className="text-xs sm:text-sm text-charcoal/75 leading-relaxed">
+            Free scooty aur petrol training ke dauran hum provide karte hain. Aapko alag se koi hidden charges nahi dene hote.
+          </p>
         </div>
 
       </div>
