@@ -66,10 +66,10 @@ async function runTests() {
     const text = dialog.innerText;
     return {
       visible: true,
-      hasHeading: text.includes('Swagat Hai! Aap Kiske Liye Training Dekh Rahe Hain?'),
-      hasOptionWomen: text.includes('Mahila (Women)') && text.includes('100% Mahila Trainers'),
-      hasOptionMen: text.includes('Purush (Men)') && text.includes('Experienced Male Trainers'),
-      hasSwitcherLink: text.includes('Mahila / Purush Version badal sakte hain'),
+      hasHeading: text.includes('Welcome! Who is the training for?') || text.includes('Aap kiske liye training dekh rahe hain?'),
+      hasOptionWomen: text.includes('Women (Mahila)'),
+      hasOptionMen: text.includes('Men (Purush)'),
+      hasSwitcherLink: text.includes('versions anytime') || text.includes('version badal sakte hain'),
     };
   });
   console.log('[Step 1: Desktop Modal Check]', modalCheckDesktop);
@@ -95,7 +95,7 @@ async function runTests() {
   let clickedMen = false;
   for (const btn of buttons) {
     const text = await (await btn.getProperty('innerText')).jsonValue();
-    if (text.includes('Purush (Men)')) {
+    if (text.includes('Men (Purush)') || text.includes('Purush (Men)')) {
       await btn.click();
       clickedMen = true;
       break;

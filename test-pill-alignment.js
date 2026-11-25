@@ -27,6 +27,13 @@ async function verifyPill() {
 
     await page.goto(url, { waitUntil: 'networkidle0' });
 
+    // Dismiss modal if open so screenshots and measurements are clean
+    const modalClose = await page.$('div[role="dialog"] button[aria-label="Close modal"]');
+    if (modalClose) {
+      await modalClose.click();
+      await new Promise(r => setTimeout(r, 200));
+    }
+
     // Retrieve exact bounding client rects
     const metrics = await page.evaluate(() => {
       const btn = document.querySelector('#wing-dropdown-button');

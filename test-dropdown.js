@@ -14,12 +14,13 @@ async function testDropdown() {
   const page = await browser.newPage();
   await page.setViewport({ width: 1440, height: 900 });
 
-  // Set gender preference in localStorage to skip modal
+  // Open / and dismiss entry modal
   await page.goto('http://localhost:5173/', { waitUntil: 'networkidle0' });
-  await page.evaluate(() => {
-    localStorage.setItem('femme_scooty_gender_preference', 'women');
-  });
-  await page.goto('http://localhost:5173/', { waitUntil: 'networkidle0' });
+  const modalClose = await page.$('div[role="dialog"] button[aria-label="Close modal"]');
+  if (modalClose) {
+    await modalClose.click();
+    await new Promise(r => setTimeout(r, 200));
+  }
 
   // 1. Check Phone Number is NOT in main navbar
   const headerText = await page.$eval('header', el => el.innerText);

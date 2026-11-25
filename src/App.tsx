@@ -18,12 +18,7 @@ export const App: React.FC = () => {
   const [pathname, setPathname] = useState<string>(
     typeof window !== 'undefined' ? window.location.pathname : '/'
   );
-  const [showGenderModal, setShowGenderModal] = useState<boolean>(() => {
-    if (typeof window !== 'undefined') {
-      return !localStorage.getItem('femme_scooty_gender_preference');
-    }
-    return false;
-  });
+  const [showGenderModal, setShowGenderModal] = useState<boolean>(true);
 
   // Sync browser back/forward buttons
   useEffect(() => {
@@ -41,17 +36,12 @@ export const App: React.FC = () => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   }, [pathname]);
 
-  // Sync preference with explicit pathname on initial visit
+  // Sync explicit pathname on initial visit
   useEffect(() => {
     if (window.location.pathname.startsWith('/men')) {
-      localStorage.setItem('femme_scooty_gender_preference', 'men');
       setPathname('/men');
     } else {
-      const storedPref = localStorage.getItem('femme_scooty_gender_preference');
-      if (storedPref === 'men') {
-        window.history.replaceState({}, '', '/men');
-        setPathname('/men');
-      }
+      setPathname('/');
     }
   }, []);
 
