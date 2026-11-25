@@ -54,16 +54,16 @@ async function prerender() {
       "<title>Femme Scooty Men's Wing | Scooty Training in Delhi NCR, Lucknow, Mathura &amp; Jodhpur</title>"
     )
     .replace(
-      '<link rel="canonical" href="https://femmescooty.in/" />',
-      '<link rel="canonical" href="https://femmescooty.in/men" />'
+      '<link rel="canonical" href="https://fenme-scooty.vercel.app/" />',
+      '<link rel="canonical" href="https://fenme-scooty.vercel.app/men" />'
     )
     .replaceAll(
       'content="Learn scooty riding in 7 days with 100% female trainers near your home. Free scooty &amp; petrol included. Serving Delhi, Ghaziabad, Faridabad, Lucknow, Mathura &amp; Jodhpur. Call +91 96256 95363."',
       'content="Learn scooty riding in 7 days with experienced male trainers near your home. Free scooty &amp; petrol included. Serving Delhi, Ghaziabad, Faridabad, Lucknow, Mathura &amp; Jodhpur. Call +91 96256 95363."'
     )
     .replace(
-      'content="https://femmescooty.in/"',
-      'content="https://femmescooty.in/men"'
+      'content="https://fenme-scooty.vercel.app/"',
+      'content="https://fenme-scooty.vercel.app/men"'
     )
     .replaceAll(
       'content="Femme Scooty | Ladies Scooty Training Centre in Delhi NCR, Lucknow, Mathura &amp; Jodhpur"',

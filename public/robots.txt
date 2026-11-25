@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://femmescooty.in/sitemap.xml
+Sitemap: https://fenme-scooty.vercel.app/sitemap.xml
+

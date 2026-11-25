@@ -57,7 +57,7 @@ export const App: React.FC<{ initialPath?: string }> = ({ initialPath }) => {
     const title = isMenRoute
       ? "Femme Scooty Men's Wing | Scooty Training in Delhi NCR, Lucknow, Mathura & Jodhpur"
       : "Femme Scooty | Ladies Scooty Training Centre in Delhi NCR, Lucknow, Mathura & Jodhpur";
-    const canonicalUrl = isMenRoute ? "https://femmescooty.in/men" : "https://femmescooty.in/";
+    const canonicalUrl = isMenRoute ? "https://fenme-scooty.vercel.app/men" : "https://fenme-scooty.vercel.app/";
     const description = isMenRoute
       ? "Learn scooty riding in 7 days with experienced male trainers near your home. Free scooty & petrol included. Serving Delhi, Ghaziabad, Faridabad, Lucknow, Mathura & Jodhpur. Call +91 96256 95363."
       : "Learn scooty riding in 7 days with 100% female trainers near your home. Free scooty & petrol included. Serving Delhi, Ghaziabad, Faridabad, Lucknow, Mathura & Jodhpur. Call +91 96256 95363.";
