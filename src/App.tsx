@@ -85,7 +85,7 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-cream-50 text-charcoal overflow-x-hidden relative">
+    <div className="min-h-screen flex flex-col bg-cream-50 text-charcoal overflow-x-clip relative">
       {/* Entry Pop-Up Modal */}
       <GenderModal
         isOpen={showGenderModal}

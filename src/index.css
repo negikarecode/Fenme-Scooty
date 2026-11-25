@@ -10,6 +10,12 @@
   }
 }
 
+@layer utilities {
+  .overflow-x-clip {
+    overflow-x: clip;
+  }
+}
+
 /* Minimal Editorial Graph-Paper Grid Background */
 .bg-graph-grid {
   background-color: #FAF9F6;

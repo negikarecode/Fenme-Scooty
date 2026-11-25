@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { SiteData } from '../data/siteData';
-import { ScooterIcon, PhoneIcon, ChevronDownIcon, CheckIcon } from './Icons';
+import { PhoneIcon, ChevronDownIcon, CheckIcon } from './Icons';
 
 interface HeaderProps {
   data: SiteData;
@@ -88,46 +88,8 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <div className="w-full sticky top-0 z-50">
-      {/* 1. Full-Width Single-Line Top Announcement Bar */}
-      <aside
-        aria-label="Announcement"
-        className={`w-full ${
-          isMen ? 'bg-slateBlue-100 border-b border-slateBlue-200' : 'bg-sky-200 border-b border-sky-300/70'
-        } text-charcoal text-xs sm:text-sm font-medium tracking-wide`}
-      >
-        <div className="w-full px-6 lg:px-10 py-2 flex items-center justify-between gap-4 whitespace-nowrap overflow-x-auto no-scrollbar">
-          {/* Left: Reassurance statement */}
-          <div className="flex items-center gap-2 shrink-0">
-            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-white/80 text-charcoal shadow-xs shrink-0">
-              <ScooterIcon className="w-3.5 h-3.5" />
-            </span>
-            <span className="font-semibold tracking-wide text-xs sm:text-sm">
-              {isMen
-                ? "Experienced Male Trainers • Free Scooty & Petrol Included • Ghar Ke Paas Training"
-                : "100% Female Trainers • Free Scooty & Petrol Included • Ghar Ke Paas Training"}
-            </span>
-          </div>
-
-          {/* Center: 6 Cities list */}
-          <div className="hidden md:flex items-center text-xs sm:text-sm font-medium text-charcoal/75 shrink-0">
-            <span>6 Cities: Delhi, Lucknow, Mathura, Jodhpur, Ghaziabad, Faridabad</span>
-          </div>
-
-          {/* Right: Phone number */}
-          <a
-            href={`tel:${data.brand.phone.replace(/\s+/g, '')}`}
-            className="font-bold hover:underline inline-flex items-center gap-1.5 transition-colors shrink-0 text-xs sm:text-sm ml-auto sm:ml-0"
-          >
-            <PhoneIcon className="w-3.5 h-3.5" />
-            <span>{data.brand.formattedPhone}</span>
-          </a>
-        </div>
-      </aside>
-
-      {/* 2. Balanced Single-Line Navbar with True Centered Nav Links */}
-      <header className="w-full bg-[#FAF9F6]/95 backdrop-blur-md border-b border-charcoal/10 transition-all">
-        <div className="w-full px-6 lg:px-10 h-16 sm:h-20 flex items-center justify-between">
+    <header className="w-full sticky top-0 z-40 bg-[#FAF9F6]/95 backdrop-blur-md border-b border-charcoal/10 transition-all">
+      <div className="w-full px-6 lg:px-10 h-16 sm:h-20 flex items-center justify-between">
           {/* Part 1: Left Logo Container (flex-1 shrink-0) */}
           <div className="flex-1 flex items-center shrink-0">
             <a
@@ -164,7 +126,7 @@ export const Header: React.FC<HeaderProps> = ({
               <button
                 type="button"
                 onClick={() => setDropdownOpen((prev) => !prev)}
-                className={`inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-full text-xs sm:text-sm font-bold border transition-colors shadow-xs whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-charcoal/20 ${
+                className={`inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-bold border transition-colors shadow-xs whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-charcoal/20 ${
                   isMen
                     ? 'bg-slateBlue-100 hover:bg-slateBlue-200 text-charcoal border-slateBlue-300'
                     : 'bg-blush-100 hover:bg-blush-200 text-charcoal border-blush-300'
@@ -173,9 +135,9 @@ export const Header: React.FC<HeaderProps> = ({
                 aria-haspopup="true"
                 id="wing-dropdown-button"
               >
-                <span>{isMen ? 'Men (Purush)' : 'Women (Mahila)'}</span>
+                <span className="leading-none">{isMen ? 'Men (Purush)' : 'Women (Mahila)'}</span>
                 <ChevronDownIcon
-                  className={`w-3.5 h-3.5 text-charcoal/70 transition-transform duration-200 ${
+                  className={`w-3.5 h-3.5 shrink-0 text-charcoal/70 transition-transform duration-200 ${
                     dropdownOpen ? 'rotate-180' : ''
                   }`}
                 />
@@ -249,14 +211,14 @@ export const Header: React.FC<HeaderProps> = ({
               <button
                 type="button"
                 onClick={() => setMobileDropdownOpen((prev) => !prev)}
-                className={`inline-flex items-center justify-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-bold border ${
+                className={`inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold border ${
                   isMen
                     ? 'bg-slateBlue-100 text-charcoal border-slateBlue-300'
                     : 'bg-blush-100 text-charcoal border-blush-300'
                 }`}
               >
-                <span>{isMen ? 'Men' : 'Women'}</span>
-                <ChevronDownIcon className="w-3 h-3 text-charcoal/70" />
+                <span className="leading-none">{isMen ? 'Men' : 'Women'}</span>
+                <ChevronDownIcon className="w-3 h-3 shrink-0 text-charcoal/70" />
               </button>
 
               {mobileDropdownOpen && (
@@ -366,6 +328,5 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
         )}
       </header>
-    </div>
   );
 };

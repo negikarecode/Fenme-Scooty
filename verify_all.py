@@ -43,15 +43,11 @@ def main():
     check("Men (Purush)" in dom_women, "Modal option 2: 'Men (Purush)'")
     check("Experienced Male Trainers • All Ages" in dom_women, "Modal option 2 subtext matches")
 
-    # Top Announcement Bar (Full-Width Single-Line)
-    check("100% Female Trainers • Free Scooty & Petrol Included • Ghar Ke Paas Training" in dom_women or
-          "100% Female Trainers • Free Scooty &amp; Petrol Included • Ghar Ke Paas Training" in dom_women,
-          "Top bar left: '100% Female Trainers • Free Scooty & Petrol Included • Ghar Ke Paas Training'")
-    check("6 Cities: Delhi, Lucknow, Mathura, Jodhpur, Ghaziabad, Faridabad" in dom_women,
-          "Top bar center: '6 Cities: Delhi, Lucknow, Mathura, Jodhpur, Ghaziabad, Faridabad'")
-    check("+91 96256 95363" in dom_women, "Top bar right: '+91 96256 95363'")
-    check("Switch Version (Mahila / Purush)" not in dom_women,
-          "Duplicate 'Switch Version (Mahila / Purush)' removed from top announcement bar")
+    # Top Announcement Bar Completely Removed
+    check("aria-label=\"Announcement\"" not in dom_women, "Top announcement bar completely removed on Women route")
+    check("100% Female Trainers • Free Scooty & Petrol Included" not in dom_women and
+          "100% Female Trainers • Free Scooty &amp; Petrol Included" not in dom_women,
+          "Announcement bar text not in DOM on Women route")
 
     # Header & Right-Side Wing Dropdown
     check("Women's Wing" not in dom_women, "No redundant 'Women's Wing' pill in logo area")
@@ -112,12 +108,8 @@ def main():
           "No redundant 'Men's Wing' pill badge next to logo")
     check("wing-dropdown-button" in dom_men, "Men Header has Wing Dropdown button")
     check("Men (Purush)" in dom_men, "Men Header dropdown displays 'Men (Purush)'")
-    check("Experienced Male Trainers • Free Scooty & Petrol Included • Ghar Ke Paas Training" in dom_men or
-          "Experienced Male Trainers • Free Scooty &amp; Petrol Included • Ghar Ke Paas Training" in dom_men,
-          "Men top bar left: 'Experienced Male Trainers • Free Scooty & Petrol Included • Ghar Ke Paas Training'")
-    check("6 Cities: Delhi, Lucknow, Mathura, Jodhpur, Ghaziabad, Faridabad" in dom_men,
-          "Men top bar center: '6 Cities: Delhi, Lucknow, Mathura, Jodhpur, Ghaziabad, Faridabad'")
-    check("+91 96256 95363" in dom_men, "Men top bar right: '+91 96256 95363'")
+    # Top Announcement Bar Completely Removed (Men)
+    check("aria-label=\"Announcement\"" not in dom_men, "Top announcement bar completely removed on Men route")
     check("Experienced Male Trainers • Aapke Ghar Ke Paas • Free Scooty &amp; Petrol" in dom_men or "Experienced Male Trainers • Aapke Ghar Ke Paas • Free Scooty & Petrol" in dom_men,
           "Men Hero subtext matches")
     check("men-course-advance.jpg" in dom_men, "Men Advance course uses safe helmet rider photo")
