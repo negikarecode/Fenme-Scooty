@@ -14,10 +14,12 @@ import { Footer } from './components/Footer';
 import { FloatingActions } from './components/FloatingActions';
 import { GenderModal } from './components/GenderModal';
 
-export const App: React.FC = () => {
-  const [pathname, setPathname] = useState<string>(
-    typeof window !== 'undefined' ? window.location.pathname : '/'
-  );
+export const App: React.FC<{ initialPath?: string }> = ({ initialPath }) => {
+  const [pathname, setPathname] = useState<string>(() => {
+    if (initialPath) return initialPath;
+    if (typeof window !== 'undefined') return window.location.pathname;
+    return '/';
+  });
   const [showGenderModal, setShowGenderModal] = useState<boolean>(true);
 
   // Sync browser back/forward buttons
@@ -38,12 +40,60 @@ export const App: React.FC = () => {
 
   // Sync explicit pathname on initial visit
   useEffect(() => {
-    if (window.location.pathname.startsWith('/men')) {
-      setPathname('/men');
-    } else {
-      setPathname('/');
+    if (typeof window !== 'undefined') {
+      if (window.location.pathname.startsWith('/men')) {
+        setPathname('/men');
+      } else {
+        setPathname('/');
+      }
     }
   }, []);
+
+  // Update document title, canonical link, and meta tags on route change
+  useEffect(() => {
+    if (typeof document === 'undefined') return;
+
+    const isMenRoute = pathname === '/men' || pathname.startsWith('/men');
+    const title = isMenRoute
+      ? "Femme Scooty Men's Wing | Scooty Training in Delhi NCR, Lucknow, Mathura & Jodhpur"
+      : "Femme Scooty | Ladies Scooty Training Centre in Delhi NCR, Lucknow, Mathura & Jodhpur";
+    const canonicalUrl = isMenRoute ? "https://femmescooty.in/men" : "https://femmescooty.in/";
+    const description = isMenRoute
+      ? "Learn scooty riding in 7 days with experienced male trainers near your home. Free scooty & petrol included. Serving Delhi, Ghaziabad, Faridabad, Lucknow, Mathura & Jodhpur. Call +91 96256 95363."
+      : "Learn scooty riding in 7 days with 100% female trainers near your home. Free scooty & petrol included. Serving Delhi, Ghaziabad, Faridabad, Lucknow, Mathura & Jodhpur. Call +91 96256 95363.";
+
+    document.title = title;
+
+    // Canonical link
+    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
+    }
+    canonical.href = canonicalUrl;
+
+    // Description meta
+    const metaDesc = document.querySelector('meta[name="description"]') as HTMLMetaElement | null;
+    if (metaDesc) metaDesc.content = description;
+
+    // Open Graph
+    const ogTitle = document.querySelector('meta[property="og:title"]') as HTMLMetaElement | null;
+    if (ogTitle) ogTitle.content = title;
+
+    const ogDesc = document.querySelector('meta[property="og:description"]') as HTMLMetaElement | null;
+    if (ogDesc) ogDesc.content = description;
+
+    const ogUrl = document.querySelector('meta[property="og:url"]') as HTMLMetaElement | null;
+    if (ogUrl) ogUrl.content = canonicalUrl;
+
+    // Twitter Card
+    const twTitle = document.querySelector('meta[name="twitter:title"]') as HTMLMetaElement | null;
+    if (twTitle) twTitle.content = title;
+
+    const twDesc = document.querySelector('meta[name="twitter:description"]') as HTMLMetaElement | null;
+    if (twDesc) twDesc.content = description;
+  }, [pathname]);
 
   const navigate = (path: string) => {
     window.history.pushState({}, '', path);
